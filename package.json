@@ -12,6 +12,8 @@
     "@clerk/nextjs": "^7.5.9",
     "@clerk/ui": "^1.23.0",
     "@prisma/client": "^6.19.3",
+    "aos": "^2.3.4",
+    "lucide-react": "^1.22.0",
     "motion": "^12.42.0",
     "next": "16.2.9",
     "prisma": "^6.19.3",
@@ -19,7 +21,9 @@
     "react-dom": "19.2.4"
   },
   "devDependencies": {
+    "@tailwindcss/forms": "^0.5.11",
     "@tailwindcss/postcss": "^4",
+    "@types/aos": "^3.0.8",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

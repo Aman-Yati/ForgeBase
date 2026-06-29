@@ -19,12 +19,13 @@ export default function Spotlight({
   const [boxes, setBoxes] = useState<Array<HTMLElement>>([]);
 
   useEffect(() => {
-    containerRef.current &&
+    if (containerRef.current) {
       setBoxes(
         Array.from(containerRef.current.children).map(
           (el) => el as HTMLElement,
         ),
       );
+    }
   }, []);
 
   useEffect(() => {
@@ -39,13 +40,6 @@ export default function Spotlight({
   useEffect(() => {
     onMouseMove();
   }, [mousePosition]);
-
-  const initContainer = () => {
-    if (containerRef.current) {
-      containerSize.current.w = containerRef.current.offsetWidth;
-      containerSize.current.h = containerRef.current.offsetHeight;
-    }
-  };
 
   const onMouseMove = () => {
     if (containerRef.current) {
@@ -66,6 +60,13 @@ export default function Spotlight({
           box.style.setProperty("--mouse-y", `${boxY}px`);
         });
       }
+    }
+  };
+
+  const initContainer = () => {
+    if (containerRef.current) {
+      containerSize.current.w = containerRef.current.offsetWidth;
+      containerSize.current.h = containerRef.current.offsetHeight;
     }
   };
 
