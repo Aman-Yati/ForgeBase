@@ -3,8 +3,6 @@ import type { Metadata } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./css/globals.css";
-import Header from "@/components/ui/header";
-import Footer from "@/components/ui/footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,11 +36,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} antialiased`}
       >
         <body className="min-h-screen flex flex-col bg-gray-950 text-gray-100">
-          <Header />
           <main className="flex-1">
             {children}
           </main>
-          <Footer />
         </body>
       </html>
     </ClerkProvider>

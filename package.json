@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^7.5.9",
+    "@clerk/themes": "^2.4.57",
     "@clerk/ui": "^1.23.0",
     "@prisma/client": "^6.19.3",
     "aos": "^2.3.4",
