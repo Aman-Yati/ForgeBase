@@ -9,7 +9,7 @@ import { loginBackground } from '@/lib/images'
 const clerkAppearance = {
   theme: [dark],
   variables: {
-    colorPrimary: '#8B5CF6',
+    colorPrimary: '#2b077d',
   },
 }
 
