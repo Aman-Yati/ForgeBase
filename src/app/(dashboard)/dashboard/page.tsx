@@ -1,12 +1,14 @@
 
+import Dashcard from '@/components/dashcard';
+import Dashtop from '@/components/dashtop';
 import Sidebar from '@/components/ui/sidebar';
 import React from 'react'
 
 const Dashboard = () => {
   return (
-    <div>Dashboard
+    <div>
       <div>
-        <Sidebar/>
+        <Dashtop />
       </div>
     </div>
   )

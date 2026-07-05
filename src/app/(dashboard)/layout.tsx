@@ -8,7 +8,7 @@ const layout = ({children }: {children: React.ReactNode}) => {
     <div>
       <Sidebar/>
       <DashboardNavbar/>
-      <main>
+      <main className="lg:ml-72 pt-16 min-h-screen bg-[#070B16] p-6">
         {children}
       </main>
     </div>

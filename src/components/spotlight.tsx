@@ -28,19 +28,6 @@ export default function Spotlight({
     }
   }, []);
 
-  useEffect(() => {
-    initContainer();
-    window.addEventListener("resize", initContainer);
-
-    return () => {
-      window.removeEventListener("resize", initContainer);
-    };
-  }, [boxes]);
-
-  useEffect(() => {
-    onMouseMove();
-  }, [mousePosition]);
-
   const onMouseMove = () => {
     if (containerRef.current) {
       const rect = containerRef.current.getBoundingClientRect();
@@ -69,6 +56,18 @@ export default function Spotlight({
       containerSize.current.h = containerRef.current.offsetHeight;
     }
   };
+    useEffect(() => {
+    initContainer();
+    window.addEventListener("resize", initContainer);
+
+    return () => {
+      window.removeEventListener("resize", initContainer);
+    };
+  }, [boxes]);
+
+  useEffect(() => {
+    onMouseMove();
+  }, [mousePosition]);
 
   return (
     <div className={className} ref={containerRef}>

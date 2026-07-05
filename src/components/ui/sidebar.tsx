@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { UserButton, useUser } from "@clerk/nextjs";
 import Logo from "./logo";
 import {
@@ -17,18 +19,47 @@ import {
 } from "lucide-react";
 
 const NAV_ITEMS = [
-  { label: "Dashboard", icon: LayoutDashboard },
-  { label: "Jobs", icon: Briefcase },
-  { label: "Analytics", icon: BarChart3 },
-  { label: "Calendar", icon: Calendar },
-  { label: "Resume", icon: FileText },
-  { label: "Profile", icon: User },
-  { label: "Settings", icon: Settings },
+  {
+    label: "Dashboard",
+    href: "/dashboard",
+    icon: LayoutDashboard,
+  },
+  {
+    label: "Jobs",
+    href: "/jobs",
+    icon: Briefcase,
+  },
+  {
+    label: "Analytics",
+    href: "/analytics",
+    icon: BarChart3,
+  },
+  {
+    label: "Calendar",
+    href: "/calendar",
+    icon: Calendar,
+  },
+  {
+    label: "Resume",
+    href: "/resume",
+    icon: FileText,
+  },
+  {
+    label: "Profile",
+    href: "/profile",
+    icon: User,
+  },
+  {
+    label: "Settings",
+    href: "/settings",
+    icon: Settings,
+  },
 ];
 
 export default function Sidebar() {
-  const [active, setActive] = useState("Dashboard");
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  const pathname = usePathname();
 
   const { user } = useUser();
 
@@ -53,30 +84,20 @@ export default function Sidebar() {
 
           <button
             onClick={() => setMobileOpen(true)}
-            className="rounded-lg p-2 text-zinc-400 hover:bg-white/5 hover:text-white"
+            className="rounded-lg p-2 text-zinc-400 transition hover:bg-white/5 hover:text-white"
           >
             <Menu size={22} />
           </button>
         </div>
-
-        {/* Mobile Search */}
-        <div className="flex h-11 w-full items-center gap-3 rounded-full border border-white/10 bg-[#111827] px-4 transition-colors focus-within:border-indigo-500/60">
-          <Search size={18} className="shrink-0 text-zinc-400" />
-          <input
-            type="text"
-            placeholder="Search..."
-            className="h-full w-full border-none bg-transparent text-sm text-white placeholder:text-zinc-500 outline-none ring-0 focus:outline-none focus:ring-0 focus:border-none"
-          />
-        </div>
       </header>
 
-      {/* Mobile Overlay */}
+      {/* Overlay */}
       <div
         onClick={() => setMobileOpen(false)}
         className={`fixed inset-0 z-40 bg-black/60 transition-opacity lg:hidden ${
           mobileOpen
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none"
+            ? "pointer-events-auto opacity-100"
+            : "pointer-events-none opacity-0"
         }`}
       />
 
@@ -90,6 +111,7 @@ export default function Sidebar() {
         <div className="flex items-center justify-between px-6 py-7">
           <div className="flex items-center gap-3">
             <Logo />
+
             <span className="text-xl font-semibold text-white">
               JobHive
             </span>
@@ -97,7 +119,7 @@ export default function Sidebar() {
 
           <button
             onClick={() => setMobileOpen(false)}
-            className="rounded-lg p-2 text-zinc-500 hover:bg-white/5 hover:text-white lg:hidden"
+            className="rounded-lg p-2 text-zinc-500 transition hover:bg-white/5 hover:text-white lg:hidden"
           >
             <X size={20} />
           </button>
@@ -110,16 +132,16 @@ export default function Sidebar() {
           </p>
 
           <ul className="space-y-1">
-            {NAV_ITEMS.map(({ label, icon: Icon }) => {
-              const isActive = active === label;
+            {NAV_ITEMS.map(({ label, href, icon: Icon }) => {
+              const isActive =
+                pathname === href ||
+                (href !== "/dashboard" && pathname.startsWith(href));
 
               return (
                 <li key={label}>
-                  <button
-                    onClick={() => {
-                      setActive(label);
-                      setMobileOpen(false);
-                    }}
+                  <Link
+                    href={href}
+                    onClick={() => setMobileOpen(false)}
                     className={`relative flex w-full items-center gap-4 rounded-xl px-4 py-3 text-sm font-medium transition-colors ${
                       isActive
                         ? "bg-[#151B31] text-white"
@@ -140,7 +162,7 @@ export default function Sidebar() {
                     />
 
                     <span>{label}</span>
-                  </button>
+                  </Link>
                 </li>
               );
             })}
@@ -149,11 +171,12 @@ export default function Sidebar() {
 
         {/* User Card */}
         <div className="border-t border-white/10 p-5">
-            <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] p-3">
-            <UserButton/>
-            {username}
-
-            </div>
+          <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] p-3">
+            <UserButton />
+            <span className="truncate text-sm font-medium text-white">
+              {username}
+            </span>
+          </div>
         </div>
       </aside>
     </>

@@ -8,6 +8,7 @@ import Workflows from '@/components/workflows';
 import Header from "@/components/ui/header";
 import Footer from "@/components/ui/footer";
 import React from 'react'
+import FAQSection from '@/components/faq';
 
 const Home = () => {
   return (
@@ -18,6 +19,7 @@ const Home = () => {
       <Workflows/>
       <Features/>
       <Testimonials/>
+      <FAQSection/>
       <Cta/>
       <Footer />
       
