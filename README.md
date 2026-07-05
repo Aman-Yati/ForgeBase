@@ -1,9 +1,9 @@
 ```md
-# 🐝 JobHive
+# 🐝 ForgeBase
 
 A modern job application tracking platform built with **Next.js**, **TypeScript**, **Tailwind CSS**, **Prisma**, and **Supabase**.
 
-JobHive helps job seekers organize and manage their job search by tracking applications, interviews, offers, and saved opportunities through a clean and intuitive dashboard.
+ForgeBase helps job seekers organize and manage their job search by tracking applications, interviews, offers, and saved opportunities through a clean and intuitive dashboard.
 
 ---
 
@@ -73,13 +73,13 @@ public
 Clone the repository.
 
 ```bash
-git clone https://github.com/yourusername/jobhive.git
+git clone https://github.com/yourusername/ForgeBase.git
 ````
 
 Move into the project.
 
 ```bash
-cd jobhive
+cd ForgeBase
 ```
 
 Install dependencies.
@@ -122,7 +122,7 @@ http://localhost:3000
 
 ## 🗄 Database
 
-JobHive uses:
+ForgeBase uses:
 
 * PostgreSQL
 * Prisma ORM
@@ -144,7 +144,7 @@ npx prisma generate
 
 ## 🚀 Deployment
 
-JobHive is deployed using **Vercel**.
+ForgeBase is deployed using **Vercel**.
 
 Every push to the `main` branch automatically triggers a new deployment.
 

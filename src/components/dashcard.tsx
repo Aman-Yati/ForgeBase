@@ -1,15 +1,53 @@
-import React from 'react'
+import { ArrowDownRight, ArrowUpRight, LucideIcon } from "lucide-react";
 
-const Dashcard = ({title, description}: {title: string; description: string}) => {
-  return (
-    <div className ="grid justify-center items-center mt-6">
-        <div className="bg-blue-900 rounded-lg shadow-md p-17">
-
-            <h3 className="text-lg font-semibold mb-2">{title}</h3>
-            <p className="text-gray-600">{description}</p>
-        </div>
-    </div>
-  )
+interface DashCardProps {
+  title: string;
+  value: string;
+  percentage: string;
+  icon: LucideIcon;
+  iconBg?: string;
+  positive?: boolean;
 }
 
-export default Dashcard;
+export default function DashCard({
+  title,
+  value,
+  percentage,
+  icon: Icon,
+  iconBg = "bg-emerald-500",
+  positive = true,
+}: DashCardProps) {
+  return (
+    <div className="w-full rounded-2xl bg-[#000816] p-6 shadow-lg transition-all duration-300 border border-white/10">
+      {/* Icon */}
+      <div
+        className={`flex h-16 w-16 items-center justify-center rounded-full ${iconBg}`}
+      >
+        <Icon className="h-8 w-8 text-white" />
+      </div>
+
+      {/* Value */}
+      <h2 className="mt-8 text-4xl font-bold tracking-tight text-white">
+        {value}
+      </h2>
+
+      {/* Footer */}
+      <div className="mt-1 flex items-end justify-between">
+        <p className="text-base text-slate-400">{title}</p>
+
+        <div
+          className={`flex items-center gap-1 text-sm font-semibold ${
+            positive ? "text-emerald-400" : "text-red-400"
+          }`}
+        >
+          {percentage}
+          {positive ? (
+            <ArrowUpRight className="h-4 w-4" />
+          ) : (
+            <ArrowDownRight className="h-4 w-4" />
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}

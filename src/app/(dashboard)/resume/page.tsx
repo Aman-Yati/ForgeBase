@@ -22,7 +22,7 @@ export default function ResumeCard({
         </h1>
 
         <p className="mt-2 text-sm text-zinc-400 sm:text-base">
-          Upload your resume and preview it directly inside JobHive.
+          Upload your resume and preview it directly inside ForgeBase.
         </p>
       </div>
 

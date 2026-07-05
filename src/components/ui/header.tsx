@@ -18,8 +18,8 @@ export default function Header() {
   }
 
   return (
-    <header className="sticky top-0 z-50 mt-2 w-full md:mt-5">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+    <header className="sticky top-0 z-50 mt-2 mx-auto w-full md:mt-8">
+      <div className="mx-auto max-w-[87rem] px-4 sm:px-6">
         <div className="relative rounded-2xl border border-white/15 bg-[#0b1220]/40 backdrop-blur-2xl shadow-lg">
 
           {/* Navbar */}
@@ -30,37 +30,37 @@ export default function Header() {
 
             {/* Desktop Navigation */}
             <nav className="hidden md:block">
-              <ul className="flex items-center gap-8 text-sm font-medium text-gray-400">
+              <ul className="flex items-center gap-8 text-sm font-snasm text-gray-400">
                 <li>
                   <Link
-                    href="#about"
+                    href="/#about"
                     className="transition-colors hover:text-white"
                   >
-                    About
+                    ABOUT
                   </Link>
                 </li>
 
                 <li>
                   <Link
-                    href="#features"
+                    href="/#features"
                     className="transition-colors hover:text-white"
                   >
-                    Features
+                    FEATURES
                   </Link>
                 </li>
 
                 <li>
                   <Link
-                    href="#how-it-works"
+                    href="/#how-it-works"
                     className="whitespace-nowrap transition-colors hover:text-white"
                   >
-                    How It Works
+                    HOW IT WORKS
                   </Link>
                 </li>
 
                 <li>
                   <Link
-                    href="#faq"
+                    href="/#faq"
                     className="transition-colors hover:text-white"
                   >
                     FAQ
@@ -104,7 +104,7 @@ export default function Header() {
 
                 <li>
                   <Link
-                    href="#about"
+                    href="/#about"
                     onClick={() => setIsOpen(false)}
                     className="block rounded-lg px-3 py-2 text-gray-300 hover:bg-gray-800 hover:text-white"
                   >
@@ -114,7 +114,7 @@ export default function Header() {
 
                 <li>
                   <Link
-                    href="#features"
+                    href="/#features"
                     onClick={() => setIsOpen(false)}
                     className="block rounded-lg px-3 py-2 text-gray-300 hover:bg-gray-800 hover:text-white"
                   >
@@ -124,7 +124,7 @@ export default function Header() {
 
                 <li>
                   <Link
-                    href="#how-it-works"
+                    href="/#how-it-works"
                     onClick={() => setIsOpen(false)}
                     className="block rounded-lg px-3 py-2 text-gray-300 hover:bg-gray-800 hover:text-white"
                   >
@@ -134,7 +134,7 @@ export default function Header() {
 
                 <li>
                   <Link
-                    href="#faq"
+                    href="/#faq"
                     onClick={() => setIsOpen(false)}
                     className="block rounded-lg px-3 py-2 text-gray-300 hover:bg-gray-800 hover:text-white"
                   >

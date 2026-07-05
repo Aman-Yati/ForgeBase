@@ -20,7 +20,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "JobHive",
+  title: "ForgeBase",
   description: "A modern job application tracker.",
 };
 

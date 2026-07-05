@@ -4,8 +4,8 @@ import { logo } from '@/lib/images'
 
 export default function Logo() {
   return (
-    <Link href="/" className="inline-flex shrink-0" aria-label="JobHive">
-      <Image src={logo} alt="JobHive Logo" width={32} height={32} />
+    <Link href="/" className="inline-flex shrink-0" aria-label="ForgeBase">
+      <Image src={logo} alt="ForgeBase Logo" width={32} height={32} />
     </Link>
   );
 }
