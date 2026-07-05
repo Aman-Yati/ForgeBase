@@ -77,7 +77,7 @@ export default function Sidebar() {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Logo />
-            <span className="text-xl font-semibold text-white">
+            <span className="text-xl font-snasm text-white">
               ForgeBase
             </span>
           </div>

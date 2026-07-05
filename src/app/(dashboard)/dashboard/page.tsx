@@ -1,17 +1,15 @@
-
-import Dashcard from '@/components/dashcard';
 import Dashtop from '@/components/dashtop';
-import Sidebar from '@/components/ui/sidebar';
-import React from 'react'
 
-const Dashboard = () => {
+const Dashboard = async () => {
+  // await new Promise((resolve) => setTimeout(resolve, 1500));
+
   return (
     <div>
       <div>
         <Dashtop />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;

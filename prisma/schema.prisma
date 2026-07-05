@@ -37,17 +37,16 @@ enum Priority {
 }
 
 model User {
-  id        String   @id @default(cuid())
-  clerkId   String   @unique
-  email     String   @unique
-  name      String?
+  clerkId String @id
 
-  jobs       Job[]
+  email   String @unique
+  name    String?
+
+  jobs    Job[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@index([clerkId])
   @@index([email])
 }
 
@@ -55,25 +54,24 @@ model Job {
   id String @id @default(cuid())
 
   company String
-  role String
+  role    String
 
-  location String?
-  salaryMin Int?
-  salaryMax Int?
+  location   String?
+  salaryMin  Int?
+  salaryMax  Int?
 
-  jobType JobType?
+  jobType  JobType?
   workMode WorkMode?
 
-  status ApplicationStatus @default(WISHLIST)
-  priority Priority          @default(MEDIUM)
+  status   ApplicationStatus @default(WISHLIST)
+  priority Priority @default(MEDIUM)
 
   appliedDate DateTime?
-
   jobUrl String?
   notes  String?
 
   userId String
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user   User @relation(fields: [userId], references: [clerkId], onDelete: Cascade)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
