@@ -44,9 +44,18 @@ export default function HeroHome() {
           </div>
         </div>
       </div>
-      <div className="flex justify-center p-20 mt-15">
-      <Image className="rounded-2xl" src={headerImage} alt="Home Illustration" width={1300} height={378} />
-      </div>
+<div className="mt-16 flex justify-center px-6">
+  <div className="relative w-full max-w-7xl">
+    <Image
+      src={headerImage}
+      width={1104}
+      height={384}
+      alt="Home Illustration"
+      className="h-auto w-full rounded-2xl"
+      priority
+    />
+  </div>
+</div>
     </section>
   );
 }

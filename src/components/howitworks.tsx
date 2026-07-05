@@ -59,7 +59,7 @@ export default function HowItWorks() {
           <span className="text-indigo-500"> simplified.</span>
         </h2>
 
-        <p className="mt-6 text-lg leading-8 text-zinc-400">
+        <p className="mx-auto max-w-2xl text-lg text-zinc-400">
           ForgeBase keeps everything organized—from applications and interviews
           to offers—so you can spend less time managing spreadsheets and more
           time getting hired.

@@ -1,12 +1,12 @@
 'use client'
 import React from 'react'
 import {motion} from 'motion/react'
-import { neobrutalism } from '@clerk/ui/themes'
+import { dark } from '@clerk/ui/themes'
 import { SignUp } from '@clerk/nextjs'
 import { loginBackground } from '@/lib/images'
 
 const clerkAppearance = {
-  theme: [neobrutalism],
+  theme: [dark],
   variables: {
     colorPrimary: '#8B5CF6',
   },

@@ -54,7 +54,7 @@ export default function FAQSection() {
             Frequently Asked Questions
           </h2>
 
-          <p className="mx-auto mt-5 max-w-2xl text-lg text-zinc-400">
+          <p className="mx-auto max-w-2xl text-lg text-zinc-400">
             Everything you need to know about ForgeBase.
           </p>
         </div>

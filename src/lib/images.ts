@@ -1,7 +1,7 @@
 // Centralized image path exports for public assets
 export const logo = '/images/logo.svg'
 export const footerIllustration = '/images/footer-illustration.svg'
-export const loginBackground = '/images/login_background.jpg'
+export const loginBackground = '/images/login.jpg'
 export const heroImage01 = '/images/hero-image-01.jpg'
 export const blurredShape = '/images/blurred-shape.svg'
 export const blurredShapeGray = '/images/blurred-shape-gray.svg'
