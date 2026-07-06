@@ -103,16 +103,15 @@ export default function Sidebar() {
 
       {/* Sidebar */}
       <aside
-        className={`fixed left-0 top-0 z-50 flex h-screen w-72 flex-col border-r border-white/10 bg-[#000816] transition-transform duration-300 ${
+        className={`fixed left-0 top-0 z-50 flex h-screen w-60 flex-col border-r border-white/10 bg-[#000816] transition-transform duration-300 ${
           mobileOpen ? "translate-x-0" : "-translate-x-full"
         } lg:translate-x-0`}
       >
         {/* Logo */}
-        <div className="flex items-center justify-between px-6 py-7">
+        <div className="flex items-center justify-between px-4 py-7">
           <div className="flex items-center gap-3">
             <Logo />
-
-            <span className="text-xl font-semibold text-white">
+            <span className="text-xl font-snasm text-white">
               ForgeBase
             </span>
           </div>
@@ -142,10 +141,10 @@ export default function Sidebar() {
                   <Link
                     href={href}
                     onClick={() => setMobileOpen(false)}
-                    className={`relative flex w-full items-center gap-4 rounded-xl px-4 py-3 text-sm font-medium transition-colors ${
+                    className={`relative flex w-full items-center gap-3 rounded-xl px-4 py-2 text-sm font-medium transition-colors ${
                       isActive
                         ? "bg-[#151B31] text-white"
-                        : "text-zinc-400 hover:bg-[#151B31] hover:text-white"
+                        : "text-white hover:bg-[#151B31] hover:text-white"
                     }`}
                   >
                     {isActive && (

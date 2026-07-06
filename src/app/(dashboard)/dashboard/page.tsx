@@ -1,4 +1,4 @@
-import Dashtop from '@/components/dashtop';
+import Dashtop from '@/components/dashboard/dashtop';
 
 const Dashboard = async () => {
   // await new Promise((resolve) => setTimeout(resolve, 1500));

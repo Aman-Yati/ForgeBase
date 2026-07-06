@@ -1,11 +1,17 @@
-import React from 'react'
+import AddJob from "@/components/jobs/addjob";
+import FilterJobs from "./filterjobs";
 
-const jobsheading = () => {
+export default function JobsHeading() {
   return (
-    <div className="m-3">
-      <h1 className="text-2xl font-bold text-white">My Jobs</h1>
-    </div>
-  )
-}
+    <div className="mb-3 mt-3 flex flex-col gap-2 lg:flex-row lg:items-center lg:justify-between">
 
-export default jobsheading
+      {/* Right */}
+      <div className="flex flex-col gap-5 sm:flex-row sm:items-center">
+        <FilterJobs />
+      </div>
+      <div>
+        <AddJob />
+      </div>
+    </div>
+  );
+}

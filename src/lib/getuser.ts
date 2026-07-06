@@ -1,4 +1,4 @@
-import { auth, currentUser } from "@clerk/nextjs/server";
+import { auth } from "@clerk/nextjs/server";
 import { prisma } from "./prisma";
 
 export async function getCurrentUser() {
@@ -6,22 +6,9 @@ export async function getCurrentUser() {
 
   if (!userId) return null;
 
-  const clerkUser = await currentUser();
-
-  if (!clerkUser) return null;
-
-  return await prisma.user.upsert({
+  return prisma.user.findUnique({
     where: {
       clerkId: userId,
-    },
-    update: {
-      email: clerkUser.emailAddresses[0]?.emailAddress ?? "",
-      name: clerkUser.fullName ?? "",
-    },
-    create: {
-      clerkId: userId,
-      email: clerkUser.emailAddresses[0]?.emailAddress ?? "",
-      name: clerkUser.fullName ?? "",
     },
   });
 }

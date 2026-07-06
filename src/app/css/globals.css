@@ -15,3 +15,15 @@ html,body,#root {
 .font-snasm {
   font-family: "Snasm", sans-serif;
 }
+
+/* Hide scrollbars everywhere this class is used */
+.scrollbar-hidden {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hidden::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
+}
