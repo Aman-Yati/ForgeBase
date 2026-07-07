@@ -103,67 +103,20 @@ export default function Header() {
           {/* ================= Mobile ================= */}
 
           <div className="relative mt-4 md:hidden">
-            <motion.div
-              initial={{
-                
-                y: -25,
-              }}
-              animate={{
-                
-                y: 0,
-              }}
-              transition={{
-                duration: 1,
-                delay: 2,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-              className="relative z-30"
-            >
+            <div className="relative z-30">
               <div className="flex h-16 items-center justify-between px-6">
                 <Logo />
 
-                <motion.button
-                  onClick={() => setIsOpen(!isOpen)}
-                  initial={{
-                    opacity: 0,
-                    scale: 0.7,
-                    rotate: -90,
-                  }}
-                  animate={{
-                    opacity: 1,
-                    scale: 1,
-                    rotate: 0,
-                  }}
-                  transition={{
-                    duration: 0.5,
-                    delay: 0.6,
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
-                  whileHover={{
-                    scale: 1.12,
-                  }}
-                  whileTap={{
-                    scale: 0.92,
-                  }}
-                  className="transition-transform"
-                >
-                  <motion.div
-                    animate={{
-                      rotate: isOpen ? 180 : 0,
-                    }}
-                    transition={{
-                      duration: 0.3,
-                    }}
-                  >
-                    {isOpen ? (
-                      <X className="h-7 w-7 text-white" />
-                    ) : (
-                      <Menu className="h-7 w-7 text-white" />
-                    )}
-                  </motion.div>
-                </motion.button>
+                  <button
+                  onClick={() => setIsOpen(!isOpen)} className="transition-colors">
+                  {isOpen ? (
+                    <X className="h-7 w-7 text-white" />
+                  ) : (
+                   <Menu className="h-7 w-7 text-white" />
+                  )}
+                </button>
               </div>
-            </motion.div>
+            </div>
 
             <motion.div
               initial={false}
