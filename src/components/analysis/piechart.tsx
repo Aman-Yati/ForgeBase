@@ -56,9 +56,9 @@ export default function AnalysisPieChart() {
         duration: 0.6,
         ease: [0.22, 1, 0.36, 1],
       }}
-      className="rounded-3xl border border-white/10 bg-[#101726] backdrop-blur-xl my-6 p-6 shadow-[0_20px_80px_rgba(0,0,0,0.35)] max-w-100">
+      className="rounded-2xl border border-white/10 bg-[#101726] backdrop-blur-xl p-6 shadow-[0_20px_80px_rgba(0,0,0,0.35)] max-w-151">
       <div>
-        <h2 className="font-semibold text-3xl text-white">
+        <h2 className="font-bold text-3xl text-white">
           Application Status
         </h2>
 
@@ -68,7 +68,7 @@ export default function AnalysisPieChart() {
       </div>
 
 
-      <div className="my-8 h-72">
+      <div className="my-8 h-80">
         <ResponsiveContainer
           width="100%"
           height="100%"
@@ -122,11 +122,7 @@ export default function AnalysisPieChart() {
             <div className="flex items-center gap-3">
 
               <span
-                className="
-                  h-2.5
-                  w-2.5
-                  rounded-full
-                "
+                className="h-2.5 w-2.5 rounded-full"
                 style={{
                   backgroundColor: COLORS[index],
                 }}

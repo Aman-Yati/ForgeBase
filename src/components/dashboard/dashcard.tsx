@@ -19,10 +19,10 @@ export default function DashCard({
 }: DashCardProps) {
   return (
     
-    <div className="w-full rounded-2xl bg-[#101726] p-6 shadow-lg transition-all duration-300 border border-white/10">
+    <div className="w-full rounded-2xl mb-0 bg-[#101726] p-6 shadow-lg transition-all duration-300 border border-white/10">
       {/* Icon */}
       <div
-        className={`flex h-16 w-16 items-center justify-center rounded-full ${iconBg}`}
+        className={`flex h-12 w-16 items-center justify-center rounded-full ${iconBg}`}
       >
         <Icon className="h-8 w-8 text-white" />
       </div>

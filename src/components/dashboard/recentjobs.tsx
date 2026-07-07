@@ -1,9 +1,6 @@
 "use client";
 
-import {
-  CalendarDays,
-  MapPin,
-} from "lucide-react";
+import { CalendarDays, MapPin } from "lucide-react";
 import { motion } from "framer-motion";
 
 interface Props {
@@ -26,9 +23,7 @@ function formatDate(date: Date) {
   }).format(date);
 }
 
-export default function RecentlyAppliedJobs({
-  jobs,
-}: Props) {
+export default function RecentlyAppliedJobs({ jobs }: Props) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -37,11 +32,10 @@ export default function RecentlyAppliedJobs({
         duration: 0.6,
         ease: [0.22, 1, 0.36, 1],
       }}
-      className="w-90 min-w-60 rounded-2xl my-6 border border-white/10 bg-[#101726] p-4"
+      className=" w-full rounded-2xl border border-white/10 bg-[#101726] p-4"
     >
-
       <div className="mb-4">
-        <h2 className="font-bold text-lg text-white">
+        <h2 className="text-2xl font-bold text-white lg:text-3xl">
           Recently Applied
         </h2>
 
@@ -50,9 +44,8 @@ export default function RecentlyAppliedJobs({
         </p>
       </div>
 
-
       <div className="space-y-2">
-        {jobs.slice(0, 5).map((job, index) => (
+        {jobs.slice(0, 7).map((job, index) => (
           <motion.div
             key={job.id}
             initial={{ opacity: 0, y: 10 }}
@@ -61,26 +54,19 @@ export default function RecentlyAppliedJobs({
               duration: 0.35,
               delay: index * 0.06,
             }}
-            className="px-4 py-3 hover:border-white/40 rounded-xl border border-white/10 bg-black/20 transition">
-
-            <div className="flex items-center justify-between gap-4">
-
-              {/* Company */}
-              <h3 className="truncate text-sm font-medium text-white">
+            className="rounded-xl border border-white/10 bg-black/20 px-4 py-3 transition hover:border-white/40"
+          >
+            <div className="flex items-start justify-between gap-4">
+              <h3 className="min-w-0 flex-1 truncate text-sm font-medium text-white">
                 {job.company}
               </h3>
 
-
-              {/* Role */}
-              <p className="truncate text-sm text-white">
+              <p className="min-w-0 flex-1 truncate text-right text-sm text-white/80">
                 {job.role}
               </p>
-
             </div>
 
-
-            <div className="mt-2 flex items-center gap-4 text-[11px] text-white/40">
-
+            <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-2 text-[11px] text-white/40">
               {job.location && (
                 <span className="flex items-center gap-1">
                   <MapPin size={11} />
@@ -88,27 +74,22 @@ export default function RecentlyAppliedJobs({
                 </span>
               )}
 
-
               {job.appliedDate && (
                 <span className="flex items-center gap-1">
                   <CalendarDays size={11} />
                   {formatDate(job.appliedDate)}
                 </span>
               )}
-
             </div>
-
           </motion.div>
         ))}
       </div>
-
 
       {jobs.length === 0 && (
         <div className="flex h-20 items-center justify-center rounded-xl border border-dashed border-white/10 text-xs text-white/40">
           No applications yet
         </div>
       )}
-
     </motion.div>
   );
 }
