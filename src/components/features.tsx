@@ -3,17 +3,17 @@ import { blurredShapeGray, blurredShape, featuresImage } from '@/lib/images'
 
 export default function Features() {
   return (
-    <section className="relative">
+    <section className="relative overflow-hidden">
       <div
         className="pointer-events-none absolute left-1/2 top-0 -z-10 -mt-20 -translate-x-1/2"
         aria-hidden="true"
       >
         <Image
-          className="max-w-none"
           src={blurredShapeGray}
           width={760}
           height={668}
           alt="Blurred shape"
+          className="block"
         />
       </div>
       <div
@@ -21,12 +21,12 @@ export default function Features() {
         aria-hidden="true"
       >
         <Image
-          className="max-w-none"
-          src={blurredShape}
-          width={760}
-          height={668}
-          alt="Blurred shape"
-        />
+  src={blurredShape}
+  width={760}
+  height={668}
+  alt="Blurred shape"
+  className="block"
+/>
       </div>
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div>
@@ -46,12 +46,12 @@ export default function Features() {
           </div>
           <div className="flex justify-center pb-4 md:pb-12" data-aos="fade-up">
             <Image
-              className="max-w-none"
-              src={featuresImage}
-              width={1104}
-              height={384}
-              alt="Features"
-            />
+  src={featuresImage}
+  width={1104}
+  height={384}
+  alt="Features"
+  className="w-full h-auto max-w-[1104px]"
+/>
           </div>
           {/* Items */}
           <div className="mx-auto grid max-w-sm gap-12 sm:max-w-none sm:grid-cols-2 md:gap-x-14 md:gap-y-16 lg:grid-cols-3">

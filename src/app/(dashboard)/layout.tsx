@@ -1,7 +1,7 @@
 import DashboardNavbar from "@/components/ui/dashboardnav";
 import Sidebar from "@/components/ui/sidebar";
-import { syncUser } from "@/lib/syncuser";
-import { getCurrentUser } from "@/lib/getuser";
+import { getCurrentUser } from "../actions/actions";
+import { syncUser } from "../actions/actions";
 
 export default async function DashboardLayout({
   children,

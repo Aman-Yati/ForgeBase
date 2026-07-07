@@ -3,8 +3,8 @@ import {
   CalendarDays,
   ExternalLink,
   MapPin,
-  MoreHorizontal,
 } from "lucide-react";
+import EditOptions from "./editoptions";
 
 interface JobListProps {
   jobs: Job[];
@@ -45,6 +45,7 @@ if (!jobs.length) {
     </div>
   );
 } 
+console.log("Jobs received:", jobs);
 
   return (
     <div className="overflow-hidden rounded-xl border border-white/10 bg-[#000816]/70 backdrop-blur-xl">
@@ -159,7 +160,7 @@ if (!jobs.length) {
                 {/* Actions */}
                 <td className="border-r border-white/5 px-2 py-2">
                   <div className="flex items-center gap-2">
-                    {job.jobUrl && (
+                    {job.jobUrl ? (
                       <a
                         href={job.jobUrl}
                         target="_blank"
@@ -168,11 +169,12 @@ if (!jobs.length) {
                       >
                         <ExternalLink size={16} />
                       </a>
+                    ) : (
+                      <span className="rounded-lg p-2 text-zinc-300 transition hover:bg-white/5 hover:text-white cursor-not-allowed opacity-50">
+                        <ExternalLink size={16} />
+                      </span>
                     )}
-
-                    <button className="rounded-lg p-2 text-zinc-300 transition hover:bg-white/5 hover:text-white">
-                      <MoreHorizontal size={16} />
-                    </button>
+                    <EditOptions job={job} />
                   </div>
                 </td>
               </tr>

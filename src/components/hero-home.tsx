@@ -9,7 +9,7 @@ export default function HeroHome() {
 
           {/* LEFT: Massive Typography */}
           <div>
-            <h1 className="font-snasm pl-0 lg:pl-4 tracking-tight uppercase leading-[0.78] tracking-[-0.08em] text-[clamp(5rem,20vw,14rem)]">
+            <h1 className="font-snasm pl-0 lg:pl-4 tracking-tight uppercase leading-[0.78] text-[clamp(4rem,20vw,14rem)]">
               <span>FORGE</span><br/>
               <span>BASE</span>
               

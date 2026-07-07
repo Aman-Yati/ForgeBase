@@ -1,5 +1,9 @@
 import Image from "next/image";
-import { pageIllustration, blurredShapeGray, blurredShape } from '@/lib/images'
+import {
+  pageIllustration,
+  blurredShapeGray,
+  blurredShape,
+} from "@/lib/images";
 
 export default function PageIllustration({
   multiple = false,
@@ -7,47 +11,47 @@ export default function PageIllustration({
   multiple?: boolean;
 }) {
   return (
-    <>
-      <div
-        className="pointer-events-none absolute left-1/2 top-0 -z-10 -translate-x-1/4"
-        aria-hidden="true"
-      >
+    <div
+      className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
+      aria-hidden="true"
+    >
+      {/* Main Illustration */}
+      <div className="absolute left-1/2 top-0 -translate-x-1/4">
         <Image
-          className="max-w-none"
           src={pageIllustration}
           width={846}
           height={594}
           alt="Page illustration"
+          className="block max-w-none"
+          priority
         />
       </div>
+
       {multiple && (
         <>
-          <div
-            className="pointer-events-none absolute left-1/2 top-[400px] -z-10 -mt-20 -translate-x-full opacity-50"
-            aria-hidden="true"
-          >
+          {/* Gray Blur */}
+          <div className="absolute left-1/2 top-[400px] -mt-20 -translate-x-full opacity-50">
             <Image
-              className="max-w-none"
               src={blurredShapeGray}
               width={760}
               height={668}
               alt="Blurred shape"
+              className="block max-w-none"
             />
           </div>
-          <div
-            className="pointer-events-none absolute left-1/2 top-[440px] -z-10 -translate-x-1/3"
-            aria-hidden="true"
-          >
+
+          {/* Purple Blur */}
+          <div className="absolute left-1/2 top-[440px] -translate-x-1/3">
             <Image
-              className="max-w-none"
               src={blurredShape}
               width={760}
               height={668}
               alt="Blurred shape"
+              className="block max-w-none"
             />
           </div>
         </>
       )}
-    </>
+    </div>
   );
 }
