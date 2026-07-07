@@ -153,14 +153,14 @@ Every push to the `main` branch automatically triggers a new deployment.
 ## 📌 Roadmap
 
 * [x] Project Setup
-* [ ] Landing Page
-* [ ] Authentication
-* [ ] Dashboard
-* [ ] Applications CRUD
+* [x] Landing Page
+* [x] Authentication
+* [x] Dashboard
+* [x] Applications CRUD
 * [ ] Kanban Board
-* [ ] Saved Jobs
+* [x] Saved Jobs
 * [ ] Analytics
-* [ ] User Profile
+* [x] User Profile
 * [ ] Notifications
 * [ ] Resume Upload
 * [ ] Email Reminders
