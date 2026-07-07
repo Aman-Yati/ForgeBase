@@ -1,50 +1,44 @@
-# 🐝 JobHive
+# 🐝 ForgeBase
 
 A modern, full-stack job application tracking platform that helps job seekers organize every stage of their job search in one place.
 
-Built with **Next.js 16**, **React 19**, **TypeScript**, **Prisma**, **Supabase**, and **Tailwind CSS**, JobHive provides a fast, responsive, and beautifully designed dashboard for tracking applications, interviews, offers, and career progress.
+Built with **Next.js 16**, **React 19**, **TypeScript**, **Prisma**, **Supabase**, **Clerk**, and **Tailwind CSS**, ForgeBase provides a fast, responsive, and beautifully designed workspace for managing applications, tracking interviews, analyzing progress, and staying organized throughout the job search.
 
 ---
 
 # ✨ Features
 
-### Authentication
+## Authentication
 
 - 🔐 Secure authentication with Clerk
 - 👤 User profile management
 - 🔒 Protected dashboard routes
 
-### Job Management
+## Job Management
 
-- 💼 Create, update and delete applications
-- ⭐ Save jobs to wishlist
-- 📎 Store application links
-- 📝 Add notes for every application
-- 📍 Track company, role, location, salary and work mode
-- 🗓 Record application dates
-- 🎯 Priority tracking
+- 💼 Create, edit, and delete job applications
+- 📍 Track company, role, location, salary, work mode, and job type
+- 📅 Record application dates
+- ⭐ Save jobs to your wishlist
+- 📝 Personal notes for every application
+- 🎯 Priority management
+- 🔗 Store original job posting links
 
-### Dashboard
+## Dashboard
 
-- 📊 Analytics dashboard
-- 📈 Interactive charts
-- 📋 Recent applications
-- 📌 Application status overview
-- 📉 Progress insights
+- 📊 Interactive analytics dashboard
+- 🥧 Application status visualization
+- 📈 Career insights
+- 🕒 Recently applied jobs
+- 📌 Overview cards with live statistics
 
-### Productivity
+## Productivity
 
 - 🔍 Search applications
 - 🎛 Filter by status
-- 📱 Fully responsive
-- ⚡ Fast server actions
+- ⚡ Fast Server Actions
 - 🎨 Smooth Framer Motion animations
-
----
-
-# 📸 Preview
-
-> Screenshots coming soon.
+- 📱 Fully responsive design
 
 ---
 
@@ -57,9 +51,9 @@ Built with **Next.js 16**, **React 19**, **TypeScript**, **Prisma**, **Supabase*
 - TypeScript
 - Tailwind CSS
 - Framer Motion
-- Recharts
-- Lucide React
 - shadcn/ui
+- Lucide React
+- Recharts
 
 ## Backend
 
@@ -78,7 +72,7 @@ Built with **Next.js 16**, **React 19**, **TypeScript**, **Prisma**, **Supabase*
 
 ---
 
-# 📂 Folder Structure
+# 📂 Project Structure
 
 ```text
 src
@@ -102,13 +96,13 @@ public
 Clone the repository.
 
 ```bash
-git clone https://github.com/yourusername/jobhive.git
+git clone https://github.com/yourusername/ForgeBase.git
 ```
 
-Move into the project.
+Navigate into the project.
 
 ```bash
-cd jobhive
+cd ForgeBase
 ```
 
 Install dependencies.
@@ -133,7 +127,7 @@ NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL="/dashboard"
 NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL="/dashboard"
 ```
 
-Generate Prisma Client.
+Generate the Prisma Client.
 
 ```bash
 npx prisma generate
@@ -151,7 +145,7 @@ Start the development server.
 npm run dev
 ```
 
-Visit
+Open:
 
 ```text
 http://localhost:3000
@@ -161,21 +155,15 @@ http://localhost:3000
 
 # 🗄 Database
 
-The application uses PostgreSQL hosted on Supabase.
+ForgeBase uses PostgreSQL hosted on Supabase.
 
-## Stack
-
-- PostgreSQL
-- Prisma ORM
-- Supabase
-
-Whenever the schema changes:
+Whenever the Prisma schema changes:
 
 ```bash
 npx prisma migrate dev
 ```
 
-Generate Prisma Client:
+Generate the client:
 
 ```bash
 npx prisma generate
@@ -185,25 +173,23 @@ npx prisma generate
 
 # 🚀 Deployment
 
-The project is deployed on Vercel.
+ForgeBase is deployed on Vercel.
 
 Every push to the `main` branch automatically triggers a new production deployment.
 
 ---
 
-# 📈 Current Features
+# 📌 Current Features
 
 - ✅ Authentication
 - ✅ Landing Page
 - ✅ Dashboard
 - ✅ Job CRUD
-- ✅ Analytics Dashboard
-- ✅ Application Charts
+- ✅ Analytics
+- ✅ Interactive Charts
+- ✅ Search & Filtering
 - ✅ Saved Jobs
-- ✅ Search
-- ✅ Filtering
 - ✅ Responsive Design
-- ✅ Dark Theme
 - ✅ Smooth Animations
 - ✅ User Profile
 
@@ -212,43 +198,24 @@ Every push to the `main` branch automatically triggers a new production deployme
 # 🛣 Roadmap
 
 - [ ] Drag & Drop Kanban Board
-- [ ] Resume Upload & Management
+- [ ] Resume Upload
 - [ ] Calendar View
 - [ ] Email Reminders
 - [ ] AI Resume Review
 - [ ] AI Cover Letter Generator
 - [ ] AI Job Matching
-- [ ] Interview Tracker
-- [ ] Company Notes
-- [ ] Resume Versioning
+- [ ] Interview Timeline
+- [ ] Resume Version Management
 - [ ] Export Data
 - [ ] PWA Support
 
 ---
 
-# 💡 Why JobHive?
-
-Instead of managing applications across spreadsheets, bookmarks and notes, JobHive centralizes everything into a single workspace.
-
-Track:
-
-- Applications
-- Interviews
-- Offers
-- Rejections
-- Saved Jobs
-- Analytics
-- Career Progress
-
-All from one clean dashboard.
-
----
-
 # 🤝 Contributing
 
-Contributions, suggestions and feature requests are always welcome.
+Contributions, suggestions, and improvements are welcome.
 
-Feel free to fork the repository and open a Pull Request.
+Feel free to fork the repository and submit a pull request.
 
 ---
 
@@ -260,4 +227,4 @@ This project is licensed under the MIT License.
 
 # 👨‍💻 Author
 
-Built with ❤️ using Next.js, React, TypeScript and Prisma.
+Built with ❤️ using Next.js, React, TypeScript, Prisma, and Supabase.
