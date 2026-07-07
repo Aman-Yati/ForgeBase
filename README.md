@@ -1,4 +1,4 @@
-# 🐝 ForgeBase
+# 💼 ForgeBase
 
 A modern, full-stack job application tracking platform that helps job seekers organize every stage of their job search in one place.
 
