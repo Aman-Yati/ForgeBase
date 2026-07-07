@@ -1,82 +1,105 @@
-```md
-# 🐝 ForgeBase
+# 💼 ForgeBase
 
-A modern job application tracking platform built with **Next.js**, **TypeScript**, **Tailwind CSS**, **Prisma**, and **Supabase**.
+A modern, full-stack job application tracking platform that helps job seekers organize every stage of their job search in one place.
 
-ForgeBase helps job seekers organize and manage their job search by tracking applications, interviews, offers, and saved opportunities through a clean and intuitive dashboard.
-
----
-
-## ✨ Features
-
-- 🔐 Secure Authentication
-- 📊 Interactive Dashboard
-- 💼 Job Application Management
-- 📋 Kanban Board (Drag & Drop)
-- 📈 Analytics & Insights
-- ⭐ Save Jobs
-- 🔍 Search, Filter & Sort Applications
-- 👤 User Profile Management
-- 🌙 Dark / Light Mode
-- 📱 Fully Responsive Design
+Built with **Next.js 16**, **React 19**, **TypeScript**, **Prisma**, **Supabase**, **Clerk**, **Motion** and **Tailwind CSS**, ForgeBase provides a fast, responsive, and beautifully designed workspace for managing applications, tracking interviews, analyzing progress, and staying organized throughout the job search.
 
 ---
 
-## 🛠 Tech Stack
+# ✨ Features
 
-### Frontend
+## Authentication
 
-- Next.js 16
+- 🔐 Secure authentication with Clerk
+- 👤 User profile management
+- 🔒 Protected dashboard routes
+
+## Job Management
+
+- 💼 Create, edit, and delete job applications
+- 📍 Track company, role, location, salary, work mode, and job type
+- 📅 Record application dates
+- ⭐ Save jobs to your wishlist
+- 📝 Personal notes for every application
+- 🎯 Priority management
+- 🔗 Store original job posting links
+
+## Dashboard
+
+- 📊 Interactive analytics dashboard
+- 🥧 Application status visualization
+- 📈 Career insights
+- 🕒 Recently applied jobs
+- 📌 Overview cards with live statistics
+
+## Productivity
+
+- 🔍 Search applications
+- 🎛 Filter by status
+- ⚡ Fast Server Actions
+- 🎨 Smooth Framer Motion animations
+- 📱 Fully responsive design
+
+---
+
+# 🛠 Tech Stack
+
+## Frontend
+
+- Next.js 16 (App Router)
 - React 19
 - TypeScript
 - Tailwind CSS
-- shadcn/ui
 - Framer Motion
+- shadcn/ui
 - Lucide React
 - Recharts
 
-### Backend
+## Backend
 
 - Next.js Server Actions
 - Prisma ORM
-- PostgreSQL (Supabase)
+- PostgreSQL
+- Supabase
 
-### Deployment
+## Authentication
+
+- Clerk
+
+## Deployment
 
 - Vercel
 
 ---
 
-## 📂 Project Structure
+# 📂 Project Structure
 
-```
-
+```text
 src
 ├── app
-├── components
-├── lib
-├── hooks
 ├── actions
+├── components
+├── hooks
+├── lib
+├── prisma
 ├── providers
 ├── types
-├── utils
-└── prisma
+└── utils
 
 public
-
-````
+```
 
 ---
 
-## 🚀 Getting Started
+# 🚀 Getting Started
 
 Clone the repository.
 
 ```bash
 git clone https://github.com/yourusername/ForgeBase.git
-````
+```
 
-Move into the project.
+Navigate into the project.
 
 ```bash
 cd ForgeBase
@@ -88,19 +111,29 @@ Install dependencies.
 npm install
 ```
 
-Create a `.env` file in the project root.
+Create a `.env` file.
 
 ```env
-DATABASE_URL="your_database_url"
+DATABASE_URL=""
+DIRECT_URL=""
+
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=""
+CLERK_SECRET_KEY=""
+
+NEXT_PUBLIC_CLERK_SIGN_IN_URL="/sign-in"
+NEXT_PUBLIC_CLERK_SIGN_UP_URL="/sign-up"
+
+NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL="/dashboard"
+NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL="/dashboard"
 ```
 
-Generate the Prisma client.
+Generate the Prisma Client.
 
 ```bash
 npx prisma generate
 ```
 
-Run database migrations.
+Run migrations.
 
 ```bash
 npx prisma migrate dev
@@ -112,23 +145,19 @@ Start the development server.
 npm run dev
 ```
 
-Open your browser and visit:
+Open:
 
-```
+```text
 http://localhost:3000
 ```
 
 ---
 
-## 🗄 Database
+# 🗄 Database
 
-ForgeBase uses:
+ForgeBase uses PostgreSQL hosted on Supabase.
 
-* PostgreSQL
-* Prisma ORM
-* Supabase
-
-After updating the Prisma schema, run:
+Whenever the Prisma schema changes:
 
 ```bash
 npx prisma migrate dev
@@ -142,40 +171,47 @@ npx prisma generate
 
 ---
 
-## 🚀 Deployment
+# 🚀 Deployment
 
-ForgeBase is deployed using **Vercel**.
+ForgeBase is deployed on Vercel.
 
-Every push to the `main` branch automatically triggers a new deployment.
-
----
-
-## 📌 Roadmap
-
-* [x] Project Setup
-* [ ] Landing Page
-* [ ] Authentication
-* [ ] Dashboard
-* [ ] Applications CRUD
-* [ ] Kanban Board
-* [ ] Saved Jobs
-* [ ] Analytics
-* [ ] User Profile
-* [ ] Notifications
-* [ ] Resume Upload
-* [ ] Email Reminders
-* [ ] AI Resume Review
-* [ ] AI Cover Letter Generator
+Every push to the `main` branch automatically triggers a new production deployment.
 
 ---
 
-## 📸 Screenshots
+# 📌 Current Features
 
-Coming soon.
+- ✅ Authentication
+- ✅ Landing Page
+- ✅ Dashboard
+- ✅ Job CRUD
+- ✅ Analytics
+- ✅ Interactive Charts
+- ✅ Search & Filtering
+- ✅ Saved Jobs
+- ✅ Responsive Design
+- ✅ Smooth Animations
+- ✅ User Profile
 
 ---
 
-## 🤝 Contributing
+# 🛣 Roadmap
+
+- [ ] Drag & Drop Kanban Board
+- [ ] Resume Upload
+- [ ] Calendar View
+- [ ] Email Reminders
+- [ ] AI Resume Review
+- [ ] AI Cover Letter Generator
+- [ ] AI Job Matching
+- [ ] Interview Timeline
+- [ ] Resume Version Management
+- [ ] Export Data
+- [ ] PWA Support
+
+---
+
+# 🤝 Contributing
 
 Contributions, suggestions, and improvements are welcome.
 
@@ -183,15 +219,13 @@ Feel free to fork the repository and submit a pull request.
 
 ---
 
-## 📄 License
+# 📄 License
 
 This project is licensed under the MIT License.
 
 ---
 
-## 👨‍💻 Author
+# 👨‍💻 Author
 
-Built with ❤️ using Next.js and TypeScript.
-
-```
-```
+Built with ❤️ using Next.js, React, TypeScript, Prisma, and Supabase.
+-Aman Yati
