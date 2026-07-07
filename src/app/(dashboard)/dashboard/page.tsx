@@ -1,15 +1,30 @@
-import Dashtop from '@/components/dashboard/dashtop';
+import DashTop from "@/components/dashboard/dashtop";
+import RecentlyAppliedJobs from "@/components/dashboard/recentjobs";
+import { prisma } from "@/lib/prisma";
+import { currentUser } from "@clerk/nextjs/server";
 
-const Dashboard = async () => {
-  // await new Promise((resolve) => setTimeout(resolve, 1500));
+export default async function DashboardPage() {
+
+  const user = await currentUser();
+
+  if (!user) return null;
+
+
+  const jobs = await prisma.job.findMany({
+    where: {
+      userId: user.id,
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+    take: 5,
+  });
+
 
   return (
     <div>
-      <div>
-        <Dashtop />
-      </div>
+      <DashTop/>
+      <RecentlyAppliedJobs jobs={jobs}/>
     </div>
   );
-};
-
-export default Dashboard;
+}

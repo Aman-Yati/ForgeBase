@@ -20,10 +20,6 @@ export default function ResumeCard({
         <h1 className="text-2xl font-bold text-white sm:text-3xl">
           Resume
         </h1>
-
-        <p className="mt-2 text-sm text-zinc-400 sm:text-base">
-          Upload your resume and preview it directly inside ForgeBase.
-        </p>
       </div>
 
       <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#101726]">

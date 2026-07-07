@@ -1,3 +1,4 @@
+"use client";
 import { Job } from "@prisma/client";
 import {
   CalendarDays,
@@ -5,6 +6,7 @@ import {
   MapPin,
 } from "lucide-react";
 import EditOptions from "./editoptions";
+import { motion } from "framer-motion";
 
 interface JobListProps {
   jobs: Job[];
@@ -47,11 +49,18 @@ if (!jobs.length) {
 } 
 console.log("Jobs received:", jobs);
 
-  return (
-    <div className="overflow-hidden rounded-xl border border-white/10 bg-[#000816]/70 backdrop-blur-xl">
+  return (<motion.div
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{
+    duration: 0.6,
+    ease: [0.22, 1, 0.36, 1],
+  }}
+  className="overflow-hidden rounded-xl border border-white/10 bg-[#000816]/70 backdrop-blur-xl"
+>
       <div className="overflow-x-auto scrollbar-hidden">
         <table className="min-w-[1150px] w-full text-sm">
-          <thead className="border-b border-white/10 bg-gradient-to-r from-[#111827] via-[#0f172a] to-[#111827]">
+          <thead className="border-b border-white/10 bg-[#101726]">
   <tr className="text-left text-[11px] font-semibold uppercase tracking-wider text-zinc-300">
     <th className="border-r border-white/10 px-3 py-1">Company</th>
     <th className="border-r border-white/10 px-3 py-1">Role</th>
@@ -182,6 +191,6 @@ console.log("Jobs received:", jobs);
           </tbody>
         </table>
       </div>
-    </div>
+    </motion.div>
   );
 }

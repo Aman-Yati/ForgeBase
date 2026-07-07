@@ -11,7 +11,7 @@ export default function DashTop() {
   return (
     <section className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4 pt-6">
       <DashCard
-        title="Total Views"
+        title="Total Applications"
         value="3.5K"
         percentage="0.43%"
         icon={Eye}
@@ -19,7 +19,7 @@ export default function DashTop() {
       />
 
       <DashCard
-        title="Applications"
+        title="Offer"
         value="248"
         percentage="12.6%"
         icon={BriefcaseBusiness}
@@ -35,7 +35,7 @@ export default function DashTop() {
       />
 
       <DashCard
-        title="Resumes"
+        title="Rejected"
         value="32"
         percentage="1.2%"
         icon={FileText}

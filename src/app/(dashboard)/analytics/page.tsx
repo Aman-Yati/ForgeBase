@@ -1,8 +1,8 @@
 import React from 'react'
-
+import AnalysisPieChart from '@/components/analysis/piechart';
 const Analytics = () => {
   return (
-    <div>Analytics</div>
+    <div><AnalysisPieChart/></div>
   )
 }
 

@@ -108,7 +108,7 @@ export default function HeroHome() {
       </div>
 
       {/* IMAGE */}
-      <div className="mt-5 flex justify-center overflow-hidden rounded-2xl px-6">
+      <div className="mt-5 pb-10 flex justify-center overflow-hidden rounded-2xl px-6">
         <div className="relative w-full max-w-7xl overflow-hidden rounded-2xl">
           <motion.div style={{ scale }}>
             <Image

@@ -44,7 +44,7 @@ export default function HowItWorks() {
   return (
     <section
       id="how-it-works"
-      className="mx-auto max-w-7xl px-6 py-28"
+      className="mx-auto max-w-7xl pb-15 px-6 py-28"
     >
       {/* Heading */}
           <div className="mx-auto max-w-3xl pb-4 text-center md:pb-12">

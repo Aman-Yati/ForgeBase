@@ -5,6 +5,7 @@ import { SignUp } from '@clerk/nextjs'
 import { pageIllustration } from '@/lib/images'
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
+
 const clerkAppearance = {
   theme: [],
   variables: {

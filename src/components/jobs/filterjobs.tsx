@@ -32,7 +32,7 @@ export default function FilterJobs() {
   }
 
   const selectClass =
-    "h-11 w-full appearance-none rounded-lg border border-white/10 bg-[#111827] px-3 pr-9 text-sm text-zinc-300 outline-none transition-all duration-200 hover:border-white/20 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 cursor-pointer xl:w-40";
+    "h-11 w-full appearance-none rounded-lg border border-white/10 bg-[#101726] px-3 pr-9 text-sm text-zinc-300 outline-none transition-all duration-200 hover:border-white/20 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 cursor-pointer xl:w-40";
 
   return (
     <div className="flex flex-wrap items-center gap-3 py-3 xl:flex-nowrap">
@@ -50,7 +50,7 @@ export default function FilterJobs() {
             if (e.key === "Enter") update("search", search);
           }}
           placeholder="Search company or role..."
-          className="h-11 w-full rounded-lg border border-white/10 bg-[#111827] pl-10 pr-4 text-sm text-white placeholder:text-zinc-500 outline-none transition-all duration-200 hover:border-white/20 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20"
+          className="h-11 w-full rounded-lg border border-white/10 bg-[#101726] pl-10 pr-4 text-sm text-white placeholder:text-zinc-500 outline-none transition-all duration-200 hover:border-white/20 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20"
         />
       </div>
 

@@ -3,7 +3,7 @@ import { blurredShapeGray, blurredShape, featuresImage } from '@/lib/images'
 
 export default function Features() {
   return (
-    <section className="relative overflow-hidden">
+    <section className="relative pb-15 overflow-hidden">
       <div
         className="pointer-events-none absolute left-1/2 top-0 -z-10 -mt-20 -translate-x-1/2"
         aria-hidden="true"
@@ -46,12 +46,12 @@ export default function Features() {
           </div>
           <div className="flex justify-center pb-4 md:pb-12" data-aos="fade-up">
             <Image
-  src={featuresImage}
-  width={1104}
-  height={384}
-  alt="Features"
-  className="w-full h-auto max-w-[1104px]"
-/>
+              src={featuresImage}
+              width={1104}
+              height={384}
+              alt="Features"
+              className="w-full h-auto max-w-[1104px]"
+            />
           </div>
           {/* Items */}
           <div className="mx-auto grid max-w-sm gap-12 sm:max-w-none sm:grid-cols-2 md:gap-x-14 md:gap-y-16 lg:grid-cols-3">

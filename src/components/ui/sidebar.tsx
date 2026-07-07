@@ -45,11 +45,6 @@ const NAV_ITEMS = [
     icon: FileText,
   },
   {
-    label: "Profile",
-    href: "/profile",
-    icon: User,
-  },
-  {
     label: "Settings",
     href: "/settings",
     icon: Settings,
