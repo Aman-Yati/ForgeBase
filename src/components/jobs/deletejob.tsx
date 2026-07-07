@@ -15,7 +15,6 @@ export default function DeleteJob({
   onClose,
   jobId,
 }: DeleteJobProps) {
-
   if (!open || typeof document === "undefined") {
     return null;
   }
@@ -26,7 +25,7 @@ export default function DeleteJob({
   }
 
   return createPortal(
-    <div className="fixed inset-0 z-[9999] flex items-center justify-center">
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4">
       {/* Backdrop */}
       <div
         onClick={onClose}
@@ -34,7 +33,7 @@ export default function DeleteJob({
       />
 
       {/* Alert */}
-      <div className="relative z-10 w-full max-w-md rounded-2xl border border-white/10 bg-[#0B1220] p-6 shadow-2xl">
+      <div className="relative z-10 w-full max-w-[90%] sm:max-w-md rounded-2xl border border-white/10 bg-[#0B1220] p-6 shadow-2xl">
         <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-red-500/15">
           <AlertTriangle className="text-red-400" size={28} />
         </div>
@@ -49,7 +48,7 @@ export default function DeleteJob({
           This action cannot be undone.
         </p>
 
-        <div className="mt-8 flex gap-3">
+        <div className="mt-8 flex flex-col sm:flex-row gap-3">
           <button
             onClick={onClose}
             className="flex-1 rounded-xl border border-white/10 py-3 text-zinc-300 transition hover:bg-white/5"

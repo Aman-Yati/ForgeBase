@@ -1,6 +1,6 @@
 @import "./style.css";
 
-html,body,#root {
+html, body, #root {
   height: 100%;
 }
 
@@ -12,8 +12,23 @@ html,body,#root {
   font-style: normal;
 }
 
+/* Add Snasm Light */
+@font-face {
+  font-family: "Snasm";
+  src: url("/fonts/SnasmW00-Light.woff2") format("woff2"),
+       url("/fonts/SnasmW00-Light.woff") format("woff"),
+       url("/fonts/SnasmW00-Light.eot") format("embedded-opentype");
+  font-weight: 300;
+  font-style: normal;
+}
+
 .font-snasm {
   font-family: "Snasm", sans-serif;
+}
+
+.font-snasm-light {
+  font-family: "Snasm", sans-serif;
+  font-weight: 300;
 }
 
 /* Hide scrollbars everywhere this class is used */

@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./css/globals.css";
+import SmoothScroll from "@/components/smoothscroll";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,6 +38,7 @@ export default function RootLayout({
       >
         <body className="min-h-screen flex flex-col bg-gray-950 text-gray-100">
           <main className="flex-1">
+            <SmoothScroll/>
             {children}
           </main>
         </body>

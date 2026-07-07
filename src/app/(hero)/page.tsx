@@ -12,7 +12,7 @@ import FAQSection from '@/components/faq';
 
 const Home = () => {
   return (
-    <div>
+    <div >
       <Header />
       <PageIllustration/>
       <section id="hero" className="scroll-mt-24" ><HeroHome/></section>

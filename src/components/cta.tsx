@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { blurredShape } from "@/lib/images";
 
 export default function Cta() {
@@ -28,14 +29,21 @@ export default function Cta() {
 
             <div className="mx-auto max-w-xs sm:flex sm:max-w-none sm:justify-center">
               <div data-aos="fade-up" data-aos-delay={400}>
-                <a
-                  href="#0"
-                  className="border border-white/20 px-6 py-3 transition hover:border-white btn group inline-flex h-12 w-[200px] items-center justify-center color-black"
-                >
-                  <span className="relative inline-flex items-center">
-                    Get Started
-                  </span>
-                </a>
+<Link
+    href="/sign-up"
+    className="group relative inline-flex items-center justify-center overflow-hidden border border-white px-20 py-3 uppercase transition-colors duration-300 hover:text-black"
+  >
+    {/* Background */}
+    <span className="absolute inset-0 origin-bottom scale-y-0 bg-white transition-transform duration-300 ease-out group-hover:scale-y-100" />
+
+    {/* Rolling Text */}
+    <span className="relative block h-5 overflow-hidden leading-5">
+      <span className="flex flex-col transition-transform duration-300 ease-out group-hover:-translate-y-1/2">
+        <span>Get Started</span>
+        <span>Get Started</span>
+      </span>
+    </span>
+  </Link>        
               </div>
             </div>
 

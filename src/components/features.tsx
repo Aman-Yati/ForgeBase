@@ -21,12 +21,12 @@ export default function Features() {
         aria-hidden="true"
       >
         <Image
-  src={blurredShape}
-  width={760}
-  height={668}
-  alt="Blurred shape"
-  className="block"
-/>
+          src={blurredShape}
+          width={760}
+          height={668}
+          alt="Blurred shape"
+          className="block"
+        />
       </div>
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div>
