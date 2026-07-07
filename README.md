@@ -228,3 +228,4 @@ This project is licensed under the MIT License.
 # 👨‍💻 Author
 
 Built with ❤️ using Next.js, React, TypeScript, Prisma, and Supabase.
+-Aman Yati
