@@ -1,85 +1,114 @@
-```md
-# 🐝 ForgeBase
+# 🐝 JobHive
 
-A modern job application tracking platform built with **Next.js**, **TypeScript**, **Tailwind CSS**, **Prisma**, and **Supabase**.
+A modern, full-stack job application tracking platform that helps job seekers organize every stage of their job search in one place.
 
-ForgeBase helps job seekers organize and manage their job search by tracking applications, interviews, offers, and saved opportunities through a clean and intuitive dashboard.
-
----
-
-## ✨ Features
-
-- 🔐 Secure Authentication
-- 📊 Interactive Dashboard
-- 💼 Job Application Management
-- 📋 Kanban Board (Drag & Drop)
-- 📈 Analytics & Insights
-- ⭐ Save Jobs
-- 🔍 Search, Filter & Sort Applications
-- 👤 User Profile Management
-- 🌙 Dark / Light Mode
-- 📱 Fully Responsive Design
+Built with **Next.js 16**, **React 19**, **TypeScript**, **Prisma**, **Supabase**, and **Tailwind CSS**, JobHive provides a fast, responsive, and beautifully designed dashboard for tracking applications, interviews, offers, and career progress.
 
 ---
 
-## 🛠 Tech Stack
+# ✨ Features
 
-### Frontend
+### Authentication
 
-- Next.js 16
+- 🔐 Secure authentication with Clerk
+- 👤 User profile management
+- 🔒 Protected dashboard routes
+
+### Job Management
+
+- 💼 Create, update and delete applications
+- ⭐ Save jobs to wishlist
+- 📎 Store application links
+- 📝 Add notes for every application
+- 📍 Track company, role, location, salary and work mode
+- 🗓 Record application dates
+- 🎯 Priority tracking
+
+### Dashboard
+
+- 📊 Analytics dashboard
+- 📈 Interactive charts
+- 📋 Recent applications
+- 📌 Application status overview
+- 📉 Progress insights
+
+### Productivity
+
+- 🔍 Search applications
+- 🎛 Filter by status
+- 📱 Fully responsive
+- ⚡ Fast server actions
+- 🎨 Smooth Framer Motion animations
+
+---
+
+# 📸 Preview
+
+> Screenshots coming soon.
+
+---
+
+# 🛠 Tech Stack
+
+## Frontend
+
+- Next.js 16 (App Router)
 - React 19
 - TypeScript
 - Tailwind CSS
-- shadcn/ui
 - Framer Motion
-- Lucide React
 - Recharts
+- Lucide React
+- shadcn/ui
 
-### Backend
+## Backend
 
 - Next.js Server Actions
 - Prisma ORM
-- PostgreSQL (Supabase)
+- PostgreSQL
+- Supabase
 
-### Deployment
+## Authentication
+
+- Clerk
+
+## Deployment
 
 - Vercel
 
 ---
 
-## 📂 Project Structure
+# 📂 Folder Structure
 
-```
-
+```text
 src
 ├── app
-├── components
-├── lib
-├── hooks
 ├── actions
+├── components
+├── hooks
+├── lib
+├── prisma
 ├── providers
 ├── types
-├── utils
-└── prisma
+└── utils
 
 public
-
-````
+```
 
 ---
 
-## 🚀 Getting Started
+# 🚀 Getting Started
 
 Clone the repository.
 
 ```bash
-git clone https://github.com/yourusername/ForgeBase.git
-````
+git clone https://github.com/yourusername/jobhive.git
+```
 
 Move into the project.
 
 ```bash
-cd ForgeBase
+cd jobhive
 ```
 
 Install dependencies.
@@ -88,19 +117,29 @@ Install dependencies.
 npm install
 ```
 
-Create a `.env` file in the project root.
+Create a `.env` file.
 
 ```env
-DATABASE_URL="your_database_url"
+DATABASE_URL=""
+DIRECT_URL=""
+
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=""
+CLERK_SECRET_KEY=""
+
+NEXT_PUBLIC_CLERK_SIGN_IN_URL="/sign-in"
+NEXT_PUBLIC_CLERK_SIGN_UP_URL="/sign-up"
+
+NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL="/dashboard"
+NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL="/dashboard"
 ```
 
-Generate the Prisma client.
+Generate Prisma Client.
 
 ```bash
 npx prisma generate
 ```
 
-Run database migrations.
+Run migrations.
 
 ```bash
 npx prisma migrate dev
@@ -112,29 +151,31 @@ Start the development server.
 npm run dev
 ```
 
-Open your browser and visit:
+Visit
 
-```
+```text
 http://localhost:3000
 ```
 
 ---
 
-## 🗄 Database
+# 🗄 Database
 
-ForgeBase uses:
+The application uses PostgreSQL hosted on Supabase.
 
-* PostgreSQL
-* Prisma ORM
-* Supabase
+## Stack
 
-After updating the Prisma schema, run:
+- PostgreSQL
+- Prisma ORM
+- Supabase
+
+Whenever the schema changes:
 
 ```bash
 npx prisma migrate dev
 ```
 
-Generate the client:
+Generate Prisma Client:
 
 ```bash
 npx prisma generate
@@ -142,56 +183,81 @@ npx prisma generate
 
 ---
 
-## 🚀 Deployment
+# 🚀 Deployment
 
-ForgeBase is deployed using **Vercel**.
+The project is deployed on Vercel.
 
-Every push to the `main` branch automatically triggers a new deployment.
-
----
-
-## 📌 Roadmap
-
-* [x] Project Setup
-* [x] Landing Page
-* [x] Authentication
-* [x] Dashboard
-* [x] Applications CRUD
-* [ ] Kanban Board
-* [x] Saved Jobs
-* [ ] Analytics
-* [x] User Profile
-* [ ] Notifications
-* [ ] Resume Upload
-* [ ] Email Reminders
-* [ ] AI Resume Review
-* [ ] AI Cover Letter Generator
+Every push to the `main` branch automatically triggers a new production deployment.
 
 ---
 
-## 📸 Screenshots
+# 📈 Current Features
 
-Coming soon.
+- ✅ Authentication
+- ✅ Landing Page
+- ✅ Dashboard
+- ✅ Job CRUD
+- ✅ Analytics Dashboard
+- ✅ Application Charts
+- ✅ Saved Jobs
+- ✅ Search
+- ✅ Filtering
+- ✅ Responsive Design
+- ✅ Dark Theme
+- ✅ Smooth Animations
+- ✅ User Profile
 
 ---
 
-## 🤝 Contributing
+# 🛣 Roadmap
 
-Contributions, suggestions, and improvements are welcome.
-
-Feel free to fork the repository and submit a pull request.
+- [ ] Drag & Drop Kanban Board
+- [ ] Resume Upload & Management
+- [ ] Calendar View
+- [ ] Email Reminders
+- [ ] AI Resume Review
+- [ ] AI Cover Letter Generator
+- [ ] AI Job Matching
+- [ ] Interview Tracker
+- [ ] Company Notes
+- [ ] Resume Versioning
+- [ ] Export Data
+- [ ] PWA Support
 
 ---
 
-## 📄 License
+# 💡 Why JobHive?
+
+Instead of managing applications across spreadsheets, bookmarks and notes, JobHive centralizes everything into a single workspace.
+
+Track:
+
+- Applications
+- Interviews
+- Offers
+- Rejections
+- Saved Jobs
+- Analytics
+- Career Progress
+
+All from one clean dashboard.
+
+---
+
+# 🤝 Contributing
+
+Contributions, suggestions and feature requests are always welcome.
+
+Feel free to fork the repository and open a Pull Request.
+
+---
+
+# 📄 License
 
 This project is licensed under the MIT License.
 
 ---
 
-## 👨‍💻 Author
+# 👨‍💻 Author
 
-Built with ❤️ using Next.js and TypeScript.
-
-```
-```
+Built with ❤️ using Next.js, React, TypeScript and Prisma.
