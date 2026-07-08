@@ -3,6 +3,8 @@ import { redirect } from "next/navigation";
 
 import {prisma} from "@/lib/prisma";
 import BreakdownCard from "@/components/analysis/breakdowncard";
+import SalaryDistribution from "@/components/analysis/salarydist";
+import SuccessRate from "@/components/analysis/successrate";
 
 export default async function Analytics() {
   const { userId } = await auth();
@@ -19,6 +21,9 @@ export default async function Analytics() {
       workMode: true,
       location: true,
       jobType: true,
+      salaryMin:true,
+      salaryMax:true,
+      status:true,
     },
   });
 
@@ -75,29 +80,31 @@ const locationMap = new Map<string, number>();
       value: jobs.filter((job) => job.jobType === "INTERNSHIP").length,
     },
   ];
+return (
+  <div className="space-x-6">
+    <div className="grid gap-6 lg:grid-cols-3">
+      <BreakdownCard
+        title="Work Mode"
+        subtitle="Distribution of work preferences"
+        data={workModeData}
+      />
 
-  return (
-    <div className="space-y-6">
+      <BreakdownCard
+        title="Job Type"
+        subtitle="Distribution of job types"
+        data={jobTypeData}
+      />
 
-      <div className="grid gap-6 lg:grid-cols-4">
-        <BreakdownCard
-          title="Work Mode"
-          subtitle="Distribution of work preferences"
-          data={workModeData}
-        />
+      <BreakdownCard
+        title="Top Locations"
+        subtitle="Top locations you've applied to"
+        data={topLocationsData}
+      />
 
-        <BreakdownCard
-          title="Job Type"
-          subtitle="Distribution of job types"
-          data={jobTypeData}
-        />
-
-        <BreakdownCard
-          title="Top Locations"
-          subtitle="Top locations you've applied to"
-          data={topLocationsData}
-        />
+      <div className="lg:col-span-3">
+        <SalaryDistribution jobs={jobs} />
       </div>
+      <SuccessRate jobs={jobs}/>
     </div>
-  );
-}
+  </div>
+)}
