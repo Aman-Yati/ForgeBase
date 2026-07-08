@@ -5,6 +5,8 @@ import {prisma} from "@/lib/prisma";
 import BreakdownCard from "@/components/analysis/breakdowncard";
 import SalaryDistribution from "@/components/analysis/salarydist";
 import SuccessRate from "@/components/analysis/successrate";
+import ResponseRate from "@/components/analysis/responserate";
+import ApplicationTrend from "@/components/analysis/applicationchart";
 
 export default async function Analytics() {
   const { userId } = await auth();
@@ -18,15 +20,16 @@ export default async function Analytics() {
       userId,
     },
     select: {
+      company:true,
       workMode: true,
       location: true,
       jobType: true,
       salaryMin:true,
       salaryMax:true,
       status:true,
+      createdAt:true,
     },
   });
-
 
 const locationMap = new Map<string, number>();
 
@@ -80,9 +83,20 @@ const locationMap = new Map<string, number>();
       value: jobs.filter((job) => job.jobType === "INTERNSHIP").length,
     },
   ];
-return (
-  <div className="space-x-6">
-    <div className="grid gap-6 lg:grid-cols-3">
+  return (
+  <div className="space-y-6">
+    <div className="grid grid-cols-1 gap-6 2xl:grid-cols-3">
+      <div className="2xl:col-span-2">
+        <ApplicationTrend jobs={jobs} />
+      </div>
+
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 2xl:grid-cols-1">
+        <ResponseRate jobs={jobs} />
+        <SuccessRate jobs={jobs} />
+      </div>
+    </div>
+
+    <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
       <BreakdownCard
         title="Work Mode"
         subtitle="Distribution of work preferences"
@@ -100,11 +114,10 @@ return (
         subtitle="Top locations you've applied to"
         data={topLocationsData}
       />
+    </div>
 
-      <div className="lg:col-span-3">
-        <SalaryDistribution jobs={jobs} />
-      </div>
-      <SuccessRate jobs={jobs}/>
+    <div>
+      <SalaryDistribution jobs={jobs} />
     </div>
   </div>
 )}

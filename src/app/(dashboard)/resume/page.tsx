@@ -15,7 +15,6 @@ export default function ResumeCard({
 
   return (
     <div className="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 sm:py-8">
-      {/* Heading */}
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-white sm:text-3xl">
           Resume
@@ -23,7 +22,6 @@ export default function ResumeCard({
       </div>
 
       <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#101726]">
-        {/* Header */}
         <div className="flex flex-col gap-4 border-b border-white/10 p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
           <div className="flex items-center gap-3 min-w-0">
             <div className="rounded-lg bg-indigo-500/10 p-2">
@@ -58,7 +56,6 @@ export default function ResumeCard({
           </button>
         </div>
 
-        {/* Content */}
         {hasResume ? (
           <div className="bg-white">
             <iframe

@@ -19,12 +19,12 @@ interface Props {
 }
 
 const COLORS = [
-  "#DDD6FE", // Lavender
-  "#C4B5FD", // Light Violet
-  "#A78BFA", // Soft Purple
-  "#8B5CF6", // Primary Purple
-  "#6D28D9", // Deep Purple // Wishlist
-  "#71717a", // Withdrawn
+  "#DDD6FE",
+  "#C4B5FD",
+  "#A78BFA",
+  "#8B5CF6",
+  "#5128d9",
+  "#71717a",
 ];
 
 export default function AnalysisPieChart({ jobs }: Props) {

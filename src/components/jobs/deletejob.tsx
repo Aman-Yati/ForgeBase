@@ -26,13 +26,11 @@ export default function DeleteJob({
 
   return createPortal(
     <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4">
-      {/* Backdrop */}
       <div
         onClick={onClose}
         className="absolute inset-0 bg-black/70 backdrop-blur-sm"
       />
 
-      {/* Alert */}
       <div className="relative z-10 w-full max-w-[90%] sm:max-w-md rounded-2xl border border-white/10 bg-[#0B1220] p-6 shadow-2xl">
         <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-red-500/15">
           <AlertTriangle className="text-red-400" size={28} />

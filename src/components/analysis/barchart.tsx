@@ -20,11 +20,11 @@ interface Props {
 }
 
 const COLORS = [
-  "#DDD6FE", // Lavender
-  "#C4B5FD", // Light Violet
-  "#A78BFA", // Soft Purple
-  "#8B5CF6", // Primary Purple
-  "#6D28D9", // Deep Purple // Wishlist
+  "#DDD6FE",
+  "#C4B5FD",
+  "#A78BFA",
+  "#8B5CF6",
+  "#6D28D9",
   "#71717a",
 ];
 

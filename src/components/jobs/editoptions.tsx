@@ -49,7 +49,6 @@ export default function EditOptions({ job }: { job: Job }) {
   return (
     <div className="relative" ref={menuRef}>
 
-      {/* Trigger */}
       <button
         onClick={() => setMenuOpen((prev) => !prev)}
         className="rounded-lg p-2 text-zinc-400 transition-all duration-200 hover:bg-white/5 hover:text-white"
@@ -58,7 +57,6 @@ export default function EditOptions({ job }: { job: Job }) {
       </button>
 
 
-      {/* Dropdown */}
       {menuOpen && (
         <div
           className="absolute right-0 top-11 z-50 w-48 origin-top-right overflow-hidden rounded-2xl border border-white/10 bg-[#0F172A]/95 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.45)] animate-in fade-in zoom-in-95 duration-150"
@@ -99,7 +97,6 @@ export default function EditOptions({ job }: { job: Job }) {
 
 
 
-      {/* View/Edit Form */}
       <JobForm
         open={formOpen}
         mode={formMode}
@@ -109,7 +106,6 @@ export default function EditOptions({ job }: { job: Job }) {
 
 
 
-      {/* Delete Modal */}
       <DeleteJob
         open={deleteOpen}
         onClose={() => setDeleteOpen(false)}

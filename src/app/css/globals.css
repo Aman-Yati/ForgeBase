@@ -13,7 +13,6 @@ html, body, #root {
   font-style: normal;
 }
 
-/* Add Snasm Light */
 @font-face {
   font-family: "Snasm";
   src: url("/fonts/SnasmW00-Light.woff2") format("woff2"),
@@ -32,7 +31,6 @@ html, body, #root {
   font-weight: 300;
 }
 
-/* Hide scrollbars everywhere this class is used */
 .scrollbar-hidden {
   -ms-overflow-style: none;
   scrollbar-width: none;

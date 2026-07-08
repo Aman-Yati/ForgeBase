@@ -28,7 +28,7 @@ export default function BreakdownCard({
         duration: 0.55,
         ease: [0.22, 1, 0.36, 1],
       }}
-      className="rounded-2xl max-w-100 mt-6 border border-white/10 bg-[#101726]/70 p-6 backdrop-blur-xl"
+      className="rounded-2xl max-w-100 border border-white/10 bg-[#101726]/70 p-6 backdrop-blur-xl"
     >
       <div className="mb-6">
         <h2 className="font-bold text-xl text-white">

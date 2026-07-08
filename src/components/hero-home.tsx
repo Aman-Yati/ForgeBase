@@ -42,7 +42,6 @@ export default function HeroHome() {
     <section className="pb-20 pt-20 text-white lg:pt-20">
       <div className="mx-auto w-full max-w-[90rem] px-6">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-20">
-          {/* LEFT */}
           <div>
             <motion.h1
               variants={containerVariants}
@@ -60,7 +59,6 @@ export default function HeroHome() {
             </motion.h1>
           </div>
 
-          {/* RIGHT */}
           <div className="mt-10 h-100 w-full max-w-sm sm:max-w-md lg:ml-auto lg:mt-60">
             <div className="overflow-hidden">
               <motion.div
@@ -89,10 +87,8 @@ export default function HeroHome() {
               href="/sign-up"
               className="group relative inline-flex items-center justify-center overflow-hidden border border-white px-6 py-3 uppercase transition-colors duration-300 hover:text-black"
             >
-    {/* Background */}
               <span className="absolute inset-0 origin-bottom scale-y-0 bg-white transition-transform duration-300 ease-out group-hover:scale-y-100" />
 
-    {/* Rolling Text */}
                 <span className="relative block h-5 overflow-hidden leading-5">
                 <span className="flex flex-col transition-transform duration-300 ease-out group-hover:-translate-y-1/2">
                 <span>Start Tracking</span>
@@ -107,7 +103,6 @@ export default function HeroHome() {
         </div>
       </div>
 
-      {/* IMAGE */}
       <div className="mt-5 pb-10 flex justify-center overflow-hidden rounded-2xl px-6">
         <div className="relative w-full max-w-7xl overflow-hidden rounded-2xl">
           <motion.div style={{ scale }}>

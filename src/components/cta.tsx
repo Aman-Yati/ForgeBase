@@ -33,10 +33,8 @@ export default function Cta() {
     href="/sign-up"
     className="group relative inline-flex items-center justify-center overflow-hidden border border-white px-20 py-3 uppercase transition-colors duration-300 hover:text-black"
   >
-    {/* Background */}
     <span className="absolute inset-0 origin-bottom scale-y-0 bg-white transition-transform duration-300 ease-out group-hover:scale-y-100" />
 
-    {/* Rolling Text */}
     <span className="relative block h-5 overflow-hidden leading-5">
       <span className="flex flex-col transition-transform duration-300 ease-out group-hover:-translate-y-1/2">
         <span>Get Started</span>

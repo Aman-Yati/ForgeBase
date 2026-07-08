@@ -20,19 +20,16 @@ export default function DashCard({
   return (
     
     <div className="w-full rounded-2xl mb-0 bg-[#101726] p-6 shadow-lg transition-all duration-300 border border-white/10">
-      {/* Icon */}
       <div
         className={`flex h-12 w-16 items-center justify-center rounded-full ${iconBg}`}
       >
         <Icon className="h-8 w-8 text-white" />
       </div>
 
-      {/* Value */}
       <h2 className="mt-8 text-4xl font-bold tracking-tight text-white">
         {value}
       </h2>
 
-      {/* Footer */}
       <div className="mt-1 flex items-end justify-between">
         <p className="text-base text-slate-400">{title}</p>
 

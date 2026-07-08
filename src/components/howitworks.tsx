@@ -46,7 +46,6 @@ export default function HowItWorks() {
       id="how-it-works"
       className="mx-auto max-w-7xl pb-15 px-6 py-28"
     >
-      {/* Heading */}
           <div className="mx-auto max-w-3xl pb-4 text-center md:pb-12">
             <div className="inline-flex items-center gap-3 pb-3 before:h-px before:w-32 before:bg-linear-to-r before:from-transparent before:to-indigo-200/50 after:h-px after:w-32 after:bg-linear-to-l after:from-transparent after:to-indigo-200/50">
               <span className="inline-flex bg-linear-to-r from-indigo-500 to-indigo-200 bg-clip-text text-transparent">
@@ -66,10 +65,7 @@ export default function HowItWorks() {
         </p>
       </div>
 
-      {/* Timeline */}
       <div className="relative mt-20">
-        {/* Line */}
-        <div className="absolute left-1/2 top-0 hidden h-full w-1 -translate-x-1/2 rounded-full bg-white/10 lg:block" />
 
         <div className="space-y-12">
           {steps.map((step, index) => {
@@ -82,7 +78,6 @@ export default function HowItWorks() {
                   index % 2 !== 0 ? "lg:flex-row-reverse" : ""
                 }`}
               >
-                {/* Card */}
                 <div className="w-full rounded-3xl border border-white/10 bg-[#121826] p-8 backdrop-blur-lg transition duration-300 hover:border-white hover:shadow-xl lg:w-[45%]">
                   <span className="text-sm font-semibold text-indigo-400">
                     STEP {step.id}
@@ -97,7 +92,6 @@ export default function HowItWorks() {
                   </p>
                 </div>
 
-                {/* Icon */}
                 <div className="relative z-10 flex h-20 w-20 items-center justify-center rounded-full border-8 border-[#0B1120] bg-[#121826]">
                   <div
                     className={`flex h-14 w-14 items-center justify-center rounded-full ${step.color}`}

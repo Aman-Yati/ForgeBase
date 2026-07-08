@@ -7,10 +7,6 @@ import { revalidatePath } from "next/cache";
 
 type ActionResult = { success: true } | { success: false; error: string };
 
-// ─────────────────────────────────────────────
-// USER
-// ─────────────────────────────────────────────
-
 export async function syncUser() {
   const { userId } = await auth();
   if (!userId) return null;
@@ -41,10 +37,6 @@ export async function getCurrentUser() {
   });
 }
 
-// ─────────────────────────────────────────────
-// READ
-// ─────────────────────────────────────────────
-
 export async function getJobs() {
   const { userId } = await auth();
   if (!userId) return [];
@@ -64,10 +56,6 @@ export async function getJobById(id: string) {
   });
 }
 
-// ─────────────────────────────────────────────
-// HELPERS
-// ─────────────────────────────────────────────
-
 function parseFormData(formData: FormData) {
   return {
     company:     formData.get("company") as string,
@@ -86,10 +74,6 @@ function parseFormData(formData: FormData) {
     notes:       (formData.get("notes") as string) || null,
   };
 }
-
-// ─────────────────────────────────────────────
-// CREATE
-// ─────────────────────────────────────────────
 
 export async function createJob(formData: FormData): Promise<ActionResult> {
   try {
@@ -111,11 +95,6 @@ export async function createJob(formData: FormData): Promise<ActionResult> {
   }
 }
 
-// ─────────────────────────────────────────────
-// UPDATE
-// — id comes from a hidden <input name="id"> in the form
-// ─────────────────────────────────────────────
-
 export async function updateJob(formData: FormData): Promise<ActionResult> {
   try {
     const { userId } = await auth();
@@ -124,7 +103,6 @@ export async function updateJob(formData: FormData): Promise<ActionResult> {
     const id = formData.get("id") as string;
     if (!id) return { success: false, error: "Job ID is required" };
 
-    // ownership check — never skip this
     const existing = await prisma.job.findFirst({ where: { id, userId } });
     if (!existing) return { success: false, error: "Job not found" };
 
@@ -139,10 +117,6 @@ export async function updateJob(formData: FormData): Promise<ActionResult> {
   }
 }
 
-// ─────────────────────────────────────────────
-// DELETE
-// ─────────────────────────────────────────────
-
 export async function deleteJob(id: string): Promise<ActionResult> {
   try {
     if (!id) return { success: false, error: "Job ID is required" };
@@ -150,7 +124,6 @@ export async function deleteJob(id: string): Promise<ActionResult> {
     const { userId } = await auth();
     if (!userId) return { success: false, error: "Unauthorized" };
 
-    // ownership check — prevents deleting another user's job
     const existing = await prisma.job.findFirst({ where: { id, userId } });
     if (!existing) return { success: false, error: "Job not found" };
 
@@ -162,10 +135,6 @@ export async function deleteJob(id: string): Promise<ActionResult> {
     return { success: false, error: "Failed to delete job" };
   }
 }
-
-// ─────────────────────────────────────────────
-// QUICK UPDATES
-// ─────────────────────────────────────────────
 
 export async function updateJobStatus(
   id: string,
