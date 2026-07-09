@@ -63,18 +63,18 @@ export default function JobList({ jobs }: JobListProps) {
       <div className="overflow-x-auto scrollbar-hidden">
         <table className="min-w-[1150px] w-full text-sm">
           <thead className="border-b border-white/10 bg-[#101726]">
-            <tr className="text-left text-[11px] font-semibold uppercase tracking-wider text-zinc-300">
-              <th className="border-r border-white/10 px-3 py-1">Company</th>
-              <th className="border-r border-white/10 px-3 py-1">Role</th>
-              <th className="border-r border-white/10 px-3 py-1">Location</th>
-              <th className="border-r border-white/10 px-3 py-1">Salary</th>
-              <th className="border-r border-white/10 px-3 py-1">Job Type</th>
-              <th className="border-r border-white/10 px-3 py-1">Work Mode</th>
-              <th className="border-r border-white/10 px-3 py-1">Status</th>
-              <th className="border-r border-white/10 px-3 py-1">Priority</th>
-              <th className="border-r border-white/10 px-3 py-1">Applied</th>
-              <th className="border-r border-white/10 px-3 py-1">Notes</th>
-              <th className="w-20 px-3 py-1">Link</th>
+            <tr className="text-left text-[13px] font-medium uppercase text-zinc-400">
+              <th className="border-r border-white/10 px-3 py-2">Company</th>
+              <th className="border-r border-white/10 px-3 py-2">Role</th>
+              <th className="border-r border-white/10 px-3 py-2">Location</th>
+              <th className="border-r border-white/10 px-3 py-2">Salary</th>
+              <th className="border-r border-white/10 px-3 py-2">Type</th>
+              <th className="border-r border-white/10 px-3 py-2">Mode</th>
+              <th className="border-r border-white/10 px-3 py-2">Status</th>
+              <th className="border-r border-white/10 px-3 py-2">Priority</th>
+              <th className="border-r border-white/10 px-3 py-2">Applied</th>
+              <th className="border-r border-white/10 px-3 py-2">Notes</th>
+              <th className="w-20 px-3 py-2">Link</th>
             </tr>
           </thead>
 
@@ -82,20 +82,20 @@ export default function JobList({ jobs }: JobListProps) {
             {jobs.map((job) => (
               <tr
                 key={job.id}
-                className="group transition-all duration-200 hover:bg-indigo-500/5 hover:shadow-[inset_3px_0_0_0_rgb(99_102_241)]"
+                className="group h-16 align-middle transition-all duration-200 hover:bg-indigo-500/5 hover:shadow-[inset_3px_0_0_0_rgb(99_102_241)]"
               >
                 {/* Company */}
-                <td className="border-r border-white/5 whitespace-nowrap px-2 py-2 font-medium text-zinc-300 transition-colors duration-200 group-hover:text-white">
+                <td className="h-16 border-r border-white/5 whitespace-nowrap px-2 py-2 align-middle font-medium text-zinc-300 transition-colors duration-200 group-hover:text-white">
                   {job.company}
                 </td>
 
                 {/* Role */}
-                <td className="border-r border-white/5 whitespace-nowrap px-2 py-2 text-zinc-300 transition-colors duration-200 group-hover:text-white">
+                <td className="h-16 border-r border-white/5 whitespace-nowrap px-2 py-2 align-middle text-zinc-300 transition-colors duration-200 group-hover:text-white">
                   {job.role}
                 </td>
 
                 {/* Location */}
-                <td className="border-r border-white/5 whitespace-nowrap px-2 py-2 text-zinc-300 transition-colors duration-200 group-hover:text-white">
+                <td className="h-16 border-r border-white/5 whitespace-nowrap px-2 py-2 align-middle text-zinc-300 transition-colors duration-200 group-hover:text-white">
                   {job.location ? (
                     <div className="flex items-center gap-2">
                       <MapPin size={14} />
@@ -106,7 +106,7 @@ export default function JobList({ jobs }: JobListProps) {
                   )}
                 </td>
                                 {/* Salary */}
-                <td className="border-r border-white/5 whitespace-nowrap px-2 py-2 text-zinc-300 transition-colors duration-200 group-hover:text-white">
+                <td className="h-16 border-r border-white/5 whitespace-nowrap px-2 py-2 align-middle text-zinc-300 transition-colors duration-200 group-hover:text-white">
                   {job.salaryMin || job.salaryMax ? (
                     <>
                       ₹{job.salaryMin?.toLocaleString() ?? "-"}
@@ -119,17 +119,17 @@ export default function JobList({ jobs }: JobListProps) {
                 </td>
 
                 {/* Job Type */}
-                <td className="border-r border-white/5 whitespace-nowrap px-2 py-2 text-zinc-300 transition-colors duration-200 group-hover:text-white">
-                  {job.jobType ?? "-"}
+                <td className="h-16 border-r capitalize border-white/5 whitespace-nowrap px-2 py-2 align-middle text-zinc-300 transition-colors duration-200 group-hover:text-white">
+                  {job.jobType?.toLowerCase().replaceAll("_", " ") ?? "-"}
                 </td>
 
                 {/* Work Mode */}
-                <td className="border-r border-white/5 whitespace-nowrap px-2 py-2 text-zinc-300 transition-colors duration-200 group-hover:text-white">
-                  {job.workMode ?? "-"}
+                <td className="h-16 border-r border-white/5 whitespace-nowrap px-2 py-2 align-middle capitalize text-zinc-300 transition-colors duration-200 group-hover:text-white">
+                  {job.workMode?.toLowerCase() ?? "-"}
                 </td>
 
                 {/* Status */}
-                <td className="border-r border-white/5 whitespace-nowrap px-2 py-2">
+                <td className="h-16 border-r border-white/5 whitespace-nowrap px-2 py-2 align-middle">
                   <span
                     className={`rounded-full px-3 py-1 text-xs font-medium transition-all duration-200 group-hover:scale-105 ${statusColors[job.status]}`}
                   >
@@ -139,13 +139,13 @@ export default function JobList({ jobs }: JobListProps) {
 
                 {/* Priority */}
                 <td
-                  className={`border-r border-white/5 whitespace-nowrap px-2 py-2 font-medium transition-all duration-200 ${priorityColors[job.priority]}`}
+                  className={`h-16 border-r border-white/5 whitespace-nowrap px-2 py-2 align-middle font-medium transition-all duration-200 ${priorityColors[job.priority]}`}
                 >
                   {job.priority}
                 </td>
 
                 {/* Applied Date */}
-                <td className="border-r border-white/5 whitespace-nowrap px-2 py-2 text-zinc-300 transition-colors duration-200 group-hover:text-white">
+                <td className="h-16 border-r border-white/5 whitespace-nowrap px-2 py-2 align-middle text-zinc-300 transition-colors duration-200 group-hover:text-white">
                   {job.appliedDate ? (
                     <div className="flex items-center gap-2">
                       <CalendarDays
@@ -160,12 +160,12 @@ export default function JobList({ jobs }: JobListProps) {
                 </td>
 
                 {/* Notes */}
-                <td className="max-w-xs border-r border-white/5 px-2 py-2 text-sm text-zinc-300 transition-colors duration-200 group-hover:text-white">
-                  <p className="line-clamp-2">{job.notes || "-"}</p>
+                <td className="h-16 max-w-xs border-r border-white/5 px-2 py-2 align-middle text-sm text-zinc-300 transition-colors duration-200 group-hover:text-white">
+                  <p className="line-clamp-1">{job.notes || "-"}</p>
                 </td>
 
                 {/* Actions */}
-                <td className="border-r border-white/5 px-2 py-2">
+                <td className="h-16 border-r border-white/5 px-2 py-2 align-middle">
                   <div className="flex items-center gap-2">
                     {job.jobUrl ? (
                       <a

@@ -9,7 +9,7 @@ import {
   WorkMode,
 } from "@prisma/client";
 import { X } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useLayoutEffect } from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -30,15 +30,22 @@ export default function JobForm({
   const [isPending, setIsPending] = useState(false);
   const [success, setSuccess] = useState("");
 
-  // Disable background scroll on mobile when modal is open
-  useEffect(() => {
-    if (open) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
+  // Lock background scroll without causing the page to shift when the modal opens
+  useLayoutEffect(() => {
+    if (!open) return;
+
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    const previousOverflow = document.body.style.overflow;
+    const previousPaddingRight = document.body.style.paddingRight;
+
+    document.body.style.overflow = "hidden";
+    if (scrollbarWidth > 0) {
+      document.body.style.paddingRight = `${scrollbarWidth}px`;
     }
+
     return () => {
-      document.body.style.overflow = "";
+      document.body.style.overflow = previousOverflow;
+      document.body.style.paddingRight = previousPaddingRight;
     };
   }, [open]);
 
@@ -85,7 +92,7 @@ export default function JobForm({
       `}</style>
       <AnimatePresence>
         {open && (
-          <div className="fixed inset-0 z-50">
+          <div className="fixed inset-0 z-[60] isolate overflow-y-auto">
             {/* Backdrop */}
             <motion.div
               onClick={handleClose}
@@ -93,11 +100,11 @@ export default function JobForm({
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="absolute inset-0 bg-black/70 backdrop-blur-md"
+              className="fixed inset-0 bg-black/70 backdrop-blur-md"
             />
 
             {/* Modal Container */}
-            <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4">
+            <div className="relative flex min-h-full items-center justify-center p-2 sm:p-4">
               <motion.div
                 onClick={(e) => e.stopPropagation()}
                 initial={{
@@ -116,10 +123,10 @@ export default function JobForm({
                   y: 20,
                 }}
                 transition={{
-                  duration: 0.20,
+                  duration: 0.2,
                   ease: "easeOut",
                 }}
-                className="jobform-card flex w-full max-w-5xl flex-col overflow-hidden rounded-xl border border-white/10 bg-[#0B1220] shadow-2xl"
+                className="jobform-card relative z-[70] flex w-full max-w-5xl flex-col overflow-hidden rounded-xl border border-white/10 bg-[#0B1220] shadow-2xl"
               >
                 {/* Header */}
                 <div className="flex shrink-0 items-center justify-between border-b border-white/10 bg-[#0B1220] px-4 py-3 sm:py-4 sm:px-6">

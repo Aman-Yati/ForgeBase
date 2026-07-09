@@ -156,7 +156,9 @@ export default function CalendarView({
       return;
     }
 
-    setDate(startOfMonth(new Date()));
+    const now = new Date();
+    setDate(startOfMonth(now));
+    setSelectedDate(startOfDay(now));
   };
 
   const monthGrid = useMemo(() => {
