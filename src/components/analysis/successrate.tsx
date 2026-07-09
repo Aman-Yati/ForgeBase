@@ -35,11 +35,11 @@ export default function SuccessRate({ jobs }: Props) {
         duration: 0.6,
         ease: [0.22, 1, 0.36, 1],
       }}
-      className="rounded-2xl border border-white/10 bg-[#101726] p-6"
+      className="rounded-2xl border border-white/10 bg-[#000816] p-6"
     >
       <div className="flex items-center justify-between">
         <div>
-          <p className="text-sm text-white/50">
+          <p className="text-sm text-zinc-500">
             Success Rate
           </p>
 
@@ -47,13 +47,13 @@ export default function SuccessRate({ jobs }: Props) {
             {successRate}%
           </h2>
 
-          <p className="mt-2 text-sm text-white/40">
+          <p className="mt-2 text-sm text-zinc-500">
             Interviews + Offers
           </p>
         </div>
 
-        <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-emerald-500/15">
-          <TrendingUp className="h-8 w-8 text-emerald-400" />
+        <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-indigo-500/10">
+          <TrendingUp className="h-8 w-8 text-indigo-400" />
         </div>
       </div>
 
@@ -66,12 +66,12 @@ export default function SuccessRate({ jobs }: Props) {
               duration: 1,
               delay: 0.2,
             }}
-            className="h-full rounded-full bg-emerald-400"
+            className="h-full rounded-full bg-[#615fff]"
           />
         </div>
 
         <div className="mt-4 flex items-center justify-between text-sm">
-          <span className="text-white/50">
+          <span className="text-zinc-500">
             Successful
           </span>
 

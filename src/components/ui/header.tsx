@@ -39,22 +39,22 @@ export default function Header() {
         <div className="relative">
           {/* ================= Desktop ================= */}
 
-          <motion.div
-            initial={{
-              opacity: 0,
-              y: -35,
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-            }}
-            transition={{
-              duration: 0.8,
-              delay: 0.35,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-            className="hidden h-22 items-center justify-between border-b border-white/40 md:flex"
-          >
+<motion.div
+  initial={{
+    opacity: 0,
+    y: -35,
+  }}
+  animate={{
+    opacity: 1,
+    y: 0,
+  }}
+  transition={{
+    duration: 0.8,
+    delay: 0.35,
+    ease: [0.22, 1, 0.36, 1],
+  }}
+  className="relative hidden h-22 items-center justify-between md:flex"
+>
             <Logo />
 
             <nav>
@@ -96,7 +96,9 @@ export default function Header() {
         <span>Get Started</span>
       </span>
     </span>
-  </Link>        
+  </Link> 
+
+    
             
           </motion.div>
 

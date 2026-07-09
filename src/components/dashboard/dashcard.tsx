@@ -19,7 +19,7 @@ export default function DashCard({
 }: DashCardProps) {
   return (
     
-    <div className="w-full rounded-2xl mb-0 bg-[#101726] p-6 shadow-lg transition-all duration-300 border border-white/10">
+    <div className="w-full rounded-2xl mb-0 bg-[#000816] p-6 shadow-lg transition-all duration-300 border border-white/10">
       <div
         className={`flex h-12 w-16 items-center justify-center rounded-full ${iconBg}`}
       >
@@ -31,7 +31,7 @@ export default function DashCard({
       </h2>
 
       <div className="mt-1 flex items-end justify-between">
-        <p className="text-base text-slate-400">{title}</p>
+        <p className="text-base text-zinc-500">{title}</p>
 
         <div
           className={`flex items-center gap-1 text-sm font-semibold ${

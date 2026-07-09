@@ -4,8 +4,8 @@ import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import {
   ResponsiveContainer,
-  LineChart,
-  Line,
+  AreaChart,
+  Area,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -78,7 +78,7 @@ export default function ApplicationTrend({ jobs }: Props) {
         duration: 0.6,
         ease: [0.22, 1, 0.36, 1],
       }}
-      className="rounded-2xl border border-white/10 bg-[#101726] p-6 mt-6"
+      className="rounded-2xl border border-white/10 bg-[#000816] p-6 mt-6"
     >
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div>
@@ -86,7 +86,7 @@ export default function ApplicationTrend({ jobs }: Props) {
             Applications Over Time
           </h2>
 
-          <p className="mt-1 text-sm text-white/45">
+          <p className="mt-1 text-sm text-zinc-500">
             Track your application activity over time
           </p>
         </div>
@@ -96,8 +96,8 @@ export default function ApplicationTrend({ jobs }: Props) {
             onClick={() => setRange("week")}
             className={`rounded-lg px-4 py-2 text-sm font-medium transition ${
               range === "week"
-                ? "bg-violet-500 text-white"
-                : "text-white/55 hover:text-white"
+                ? "bg-[#615FFF] text-white"
+                : "text-zinc-500 hover:text-white"
             }`}
           >
             Week
@@ -108,7 +108,7 @@ export default function ApplicationTrend({ jobs }: Props) {
             className={`rounded-lg px-4 py-2 text-sm font-medium transition ${
               range === "month"
                 ? "bg-violet-500 text-white"
-                : "text-white/55 hover:text-white"
+                : "text-zinc-500 hover:text-white"
             }`}
           >
             Month
@@ -118,7 +118,7 @@ export default function ApplicationTrend({ jobs }: Props) {
 
       <div className="mt-8 h-80">
         <ResponsiveContainer width="100%" height="100%">
-          <LineChart data={data}>
+          <AreaChart data={data}>
             <CartesianGrid
               stroke="rgba(255,255,255,0.05)"
               vertical={false}
@@ -144,31 +144,33 @@ export default function ApplicationTrend({ jobs }: Props) {
                 strokeOpacity: 0.3,
               }}
               contentStyle={{
-                background: "#101726",
+                background: "#000816",
                 border: "1px solid rgba(255,255,255,0.08)",
                 borderRadius: 12,
                 color: "#fff",
               }}
             />
 
-            <Line
+            <Area
               type="monotone"
               dataKey="applications"
               stroke="#8b5cf6"
               strokeWidth={3}
+              fill="#6366f1"
+              fillOpacity={0.5}
               dot={false}
               activeDot={{
                 r: 6,
                 fill: "#8b5cf6",
               }}
             />
-          </LineChart>
+          </AreaChart>
         </ResponsiveContainer>
       </div>
 
       <div className="mt-6 flex items-center justify-between border-t border-white/10 pt-5">
         <div>
-          <p className="text-xs uppercase tracking-wider text-white/40">
+          <p className="text-xs uppercase tracking-wider text-zinc-500">
             Applications
           </p>
 
@@ -178,7 +180,7 @@ export default function ApplicationTrend({ jobs }: Props) {
         </div>
 
         <div className="text-right">
-          <p className="text-xs uppercase tracking-wider text-white/40">
+          <p className="text-xs uppercase tracking-wider text-zinc-500">
             Period
           </p>
 

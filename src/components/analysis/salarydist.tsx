@@ -21,11 +21,11 @@ interface Props {
 }
 
 const COLORS = [
-  "#51aaee",
+  "#DDD6FE",
+  "#C4B5FD",
+  "#A78BFA",
   "#8B5CF6",
-  "#f7be55",
-  "#5aebb6",
-  "#E879F9",
+  "#5834ce",
 ];
 
 export default function SalaryDistribution({
@@ -80,7 +80,7 @@ export default function SalaryDistribution({
         duration: 0.6,
         ease: [0.22, 1, 0.36, 1],
       }}
-      className="rounded-2xl border border-white/10 bg-[#101726] p-6"
+      className="rounded-2xl border border-white/10 bg-[#000816] p-6"
     >
       <div className="flex items-start justify-between">
         <div>
@@ -88,13 +88,13 @@ export default function SalaryDistribution({
             Salary Distribution
           </h2>
 
-          <p className="mt-2 text-sm text-white/40">
+          <p className="mt-2 text-sm text-zinc-500">
             Expected salary ranges across applications
           </p>
         </div>
 
-        <div className="rounded-xl border border-white/10 bg-white/5 px-4 py-3">
-          <p className="text-xs uppercase tracking-wider text-white/40">
+        <div className="rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3">
+          <p className="text-xs uppercase tracking-wider text-zinc-500">
             Jobs
           </p>
 
@@ -145,7 +145,7 @@ export default function SalaryDistribution({
                 fill: "rgba(255,255,255,.03)",
               }}
               contentStyle={{
-                background: "#0B1220",
+                background: "#000816",
                 border: "1px solid rgba(255,255,255,.08)",
                 borderRadius: 14,
               }}
@@ -183,7 +183,7 @@ export default function SalaryDistribution({
         {data.map((item, index) => (
           <div
             key={item.range}
-            className="rounded-xl border border-white/5 bg-white/[0.04] p-3"
+            className="rounded-xl border border-white/10 bg-white/[0.03] p-3"
           >
             <div
               className="mb-2 h-2 w-10 rounded-full"
@@ -192,7 +192,7 @@ export default function SalaryDistribution({
               }}
             />
 
-            <p className="text-xs text-white/50">
+            <p className="text-xs text-zinc-500">
               {item.range}
             </p>
 

@@ -64,14 +64,14 @@ const [activeIndex, setActiveIndex] = useState<number | null>(null);
         duration: 0.6,
         ease: [0.22, 1, 0.36, 1],
       }}
-      className="w-full rounded-2xl border border-white/10 bg-[#101726] p-6 shadow-[0_20px_80px_rgba(0,0,0,0.35)] backdrop-blur-xl"
+      className="w-full rounded-2xl border border-white/10 bg-[#000816] p-6 shadow-[0_20px_80px_rgba(0,0,0,0.35)] backdrop-blur-xl"
     >
       <div>
         <h2 className="text-3xl font-bold text-white">
           Application Status
         </h2>
 
-        <p className="mt-2 text-sm text-white/40">
+        <p className="mt-2 text-sm text-zinc-500">
           Track where your applications stand
         </p>
       </div>
@@ -130,7 +130,7 @@ const [activeIndex, setActiveIndex] = useState<number | null>(null);
         {data.map((item, index) => (
           <div
             key={item.name}
-            className="flex items-center justify-between rounded-xl border border-white/5 bg-white/[0.04] px-4 py-3 transition hover:border-white/40"
+            className="flex items-center justify-between rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 transition hover:border-white/40"
           >
             <div className="flex items-center gap-3">
               <span
@@ -140,7 +140,7 @@ const [activeIndex, setActiveIndex] = useState<number | null>(null);
                 }}
               />
 
-              <span className="text-sm text-white/60">
+              <span className="text-sm text-zinc-500">
                 {item.name}
               </span>
             </div>
@@ -153,7 +153,7 @@ const [activeIndex, setActiveIndex] = useState<number | null>(null);
       </div>
 
       {data.length === 0 && (
-        <div className="mt-6 rounded-xl border border-dashed border-white/10 py-8 text-center text-sm text-white/40">
+        <div className="mt-6 rounded-xl border border-dashed border-white/10 py-8 text-center text-sm text-zinc-500">
           No application data available
         </div>
       )}

@@ -44,11 +44,7 @@ const NAV_ITEMS = [
     href: "/resume",
     icon: FileText,
   },
-  {
-    label: "Settings",
-    href: "/settings",
-    icon: Settings,
-  },
+
 ];
 
 export default function Sidebar() {

@@ -28,7 +28,7 @@ export default function BreakdownCard({
         duration: 0.55,
         ease: [0.22, 1, 0.36, 1],
       }}
-      className="rounded-2xl max-w-100 border border-white/10 bg-[#101726]/70 p-6 backdrop-blur-xl"
+      className="rounded-2xl max-w-100 border border-white/10 bg-[#000816]/70 p-6 backdrop-blur-xl"
     >
       <div className="mb-6">
         <h2 className="font-bold text-xl text-white">
@@ -36,7 +36,7 @@ export default function BreakdownCard({
         </h2>
 
         {subtitle && (
-          <p className="mt-2 text-sm text-white/40">
+          <p className="mt-2 text-sm text-zinc-500">
             {subtitle}
           </p>
         )}
@@ -58,7 +58,7 @@ export default function BreakdownCard({
               }}
             >
               <div className="mb-2 flex items-center justify-between">
-                <span className="text-sm text-white/80">
+                <span className="text-sm text-zinc-300">
                   {item.label}
                 </span>
 
@@ -76,7 +76,7 @@ export default function BreakdownCard({
                     delay: 0.15 + index * 0.08,
                     ease: [0.22, 1, 0.36, 1],
                   }}
-                  className="h-full rounded-full bg-white/80"
+                  className="h-full rounded-full bg-[#C4B5FD]"
                 />
               </div>
             </motion.div>
@@ -85,7 +85,7 @@ export default function BreakdownCard({
       </div>
 
       {total === 0 && (
-        <div className="mt-8 rounded-2xl border border-dashed border-white/10 py-10 text-center text-sm text-white/40">
+        <div className="mt-8 rounded-2xl border border-dashed border-white/10 py-10 text-center text-sm text-zinc-500">
           No data available
         </div>
       )}

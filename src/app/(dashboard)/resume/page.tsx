@@ -21,7 +21,7 @@ export default function ResumeCard({
         </h1>
       </div>
 
-      <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#101726]">
+      <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#000816]">
         <div className="flex flex-col gap-4 border-b border-white/10 p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
           <div className="flex items-center gap-3 min-w-0">
             <div className="rounded-lg bg-indigo-500/10 p-2">
@@ -41,7 +41,7 @@ export default function ResumeCard({
             </div>
           </div>
 
-          <button className="flex w-full items-center justify-center gap-2 rounded-lg bg-indigo-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-indigo-500 sm:w-auto">
+          <button className="flex w-full items-center justify-center gap-2 rounded-lg bg-[#615fff] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-indigo-500 sm:w-auto">
             {hasResume ? (
               <>
                 <RefreshCw size={16} />
@@ -79,7 +79,7 @@ export default function ResumeCard({
               anytime with a newer version.
             </p>
 
-            <button className="mt-8 flex w-full max-w-xs items-center justify-center gap-2 rounded-lg bg-indigo-600 px-6 py-3 font-medium text-white transition hover:bg-indigo-500 sm:w-auto">
+            <button className="mt-8 flex w-full max-w-xs items-center justify-center gap-2 rounded-lg bg-[#615fff] px-6 py-3 font-medium text-white transition hover:bg-indigo-500 sm:w-auto">
               <Upload size={18} />
               Upload Resume
             </button>

@@ -32,14 +32,14 @@ export default function RecentlyAppliedJobs({ jobs }: Props) {
         duration: 0.6,
         ease: [0.22, 1, 0.36, 1],
       }}
-      className=" w-full rounded-2xl border border-white/10 bg-[#101726] p-4"
+      className=" w-full rounded-2xl border border-white/10 bg-[#000816] p-4"
     >
       <div className="mb-4">
         <h2 className="text-2xl font-bold text-white lg:text-3xl">
           Recently Applied
         </h2>
 
-        <p className="mt-1 text-xs text-white/50">
+        <p className="mt-1 text-xs text-zinc-500">
           Latest applications
         </p>
       </div>
@@ -54,19 +54,19 @@ export default function RecentlyAppliedJobs({ jobs }: Props) {
               duration: 0.35,
               delay: index * 0.06,
             }}
-            className="rounded-xl border border-white/10 bg-black/20 px-4 py-3 transition hover:border-white/40"
+            className="rounded-xl border border-white/10 bg-black/20 px-4 py-3 transition hover:border-indigo-500/50"
           >
             <div className="flex items-start justify-between gap-4">
               <h3 className="min-w-0 flex-1 truncate text-sm font-medium text-white">
                 {job.company}
               </h3>
 
-              <p className="min-w-0 flex-1 truncate text-right text-sm text-white/80">
+              <p className="min-w-0 flex-1 truncate text-right text-sm text-zinc-300">
                 {job.role}
               </p>
             </div>
 
-            <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-2 text-[11px] text-white/40">
+            <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-2 text-[11px] text-zinc-500">
               {job.location && (
                 <span className="flex items-center gap-1">
                   <MapPin size={11} />
@@ -86,7 +86,7 @@ export default function RecentlyAppliedJobs({ jobs }: Props) {
       </div>
 
       {jobs.length === 0 && (
-        <div className="flex h-20 items-center justify-center rounded-xl border border-dashed border-white/10 text-xs text-white/40">
+        <div className="flex h-20 items-center justify-center rounded-xl border border-dashed border-white/10 text-xs text-zinc-500">
           No applications yet
         </div>
       )}

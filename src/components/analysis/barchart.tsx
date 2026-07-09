@@ -66,14 +66,14 @@ export default function StatusBarChart({ jobs }: Props) {
         duration: 0.6,
         ease: [0.22, 1, 0.36, 1],
       }}
-      className="rounded-2xl border border-white/10 bg-[#101726] p-6"
+      className="rounded-2xl border border-white/10 bg-[#000816] p-6"
     >
       <div>
         <h2 className="text-3xl font-bold text-white">
           Application Status
         </h2>
 
-        <p className="mt-2 text-sm text-white/40">
+        <p className="mt-2 text-sm text-zinc-500">
           Distribution of your job applications
         </p>
       </div>
@@ -118,7 +118,7 @@ export default function StatusBarChart({ jobs }: Props) {
           fill: "rgba(255,255,255,.03)",
         }}
         contentStyle={{
-          background: "#0B1220",
+          background: "#000816",
           border: "1px solid rgba(255,255,255,.08)",
           borderRadius: 14,
         }}
@@ -157,7 +157,7 @@ export default function StatusBarChart({ jobs }: Props) {
           {total} Total Applications
         </p>
 
-        <p className="mt-1 text-sm text-white/40">
+        <p className="mt-1 text-sm text-zinc-500">
           Based on all tracked applications
         </p>
       </div>
