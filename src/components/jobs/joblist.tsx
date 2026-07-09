@@ -1,4 +1,5 @@
 "use client";
+
 import { Job } from "@prisma/client";
 import {
   CalendarDays,
@@ -28,72 +29,73 @@ const priorityColors = {
 };
 
 export default function JobList({ jobs }: JobListProps) {
-if (!jobs.length) {
-  return (
-    <div className="mt-10 flex flex-col items-center justify-center rounded-3xl border border-dashed border-white/10 bg-[#0B1220] px-8 py-24 text-center">
-      <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-3xl bg-indigo-500/10">
-        <span className="text-4xl">💼</span>
+  if (!jobs.length) {
+    return (
+      <div className="mt-10 flex flex-col items-center justify-center rounded-3xl border border-dashed border-white/10 bg-[#0B1220] px-8 py-24 text-center">
+        <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-3xl bg-indigo-500/10">
+          <span className="text-4xl">💼</span>
+        </div>
+
+        <h2 className="text-3xl font-semibold text-white">
+          No applications found
+        </h2>
+
+        <p className="mt-3 max-w-lg text-zinc-400">
+          Keep all your job applications in one place. Track interviews,
+          offers, deadlines, and notes effortlessly.
+        </p>
       </div>
+    );
+  }
 
-      <h2 className="text-3xl font-semibold text-white">
-        No applications found
-      </h2>
+  console.log("Jobs received:", jobs);
 
-      <p className="mt-3 max-w-lg text-zinc-400">
-        Keep all your job applications in one place. Track interviews,
-        offers, deadlines, and notes effortlessly.
-      </p>
-
-    </div>
-  );
-} 
-console.log("Jobs received:", jobs);
-
-  return (<motion.div
-  initial={{ opacity: 0, y: 20 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{
-    duration: 0.6,
-    ease: [0.22, 1, 0.36, 1],
-  }}
-  className="overflow-hidden rounded-xl border border-white/10 bg-[#000816]/70 backdrop-blur-xl"
->
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{
+        duration: 0.6,
+        ease: [0.22, 1, 0.36, 1],
+      }}
+      className="overflow-hidden rounded-xl border border-white/10 bg-[#000816]/70 backdrop-blur-xl"
+    >
       <div className="overflow-x-auto scrollbar-hidden">
         <table className="min-w-[1150px] w-full text-sm">
           <thead className="border-b border-white/10 bg-[#101726]">
-  <tr className="text-left text-[11px] font-semibold uppercase tracking-wider text-zinc-300">
-    <th className="border-r border-white/10 px-3 py-1">Company</th>
-    <th className="border-r border-white/10 px-3 py-1">Role</th>
-    <th className="border-r border-white/10 px-3 py-1">Location</th>
-    <th className="border-r border-white/10 px-3 py-1">Salary</th>
-    <th className="border-r border-white/10 px-3 py-1">Job Type</th>
-    <th className="border-r border-white/10 px-3 py-1">Work Mode</th>
-    <th className="border-r border-white/10 px-3 py-1">Status</th>
-    <th className="border-r border-white/10 px-3 py-1">Priority</th>
-    <th className="border-r border-white/10 px-3 py-1">Applied</th>
-    <th className="border-r border-white/10 px-3 py-1">Notes</th>
-    <th className="px-3 py-1 w-20">Link</th>
-  </tr>
-</thead>
+            <tr className="text-left text-[11px] font-semibold uppercase tracking-wider text-zinc-300">
+              <th className="border-r border-white/10 px-3 py-1">Company</th>
+              <th className="border-r border-white/10 px-3 py-1">Role</th>
+              <th className="border-r border-white/10 px-3 py-1">Location</th>
+              <th className="border-r border-white/10 px-3 py-1">Salary</th>
+              <th className="border-r border-white/10 px-3 py-1">Job Type</th>
+              <th className="border-r border-white/10 px-3 py-1">Work Mode</th>
+              <th className="border-r border-white/10 px-3 py-1">Status</th>
+              <th className="border-r border-white/10 px-3 py-1">Priority</th>
+              <th className="border-r border-white/10 px-3 py-1">Applied</th>
+              <th className="border-r border-white/10 px-3 py-1">Notes</th>
+              <th className="w-20 px-3 py-1">Link</th>
+            </tr>
+          </thead>
 
-          <tbody>
+          <tbody className="divide-y divide-white/5">
             {jobs.map((job) => (
               <tr
                 key={job.id}
-                className="border-b border-white/5 transition hover:bg-white/[0.03]"
+                className="group transition-all duration-200 hover:bg-indigo-500/5 hover:shadow-[inset_3px_0_0_0_rgb(99_102_241)]"
               >
                 {/* Company */}
-                <td className="border-r border-white/5 px-2 py-2 font-medium text-zinc-300 whitespace-nowrap">
+                <td className="border-r border-white/5 whitespace-nowrap px-2 py-2 font-medium text-zinc-300 transition-colors duration-200 group-hover:text-white">
                   {job.company}
                 </td>
 
                 {/* Role */}
-                <td className="border-r border-white/5 px-2 py-2 text-zinc-300 whitespace-nowrap">
+                <td className="border-r border-white/5 whitespace-nowrap px-2 py-2 text-zinc-300 transition-colors duration-200 group-hover:text-white">
                   {job.role}
                 </td>
 
                 {/* Location */}
-                <td className="border-r border-white/5 px-2 py-2 text-zinc-300 whitespace-nowrap">
+                <td className="border-r border-white/5 whitespace-nowrap px-2 py-2 text-zinc-300 transition-colors duration-200 group-hover:text-white">
                   {job.location ? (
                     <div className="flex items-center gap-2">
                       <MapPin size={14} />
@@ -103,9 +105,8 @@ console.log("Jobs received:", jobs);
                     "-"
                   )}
                 </td>
-
-                {/* Salary */}
-                <td className="border-r border-white/5 px-2 py-2 whitespace-nowrap text-zinc-300">
+                                {/* Salary */}
+                <td className="border-r border-white/5 whitespace-nowrap px-2 py-2 text-zinc-300 transition-colors duration-200 group-hover:text-white">
                   {job.salaryMin || job.salaryMax ? (
                     <>
                       ₹{job.salaryMin?.toLocaleString() ?? "-"}
@@ -118,21 +119,19 @@ console.log("Jobs received:", jobs);
                 </td>
 
                 {/* Job Type */}
-                <td className="border-r border-white/5 px-2 py-2 whitespace-nowrap text-zinc-300">
+                <td className="border-r border-white/5 whitespace-nowrap px-2 py-2 text-zinc-300 transition-colors duration-200 group-hover:text-white">
                   {job.jobType ?? "-"}
                 </td>
 
                 {/* Work Mode */}
-                <td className="border-r border-white/5 px-2 py-2 whitespace-nowrap text-zinc-300">
+                <td className="border-r border-white/5 whitespace-nowrap px-2 py-2 text-zinc-300 transition-colors duration-200 group-hover:text-white">
                   {job.workMode ?? "-"}
                 </td>
 
                 {/* Status */}
-                <td className="border-r border-white/5 px-2 py-2 whitespace-nowrap">
+                <td className="border-r border-white/5 whitespace-nowrap px-2 py-2">
                   <span
-                    className={`rounded-full px-3 py-1 text-xs font-medium ${
-                      statusColors[job.status]
-                    }`}
+                    className={`rounded-full px-3 py-1 text-xs font-medium transition-all duration-200 group-hover:scale-105 ${statusColors[job.status]}`}
                   >
                     {job.status.replace("_", " ")}
                   </span>
@@ -140,18 +139,19 @@ console.log("Jobs received:", jobs);
 
                 {/* Priority */}
                 <td
-                  className={`border-r border-white/5 px-2 py-2 whitespace-nowrap font-medium ${
-                    priorityColors[job.priority]
-                  }`}
+                  className={`border-r border-white/5 whitespace-nowrap px-2 py-2 font-medium transition-all duration-200 ${priorityColors[job.priority]}`}
                 >
                   {job.priority}
                 </td>
 
                 {/* Applied Date */}
-                <td className="border-r border-white/5 px-2 py-2 whitespace-nowrap text-zinc-300">
+                <td className="border-r border-white/5 whitespace-nowrap px-2 py-2 text-zinc-300 transition-colors duration-200 group-hover:text-white">
                   {job.appliedDate ? (
                     <div className="flex items-center gap-2">
-                      <CalendarDays size={14} />
+                      <CalendarDays
+                        size={14}
+                        className="transition-transform duration-200 group-hover:scale-110"
+                      />
                       {new Date(job.appliedDate).toLocaleDateString()}
                     </div>
                   ) : (
@@ -160,10 +160,8 @@ console.log("Jobs received:", jobs);
                 </td>
 
                 {/* Notes */}
-                <td className="border-r border-white/5 max-w-xs px-2 py-2 text-sm text-zinc-300">
-                  <p className="line-clamp-2">
-                    {job.notes || "-"}
-                  </p>
+                <td className="max-w-xs border-r border-white/5 px-2 py-2 text-sm text-zinc-300 transition-colors duration-200 group-hover:text-white">
+                  <p className="line-clamp-2">{job.notes || "-"}</p>
                 </td>
 
                 {/* Actions */}
@@ -174,16 +172,19 @@ console.log("Jobs received:", jobs);
                         href={job.jobUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="rounded-lg p-2 text-zinc-300 transition hover:bg-white/5 hover:text-white"
+                        className="rounded-lg p-2 text-zinc-300 transition-all duration-200 hover:scale-110 hover:bg-indigo-500/10 hover:text-indigo-300"
                       >
                         <ExternalLink size={16} />
                       </a>
                     ) : (
-                      <span className="rounded-lg p-2 text-zinc-300 transition hover:bg-white/5 hover:text-white cursor-not-allowed opacity-50">
+                      <span className="cursor-not-allowed rounded-lg p-2 text-zinc-500 opacity-50">
                         <ExternalLink size={16} />
                       </span>
                     )}
-                    <EditOptions job={job} />
+
+                    <div className="transition-transform duration-200 ">
+                      <EditOptions job={job} />
+                    </div>
                   </div>
                 </td>
               </tr>

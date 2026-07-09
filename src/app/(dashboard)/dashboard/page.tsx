@@ -4,6 +4,7 @@ import AnalysisPieChart from "@/components/dashboard/piechart";
 import StatusBarChart from "@/components/analysis/barchart";
 import { prisma } from "@/lib/prisma";
 import { currentUser } from "@clerk/nextjs/server";
+// intentionally throw for testing
 
 export default async function DashboardPage() {
   const user = await currentUser();
@@ -18,6 +19,7 @@ export default async function DashboardPage() {
       createdAt: "desc",
     },
   });
+
 
   return (
     <div className="space-y-6">

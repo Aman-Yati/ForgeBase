@@ -30,10 +30,11 @@ export default function FilterJobs() {
     setSearch("");
     router.push("/jobs");
   }
+  const hasFilters =
+  params.toString().length > 0;
 
-  const selectClass =
-    "h-11 w-full appearance-none rounded-lg border border-white/10 bg-[#101726] px-3 pr-9 text-sm text-zinc-300 outline-none transition-all duration-200 hover:border-white/20 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 cursor-pointer xl:w-40";
-
+ const selectClass =
+  "h-11 w-full appearance-none rounded-lg border border-white/10 bg-[#101726] px-3 pr-9 text-sm text-zinc-300 outline-none transition-all duration-200 hover:border-white/20 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 cursor-pointer sm:w-[150px]";
   return (
     <div className="flex flex-wrap items-center gap-3 py-3 xl:flex-nowrap">
       {/* Search */}
@@ -143,13 +144,14 @@ export default function FilterJobs() {
       </div>
 
       {/* Clear */}
-      <button
-        onClick={clearFilters}
-className="flex h-11 w-full items-center justify-center gap-2 rounded-lg border border-red-700/50 bg-red-900/40 px-4 text-sm font-medium text-red-100 shadow-lg shadow-red-950/20 transition-all duration-200 hover:border-red-600/60 hover:bg-red-800/50 active:scale-95 sm:w-[180px] xl:w-auto"
-        >
-    <X size={16} />
-        Clear
-      </button>
+{hasFilters && (
+  <button
+    onClick={clearFilters}
+    className="flex h-11 w-full sm:w-[110px] items-center justify-center gap-2 rounded-lg text-sm text-zinc-400 hover:text-white uppercase transition"
+  >
+    Clear filters
+  </button>
+)}
     </div>
   );
 }

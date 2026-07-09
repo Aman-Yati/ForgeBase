@@ -3,6 +3,7 @@
 import { deleteJob } from "@/app/actions/actions";
 import { AlertTriangle } from "lucide-react";
 import { createPortal } from "react-dom";
+import { useState } from "react";
 
 interface DeleteJobProps {
   open: boolean;
@@ -19,9 +20,21 @@ export default function DeleteJob({
     return null;
   }
 
+  const [isPending, setIsPending] = useState(false);
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+
   async function handleDelete() {
-    await deleteJob(jobId);
-    onClose();
+    setError("");
+    setIsPending(true);
+    const res = await deleteJob(jobId);
+    setIsPending(false);
+    if (!res.success) {
+      setError(res.error);
+      return;
+    }
+    setSuccess("Job deleted successfully");
+    setTimeout(() => onClose(), 700);
   }
 
   return createPortal(
@@ -32,6 +45,17 @@ export default function DeleteJob({
       />
 
       <div className="relative z-10 w-full max-w-[90%] sm:max-w-md rounded-2xl border border-white/10 bg-[#0B1220] p-6 shadow-2xl">
+        {error && (
+          <p className="mb-3 rounded-lg border border-red-500/30 bg-red-900/20 px-4 py-2 text-sm text-red-400">
+            {error}
+          </p>
+        )}
+
+        {success && (
+          <p className="mb-3 rounded-lg border border-emerald-500/30 bg-emerald-900/10 px-4 py-2 text-sm text-emerald-400">
+            {success}
+          </p>
+        )}
         <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-red-500/15">
           <AlertTriangle className="text-red-400" size={28} />
         </div>
@@ -56,7 +80,8 @@ export default function DeleteJob({
 
           <button
             onClick={handleDelete}
-            className="flex-1 rounded-xl bg-red-600 py-3 font-medium text-white transition hover:bg-red-500"
+            disabled={isPending}
+            className={`flex-1 rounded-xl py-3 font-medium text-white transition ${isPending ? 'bg-red-600/70 cursor-wait' : 'bg-red-600 hover:bg-red-500'}`}
           >
             Delete
           </button>
