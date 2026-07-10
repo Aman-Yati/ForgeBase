@@ -64,7 +64,7 @@ const [activeIndex, setActiveIndex] = useState<number | null>(null);
         duration: 0.6,
         ease: [0.22, 1, 0.36, 1],
       }}
-      className="w-full rounded-2xl border border-white/10 bg-[#000816] p-6 shadow-[0_20px_80px_rgba(0,0,0,0.35)] backdrop-blur-xl"
+      className="w-full rounded-2xl border border-white/10 bg-[#010a17] p-6 shadow-[0_20px_80px_rgba(0,0,0,0.35)] backdrop-blur-xl"
     >
       <div>
         <h2 className="text-3xl font-bold text-white">

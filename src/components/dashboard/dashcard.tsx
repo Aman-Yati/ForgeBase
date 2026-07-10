@@ -14,16 +14,16 @@ export default function DashCard({
   value,
   percentage,
   icon: Icon,
-  iconBg = "bg-emerald-500",
+  iconBg ,
   positive = true,
 }: DashCardProps) {
   return (
     
-    <div className="w-full rounded-2xl mb-0 bg-[#000816] p-6 shadow-lg transition-all duration-300 border border-white/10">
+    <div className="w-full rounded-2xl mb-0 bg-[#010a17] p-6 shadow-lg transition-all duration-300 border border-white/10">
       <div
-        className={`flex h-12 w-16 items-center justify-center rounded-full ${iconBg}`}
+        className={`flex h-12 w-16 items-center justify-center rounded-xl ${iconBg }`}
       >
-        <Icon className="h-8 w-8 text-white" />
+        <Icon className="h-8 w-8 text-indigo-400" />
       </div>
 
       <h2 className="mt-8 text-4xl font-bold tracking-tight text-white">
@@ -31,7 +31,7 @@ export default function DashCard({
       </h2>
 
       <div className="mt-1 flex items-end justify-between">
-        <p className="text-base text-zinc-500">{title}</p>
+        <p className="text-base text-zinc-400">{title}</p>
 
         <div
           className={`flex items-center gap-1 text-sm font-semibold ${

@@ -11,11 +11,8 @@ import {
   BarChart3,
   Calendar,
   FileText,
-  User,
-  Settings,
   Menu,
   X,
-  Search,
 } from "lucide-react";
 
 const NAV_ITEMS = [
@@ -64,7 +61,7 @@ export default function Sidebar() {
   return (
     <>
       {/* Mobile Header */}
-      <header className="fixed inset-x-0 top-0 z-40 flex flex-col gap-3 border-b border-white/10 bg-[#000816] px-5 py-3 lg:hidden">
+      <header className="fixed inset-x-0 top-0 z-40 flex flex-col gap-3 border-b border-white/10 bg-[#010a17] px-5 py-3 lg:hidden">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Logo />
@@ -94,7 +91,7 @@ export default function Sidebar() {
 
       {/* Sidebar */}
       <aside
-        className={`fixed left-0 top-0 z-50 flex h-screen w-60 flex-col border-r border-white/10 bg-[#000816] transition-transform duration-300 ${
+        className={`fixed left-0 top-0 z-50 flex h-screen w-60 flex-col border-r border-white/10 bg-[#010a17] transition-transform duration-300 ${
           mobileOpen ? "translate-x-0" : "-translate-x-full"
         } lg:translate-x-0`}
       >

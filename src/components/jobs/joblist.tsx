@@ -58,7 +58,7 @@ export default function JobList({ jobs }: JobListProps) {
         duration: 0.6,
         ease: [0.22, 1, 0.36, 1],
       }}
-      className="overflow-hidden rounded-xl border border-white/10 bg-[#000816]/70 backdrop-blur-xl"
+      className="overflow-hidden rounded-xl border border-white/10 bg-[#010a17]/70 backdrop-blur-xl"
     >
       <div className="overflow-x-auto scrollbar-hidden">
         <table className="min-w-[1150px] w-full text-sm">

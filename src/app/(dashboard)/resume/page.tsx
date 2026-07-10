@@ -21,7 +21,7 @@ export default function ResumeCard({
         </h1>
       </div>
 
-      <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#000816]">
+      <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#010a17]">
         <div className="flex flex-col gap-4 border-b border-white/10 p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
           <div className="flex items-center gap-3 min-w-0">
             <div className="rounded-lg bg-indigo-500/10 p-2">

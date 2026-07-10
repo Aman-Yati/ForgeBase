@@ -35,7 +35,7 @@ export default function SuccessRate({ jobs }: Props) {
         duration: 0.6,
         ease: [0.22, 1, 0.36, 1],
       }}
-      className="rounded-2xl border border-white/10 bg-[#000816] p-6"
+      className="rounded-2xl border border-white/10 bg-[#010a17] p-6"
     >
       <div className="flex items-center justify-between">
         <div>

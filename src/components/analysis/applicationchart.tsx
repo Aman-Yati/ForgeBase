@@ -78,7 +78,7 @@ export default function ApplicationTrend({ jobs }: Props) {
         duration: 0.6,
         ease: [0.22, 1, 0.36, 1],
       }}
-      className="rounded-2xl border border-white/10 bg-[#000816] p-6 mt-6"
+      className="rounded-2xl border border-white/10 bg-[#010a17] p-6 mt-6"
     >
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div>
@@ -144,7 +144,7 @@ export default function ApplicationTrend({ jobs }: Props) {
                 strokeOpacity: 0.3,
               }}
               contentStyle={{
-                background: "#000816",
+                background: "#010a17",
                 border: "1px solid rgba(255,255,255,0.08)",
                 borderRadius: 12,
                 color: "#fff",

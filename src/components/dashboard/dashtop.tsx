@@ -1,6 +1,5 @@
 import DashCard from "./dashcard";
 import {
-  Eye,
   BriefcaseBusiness,
   CalendarDays,
   FileText,
@@ -36,7 +35,7 @@ export default function DashTop({ jobs }: Props) {
         value={totalApplications.toString()}
         percentage=""
         icon={BriefcaseBusiness}
-        iconBg="bg-emerald-500"
+        iconBg="bg-indigo-500/10"
       />
 
       <DashCard
@@ -44,7 +43,7 @@ export default function DashTop({ jobs }: Props) {
         value={offers.toString()}
         percentage=""
         icon={FileText}
-        iconBg="bg-violet-500"
+        iconBg="bg-indigo-500/10"
       />
 
       <DashCard
@@ -52,7 +51,7 @@ export default function DashTop({ jobs }: Props) {
         value={interviews.toString()}
         percentage=""
         icon={CalendarDays}
-        iconBg="bg-amber-500"
+        iconBg="bg-indigo-500/10"
       />
 
       <DashCard
@@ -60,7 +59,7 @@ export default function DashTop({ jobs }: Props) {
         value={rejected.toString()}
         percentage=""
         icon={X}
-        iconBg="bg-[#f87171]"
+        iconBg="bg-indigo-500/10"
         positive={false}
       />
     </section>

@@ -194,10 +194,10 @@ export default function CalendarView({
         duration: 0.6,
         ease: [0.22, 1, 0.36, 1],
       }}
-      className="w-full rounded-2xl border border-white/10 bg-[#000816] p-4 mt-6 shadow-2xl sm:p-6"
+      className="w-full rounded-2xl border border-white/10 bg-[#010a17] p-4 mt-6 shadow-2xl sm:p-6"
     >
       <div className="flex flex-col gap-2">
-        <div className="overflow-hidden rounded-2xl bg-[#000816] sm:p-2">
+        <div className="overflow-hidden rounded-2xl bg-[#010a17] sm:p-2">
           <CalendarToolbar date={date} onNavigate={handleNavigate} />
 
           <div className="mt-4 grid grid-cols-7 gap-1 text-left text-[10px] font-semibold uppercase tracking-[0.1em] text-white sm:gap-2 sm:text-xs sm:tracking-[0.2em]">

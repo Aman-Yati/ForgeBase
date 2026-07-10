@@ -66,7 +66,7 @@ export default function StatusBarChart({ jobs }: Props) {
         duration: 0.6,
         ease: [0.22, 1, 0.36, 1],
       }}
-      className="rounded-2xl border border-white/10 bg-[#000816] p-6"
+      className="rounded-2xl border border-white/10 bg-[#010a17] p-6"
     >
       <div>
         <h2 className="text-3xl font-bold text-white">
@@ -118,7 +118,7 @@ export default function StatusBarChart({ jobs }: Props) {
           fill: "rgba(255,255,255,.03)",
         }}
         contentStyle={{
-          background: "#000816",
+          background: "#010a17",
           border: "1px solid rgba(255,255,255,.08)",
           borderRadius: 14,
         }}
