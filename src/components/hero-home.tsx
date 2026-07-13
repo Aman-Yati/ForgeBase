@@ -30,7 +30,7 @@ const lineVariants = {
 export default function HeroHome() {
   const { scrollY } = useScroll();
 
-  const rawScale = useTransform(scrollY, [0, 400], [1.4, 1]);
+  const rawScale = useTransform(scrollY, [0, 400], [1.25, 1]);
 
   const scale = useSpring(rawScale, {
     stiffness: 80,

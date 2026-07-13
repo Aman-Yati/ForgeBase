@@ -67,6 +67,9 @@ export default function FAQSection() {
                 key={faq.question}
                 layout
                 transition={{ duration: 0.25 }}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
                 className="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03]"
               >
                 <button

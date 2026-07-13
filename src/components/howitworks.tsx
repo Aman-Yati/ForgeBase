@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useCallback, useState } from "react";
-import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
@@ -11,7 +10,7 @@ import {
   Trophy,
 } from "lucide-react";
 
-gsap.registerPlugin(ScrollTrigger, useGSAP);
+gsap.registerPlugin(ScrollTrigger);
 
 const steps = [
   {
@@ -51,7 +50,6 @@ const steps = [
 type ConnectorRect = { left: number; width: number };
 type TrunkRect = { top: number; height: number };
 
-// How far the trunk line extends past the first and last checkpoints
 const TRUNK_EXTENSION = 64;
 
 export default function HowItWorks() {
@@ -69,9 +67,6 @@ export default function HowItWorks() {
   );
   const [trunkRect, setTrunkRect] = useState<TrunkRect>({ top: 0, height: 0 });
 
-  // Measure the exact gap between each card and its checkpoint circle,
-  // and the exact span between the first and last checkpoint centers,
-  // so both the connectors and the trunk line line up pixel-perfectly.
   const measure = useCallback(() => {
     const nextConnectors = steps.map((_, index) => {
       const card = cardRefs.current[index];
@@ -124,24 +119,26 @@ export default function HowItWorks() {
     };
   }, [measure]);
 
-  useGSAP(
-    () => {
-      const fill = lineFillRef.current;
-      const topStub = topStubFillRef.current;
-      const bottomStub = bottomStubFillRef.current;
-      const firstCircle = circleRefs.current[0];
-      const lastCircle = circleRefs.current[circleRefs.current.length - 1];
-      if (!fill || !topStub || !bottomStub || !firstCircle || !lastCircle) return;
+  const ctxRef = useRef<gsap.Context | null>(null);
 
-      // Trunk fill is locked to the exact same trigger points ("top 35%")
-      // used by the first and last checkpoint circles below, so the line
-      // and the checkpoints stay perfectly in sync instead of drifting.
-      // scrub: true (no smoothing lag) instead of a numeric value, so the
-      // line tracks scroll position 1:1 with zero catch-up delay.
-      // Height is a fixed pixel value (core distance, excluding the
-      // leading/trailing stubs) so the fill still stops exactly at the
-      // last checkpoint even though the container is taller than that.
+  useEffect(() => {
+    if (ctxRef.current) {
+      ctxRef.current.revert();
+      ctxRef.current = null;
+    }
+
+    const wrapper = trackWrapperRef.current;
+    const fill = lineFillRef.current;
+    const topStub = topStubFillRef.current;
+    const bottomStub = bottomStubFillRef.current;
+    const firstCircle = circleRefs.current[0];
+    const lastCircle = circleRefs.current[circleRefs.current.length - 1];
+    if (!wrapper || !fill || !topStub || !bottomStub || !firstCircle || !lastCircle) return;
+
+    const ctx = gsap.context(() => {
       const coreHeight = Math.max(trunkRect.height - TRUNK_EXTENSION * 2, 0);
+
+      // Trunk fill (top to bottom)
       gsap.set(fill, { height: 0 });
       gsap.to(fill, {
         height: coreHeight,
@@ -155,7 +152,7 @@ export default function HowItWorks() {
         },
       });
 
-      // Top stub fills as we scroll through the first checkpoint
+      // Top stub fill (top to bottom)
       gsap.set(topStub, { height: 0 });
       gsap.to(topStub, {
         height: TRUNK_EXTENSION,
@@ -168,7 +165,7 @@ export default function HowItWorks() {
         },
       });
 
-      // Bottom stub fills as we scroll through the last checkpoint
+      // Bottom stub fill (top to bottom)
       gsap.set(bottomStub, { height: 0 });
       gsap.to(bottomStub, {
         height: TRUNK_EXTENSION,
@@ -181,71 +178,72 @@ export default function HowItWorks() {
         },
       });
 
-      // Each checkpoint: icon settles in and its connector line brightens
-      // once the trunk line reaches it — same "top 35%" trigger point,
-      // short duration so it reads as instant rather than catching up.
+      // Checkpoints — tight 5% scrub range for instant activation
       circleRefs.current.forEach((circle, index) => {
         if (!circle) return;
-
-        gsap.set(circle, { boxShadow: "0 0 0 0 rgba(255,255,255,0)" });
 
         const icon = circle.querySelector<HTMLDivElement>("[data-icon-wrap]");
         const rowLine = rowLineRefs.current[index];
         const card = cardRefs.current[index];
 
-        const trigger = {
+        const scrubTrigger = {
           trigger: circle,
           start: "top 35%",
-          toggleActions: "play none none reverse",
+          end: "top 30%",
+          scrub: true,
         };
 
         if (icon) {
+          gsap.set(icon, { scale: 0.95, opacity: 0.8 });
           gsap.to(icon, {
             scale: 1,
             opacity: 1,
-            duration: 0.15,
-            ease: "power1.out",
-            scrollTrigger: trigger,
+            ease: "none",
+            scrollTrigger: scrubTrigger,
           });
         }
 
-        // Checkpoint circle gets a subtle glowing ring once reached
+        gsap.set(circle, { boxShadow: "0 0 0 0 rgba(255,255,255,0)" });
         gsap.to(circle, {
           boxShadow:
             "0 0 0 2px rgba(255,255,255,0.8), 0 0 12px 4px rgba(255,255,255,0.25)",
-          duration: 0.15,
-          ease: "power1.out",
-          scrollTrigger: trigger,
+          ease: "none",
+          scrollTrigger: scrubTrigger,
         });
 
         if (rowLine) {
+          gsap.set(rowLine, { backgroundColor: "rgba(255,255,255,0.1)" });
           gsap.to(rowLine, {
             backgroundColor: "rgba(255,255,255,0.9)",
-            duration: 0.15,
-            ease: "power1.out",
-            scrollTrigger: trigger,
+            ease: "none",
+            scrollTrigger: scrubTrigger,
           });
         }
 
-        // Card lights up (same look as its hover state) the moment its
-        // checkpoint activates — driven by the identical trigger, so the
-        // card, the connector, and the icon all light up in the same frame.
         if (card) {
+          gsap.set(card, {
+            borderColor: "rgba(255,255,255,0.1)",
+            boxShadow: "0 0 0 0 transparent",
+          });
           gsap.to(card, {
             borderColor: "rgba(255,255,255,1)",
             boxShadow:
               "0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1)",
-            duration: 0.15,
-            ease: "power1.out",
-            scrollTrigger: trigger,
+            ease: "none",
+            scrollTrigger: scrubTrigger,
           });
         }
       });
+    }, wrapper);
 
-      ScrollTrigger.refresh();
-    },
-    { scope: trackWrapperRef, dependencies: [connectorRects, trunkRect] }
-  );
+    ctxRef.current = ctx;
+
+    return () => {
+      ctx.revert();
+      ctxRef.current = null;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [connectorRects, trunkRect]);
 
   return (
     <section id="how-it-works" className="mx-auto max-w-7xl pb-15 px-6 py-28">
@@ -269,12 +267,12 @@ export default function HowItWorks() {
       </div>
 
       <div ref={trackWrapperRef} className="relative mt-20">
-        {/* Vertical trunk line: spans checkpoint-center to checkpoint-center only */}
+        {/* Vertical trunk line */}
         <div
           className="pointer-events-none absolute left-1/2 hidden w-2 -translate-x-1/2 bg-white/10 lg:block"
           style={{ top: trunkRect.top, height: trunkRect.height }}
         >
-          {/* Top stub fill — turns white as first checkpoint is reached */}
+          {/* Top stub — anchored at top, fills downward */}
           <div
             ref={topStubFillRef}
             className="absolute left-0 top-0 w-full bg-white"
@@ -285,14 +283,17 @@ export default function HowItWorks() {
             className="absolute left-0 w-full bg-white"
             style={{ top: TRUNK_EXTENSION }}
           />
-          {/* Bottom stub fill — turns white as last checkpoint is reached */}
+          {/* Bottom stub — anchored below core fill, fills downward */}
           <div
             ref={bottomStubFillRef}
-            className="absolute bottom-0 left-0 w-full bg-white"
+            className="absolute left-0 w-full bg-white"
+            style={{
+              top: Math.max(trunkRect.height - TRUNK_EXTENSION, 0),
+            }}
           />
         </div>
 
-        <div className="space-y-12">
+        <div className="space-y-24">
           {steps.map((step, index) => {
             const Icon = step.icon;
             const rect = connectorRects[index];
@@ -307,7 +308,7 @@ export default function HowItWorks() {
                   index % 2 !== 0 ? "lg:flex-row-reverse" : ""
                 }`}
               >
-                {/* Horizontal connector: sized to span only card -> checkpoint icon */}
+                {/* Horizontal connector */}
                 <div
                   ref={(el) => {
                     rowLineRefs.current[index] = el;
