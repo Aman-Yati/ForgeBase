@@ -8,32 +8,32 @@ const faqs = [
   {
     question: "What is ForgeBase?",
     answer:
-      "ForgeBase is a modern job application tracker that helps you organize applications, monitor interview progress, save opportunities, and gain insights into your job search—all from one dashboard.",
+      "ForgeBase is a modern job application tracker that helps you organize your job search in one place. Track applications, monitor interview progress, analyze your job hunt, and stay organized with an intuitive dashboard.",
   },
   {
-    question: "Can I track multiple job applications?",
+    question: "What can I track in ForgeBase?",
     answer:
-      "Yes. Add as many applications as you want and keep track of their status, company, role, interview dates, notes, and more.",
+      "You can manage job applications from wishlist to offer, store company details, roles, salaries, application dates, job links, and personal notes—all in one centralized workspace.",
   },
   {
-    question: "Is my data secure?",
+    question: "How does the analytics dashboard help?",
     answer:
-      "Absolutely. ForgeBase uses secure authentication and your data is stored safely in your own account. Only you can access your information.",
+      "The dashboard provides visual insights into your job search, including application status distribution and recent activity, helping you understand your progress at a glance.",
   },
   {
-    question: "Can I upload my resume?",
+    question: "Is my data private?",
     answer:
-      "Yes. Upload your resume in PDF format and access it anytime directly from your dashboard.",
+      "Yes. Every account has its own secure workspace. Your job applications and personal information are accessible only to you through authenticated access.",
   },
   {
-    question: "Does ForgeBase support mobile devices?",
+    question: "Can I access ForgeBase on mobile?",
     answer:
-      "Yes. ForgeBase is fully responsive, providing a seamless experience across desktops, tablets, and smartphones.",
+      "Absolutely. ForgeBase is fully responsive and works seamlessly across desktops, tablets, and smartphones, so you can manage your applications anywhere.",
   },
   {
-    question: "Is ForgeBase free to use?",
+    question: "Do I need to install anything?",
     answer:
-      "Yes. The core features are completely free, with additional premium features planned for future releases.",
+      "No. ForgeBase runs entirely in your browser. Simply sign in and start tracking your job applications without installing any software.",
   },
 ];
 
