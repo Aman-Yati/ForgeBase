@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useCallback, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useCallback, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
@@ -66,6 +66,11 @@ export default function HowItWorks() {
     steps.map(() => ({ left: 0, width: 0 }))
   );
   const [trunkRect, setTrunkRect] = useState<TrunkRect>({ top: 0, height: 0 });
+  // Stays false until the first real measurement lands. The connector line
+  // is kept invisible until then so it never renders at the {0,0}
+  // placeholder position and snaps into place — that was causing the
+  // first connector to appear to "teleport" to the side.
+  const [ready, setReady] = useState(false);
 
   const measure = useCallback(() => {
     const nextConnectors = steps.map((_, index) => {
@@ -97,9 +102,13 @@ export default function HowItWorks() {
       top: first - TRUNK_EXTENSION,
       height: Math.max(last - first, 0) + TRUNK_EXTENSION * 2,
     });
+    setReady(true);
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
+    // Runs synchronously before the browser paints, so the connector
+    // lines get their real position on the very first frame instead of
+    // rendering at {0,0} and jumping afterward.
     measure();
 
     const handleResize = () => measure();
@@ -160,7 +169,7 @@ export default function HowItWorks() {
         scrollTrigger: {
           trigger: firstCircle,
           start: "top 35%",
-          end: "top 25%",
+          end: "top 30%",
           scrub: true,
         },
       });
@@ -269,8 +278,12 @@ export default function HowItWorks() {
       <div ref={trackWrapperRef} className="relative mt-20">
         {/* Vertical trunk line */}
         <div
-          className="pointer-events-none absolute left-1/2 hidden w-2 -translate-x-1/2 bg-white/10 lg:block"
-          style={{ top: trunkRect.top, height: trunkRect.height }}
+          className="pointer-events-none absolute left-1/2 hidden w-2 -translate-x-1/2 bg-white/10 opacity-0 transition-opacity duration-500 ease-out lg:block"
+          style={{
+            top: trunkRect.top,
+            height: trunkRect.height,
+            opacity: ready ? 1 : 0,
+          }}
         >
           {/* Top stub — anchored at top, fills downward */}
           <div
@@ -293,7 +306,7 @@ export default function HowItWorks() {
           />
         </div>
 
-        <div className="space-y-24">
+        <div className="space-y-40">
           {steps.map((step, index) => {
             const Icon = step.icon;
             const rect = connectorRects[index];
@@ -313,8 +326,12 @@ export default function HowItWorks() {
                   ref={(el) => {
                     rowLineRefs.current[index] = el;
                   }}
-                  className="pointer-events-none absolute top-1/2 z-0 hidden h-2 -translate-y-1/2 bg-white/10 lg:block"
-                  style={{ left: rect.left, width: rect.width }}
+                  className="pointer-events-none absolute top-1/2 z-0 hidden h-2 -translate-y-1/2 bg-white/10 opacity-0 transition-opacity duration-500 ease-out lg:block"
+                  style={{
+                    left: rect.left,
+                    width: rect.width,
+                    opacity: ready ? 1 : 0,
+                  }}
                 />
 
                 <div
