@@ -192,14 +192,13 @@ Every push to the `main` branch automatically triggers a new production deployme
 - ✅ Responsive Design
 - ✅ Smooth Animations
 - ✅ User Profile
-
+- ✅ Calendar View
 ---
 
 # 🛣 Roadmap
 
 - [ ] Drag & Drop Kanban Board
 - [ ] Resume Upload
-- [ ] Calendar View
 - [ ] Email Reminders
 - [ ] AI Resume Review
 - [ ] AI Cover Letter Generator
