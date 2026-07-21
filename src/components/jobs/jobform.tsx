@@ -54,11 +54,10 @@ export default function JobForm({
   const isView = mode === "view";
 
 async function handleSubmit(formData: FormData) {
-  if (isPending) return; // <- Prevent double submissions immediately
+  if (isPending) return;
 
   setError("");
   setSuccess("");
-  setIsPending(true);
 
   try {
     const result =
@@ -158,6 +157,7 @@ async function handleSubmit(formData: FormData) {
                 {/* Form (Scrollable on Mobile) */}
                 <form
                   action={handleSubmit}
+                  onSubmit={() => setIsPending(true)}
                   className="min-h-0 flex-1 overflow-y-auto px-4 py-4 sm:px-6"
                 >
                   {mode === "edit" && job?.id && (
@@ -281,13 +281,17 @@ async function handleSubmit(formData: FormData) {
                       Close
                     </button>
                     {!isView && (
-                      <button
-                        type="submit"
-                        disabled={isPending}
-                        className="w-full rounded-lg bg-indigo-600 px-6 py-2.5 font-medium text-white hover:bg-indigo-500 disabled:opacity-60 disabled:cursor-not-allowed transition-colors sm:w-auto"
-                      >
-                        {isPending ? "Saving..." : mode === "create" ? "Add Job" : "Update Job"}
-                      </button>
+<button
+  type="submit"
+  disabled={isPending}
+  className="w-full rounded-lg bg-indigo-600 px-6 py-2.5 font-medium text-white hover:bg-indigo-500 disabled:cursor-not-allowed disabled:opacity-60 transition-colors sm:w-auto"
+>
+  {isPending
+    ? "Saving..."
+    : mode === "create"
+    ? "Add Job"
+    : "Update Job"}
+</button>
                     )}
                   </div>
                 </form>
