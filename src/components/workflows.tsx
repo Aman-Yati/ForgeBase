@@ -65,7 +65,7 @@ export default function Workflows() {
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.25 }}
+            viewport={{ once: true, margin: "-150px 0px" }} 
             style={{ willChange: "transform, opacity" }} // ✅ Fix #2
           >
             <motion.div
@@ -101,7 +101,7 @@ export default function Workflows() {
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.35 }}
+            viewport={{ once: true, margin: "-150px 0px" }} 
             onAnimationComplete={() => setEntered(true)} // ✅ Fix #3 — mark as entered
             style={{ willChange: "transform, opacity" }}
           >

@@ -25,7 +25,6 @@ const itemVariants: Variants = {
     opacity: 0,
     y: 40,
     scale: 0.95,
-    // ❌ filter removed
   },
   visible: {
     opacity: 1,
@@ -140,7 +139,7 @@ const features = [
 ];
 
 export default function Features() {
-  const [entered, setEntered] = useState(false); // ✅ Fix #3
+  const [entered, setEntered] = useState(false);
 
   return (
     <section className="relative overflow-hidden pb-15">
@@ -175,10 +174,10 @@ export default function Features() {
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.25 }}
-        onAnimationComplete={() => setEntered(true)} // ✅ Fix #3
+        viewport={{ once: true, margin: "-150px 0px" }} // ← FIXED
+        onAnimationComplete={() => setEntered(true)}
         className="mx-auto max-w-6xl px-4 sm:px-6"
-        style={{ willChange: "transform, opacity" }} // ✅ Fix #2
+        style={{ willChange: "transform, opacity" }}
       >
         <div>
 
@@ -217,7 +216,7 @@ export default function Features() {
 
           <motion.div
             variants={itemVariants}
-            whileHover={entered ? { scale: 1.02 } : undefined} // ✅ Fix #3
+            whileHover={entered ? { scale: 1.02 } : undefined}
             transition={{ duration: 0.35 }}
             className="flex justify-center pb-8 md:pb-12"
             style={{ willChange: "transform, opacity" }}
@@ -236,7 +235,7 @@ export default function Features() {
               <motion.article
                 key={feature.title}
                 variants={itemVariants}
-                whileHover={entered ? { // ✅ Fix #3
+                whileHover={entered ? {
                   y: -8,
                   transition: {
                     type: "spring",
@@ -248,7 +247,7 @@ export default function Features() {
                 style={{ willChange: "transform, opacity" }}
               >
                 <motion.div
-                  whileHover={entered ? { // ✅ Fix #3
+                  whileHover={entered ? {
                     scale: 1.12,
                     rotate: 4,
                   } : undefined}

@@ -78,7 +78,7 @@ export default function FAQSection() {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.25 }}
+          viewport={{ once: true, margin: "-150px 0px" }} 
           style={{ willChange: "transform, opacity" }}
         >
           <motion.div
