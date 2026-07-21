@@ -4,6 +4,9 @@ A modern, full-stack job application tracking platform that helps job seekers or
 
 Built with **Next.js 16**, **React 19**, **TypeScript**, **Prisma**, **Supabase**, **Clerk**, **Motion** and **Tailwind CSS**, ForgeBase provides a fast, responsive, and beautifully designed workspace for managing applications, tracking interviews, analyzing progress, and staying organized throughout the job search.
 
+
+🌐 Live Demo: https://forgebase-gamma.vercel.app/
+
 ---
 
 # ✨ Features
