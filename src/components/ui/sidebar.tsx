@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { UserButton, useUser } from "@clerk/nextjs";
@@ -41,15 +41,28 @@ const NAV_ITEMS = [
     href: "/resume",
     icon: FileText,
   },
-
 ];
 
 export default function Sidebar() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const pathname = usePathname();
-
   const { user } = useUser();
+
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = "hidden";
+      document.body.style.touchAction = "none";
+    } else {
+      document.body.style.overflow = "";
+      document.body.style.touchAction = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+      document.body.style.touchAction = "";
+    };
+  }, [mobileOpen]);
 
   const username =
     user?.fullName ||
@@ -91,7 +104,7 @@ export default function Sidebar() {
 
       {/* Sidebar */}
       <aside
-        className={`fixed left-0 top-0 z-50 flex h-dvh w-60 flex-col border-r border-white/10 bg-[#010a17] transition-transform duration-300 ${
+        className={`fixed inset-y-0 left-0 z-50 flex w-60 flex-col overflow-hidden border-r border-white/10 bg-[#010a17] transition-transform duration-300 ${
           mobileOpen ? "translate-x-0" : "-translate-x-full"
         } lg:translate-x-0`}
       >
@@ -113,7 +126,7 @@ export default function Sidebar() {
         </div>
 
         {/* Navigation */}
-        <nav className="flex-1 px-4">
+        <nav className="flex-1 overflow-y-auto px-4">
           <p className="mb-4 px-3 text-xs font-semibold uppercase tracking-[0.25em] text-zinc-500">
             Navigation
           </p>
@@ -142,9 +155,7 @@ export default function Sidebar() {
                     <Icon
                       size={18}
                       className={
-                        isActive
-                          ? "text-indigo-400"
-                          : "text-zinc-500"
+                        isActive ? "text-indigo-400" : "text-zinc-500"
                       }
                     />
 
