@@ -20,7 +20,7 @@ const steps = [
     description:
       "Sign up in seconds and get your personal dashboard where every job application is organized in one place.",
     icon: UserPlus,
-    color: "bg-violet-500",
+    color: "bg-indigo-500/30",
   },
   {
     id: "02",
@@ -28,7 +28,7 @@ const steps = [
     description:
       "Track every opportunity by saving company details, job roles, application status, interview dates, and notes.",
     icon: BriefcaseBusiness,
-    color: "bg-blue-500",
+    color: "bg-indigo-500/30",
   },
   {
     id: "03",
@@ -36,7 +36,7 @@ const steps = [
     description:
       "Visual dashboards help you understand your application pipeline, interview rate, and overall job search performance.",
     icon: BarChart3,
-    color: "bg-emerald-500",
+    color: "bg-indigo-500/30",
   },
   {
     id: "04",
@@ -44,7 +44,7 @@ const steps = [
     description:
       "Stay organized, never miss a follow-up, and focus on preparing for interviews instead of managing spreadsheets.",
     icon: Trophy,
-    color: "bg-orange-500",
+    color: "bg-indigo-500/30",
   },
 ];
 
