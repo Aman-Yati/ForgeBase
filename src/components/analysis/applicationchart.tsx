@@ -78,7 +78,7 @@ export default function ApplicationTrend({ jobs }: Props) {
         duration: 0.6,
         ease: [0.22, 1, 0.36, 1],
       }}
-      className="rounded-2xl border border-white/10 bg-[#010a17] px-6  py-6 mt-6"
+      className="rounded-2xl border border-white/10 bg-[#010a17] px-6 py-6 mt-6"
     >
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div>

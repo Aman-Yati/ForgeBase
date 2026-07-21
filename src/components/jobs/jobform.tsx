@@ -53,25 +53,35 @@ export default function JobForm({
 
   const isView = mode === "view";
 
-  async function handleSubmit(formData: FormData) {
-    setError("");
-    setIsPending(true);
+async function handleSubmit(formData: FormData) {
+  if (isPending) return; // <- Prevent double submissions immediately
 
-    let result;
-    if (mode === "create") {
-      result = await createJob(formData);
-    } else {
-      result = await updateJob(formData);
-    }
+  setError("");
+  setSuccess("");
+  setIsPending(true);
 
-    setIsPending(false);
+  try {
+    const result =
+      mode === "create"
+        ? await createJob(formData)
+        : await updateJob(formData);
+
     if (!result.success) {
       setError(result.error);
       return;
     }
-    setSuccess(mode === "create" ? "Job added successfully" : "Job updated successfully");
+
+    setSuccess(
+      mode === "create"
+        ? "Job added successfully"
+        : "Job updated successfully"
+    );
+
     setTimeout(() => onClose(), 900);
+  } finally {
+    setIsPending(false);
   }
+}
 
   const handleClose = () => {
     setError("");
