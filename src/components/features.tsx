@@ -1,51 +1,54 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
-import { blurredShapeGray, blurredShape, featuresImage } from '@/lib/images'
+import { motion, type Variants } from "framer-motion";
 
-function Reveal({
-  children,
-  delay = 0,
-  className = "",
-}: {
-  children: React.ReactNode;
-  delay?: number;
-  className?: string;
-}) {
-  const ref = useRef(null);
-  const [visible, setVisible] = useState(false);
+import {
+  blurredShapeGray,
+  blurredShape,
+  featuresImage,
+} from "@/lib/images";
 
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
+const containerVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      delayChildren: 0.2,
+      staggerChildren: 0.18,
+    },
+  },
+};
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.unobserve(el);
-        }
-      },
-      { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
-    );
+const itemVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 40,
+    scale: 0.95,
+    // ❌ filter removed
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.8,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
 
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <div
-      ref={ref}
-      className={`transition-all duration-700 ease-out ${
-        visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
-      } ${className}`}
-      style={{ transitionDelay: `${delay}ms` }}
-    >
-      {children}
-    </div>
-  );
-}
+const floatingVariants: Variants = {
+  animate: {
+    y: [0, -20, 0],
+    opacity: [0.5, 0.8, 0.5],
+    transition: {
+      duration: 14,
+      repeat: Infinity,
+      ease: "easeInOut",
+    },
+  },
+};
 
 const features = [
   {
@@ -59,7 +62,8 @@ const features = [
       </>
     ),
     title: "Application Tracking",
-    desc: "Track every application from wishlist to offer with clear status updates and a centralized dashboard.",
+    desc:
+      "Track every application from wishlist to offer with clear status updates and a centralized dashboard.",
   },
   {
     icon: (
@@ -69,7 +73,8 @@ const features = [
       </>
     ),
     title: "Interview Pipeline",
-    desc: "Organize interview rounds, upcoming schedules, and recruiter conversations without losing track.",
+    desc:
+      "Organize interview rounds, upcoming schedules, and recruiter conversations without losing track.",
   },
   {
     icon: (
@@ -82,7 +87,8 @@ const features = [
       </>
     ),
     title: "Powerful Search",
-    desc: "Instantly find any application using company names, job titles, locations, or custom tags.",
+    desc:
+      "Instantly find any application using company names, job titles, locations, or custom tags.",
   },
   {
     icon: (
@@ -93,16 +99,17 @@ const features = [
         />
         <path d="m7.456 6.676-.535-.845 1.69-1.07.534.844a11.944 11.944 0 0 1 0 12.789l-.535.845-1.69-1.071.536-.845a9.944 9.944 0 0 0 0-10.647Z" />
         <path
-          d="m11.888 4.35-.514-.858 1.717-1.027.513.858a16.9 16.9 0 0 1 2.4 8.677 16.9 16.9 0 0 1-2.4 8.676l-.513.859-1.717-1.028.514-.858A14.9 14.9 0 0 0 14.003 12a14.9 14.9 0 0 0-2.115-7.65Z"
           opacity=".48"
+          d="m11.888 4.35-.514-.858 1.717-1.027.513.858a16.9 16.9 0 0 1 2.4 8.677 16.9 16.9 0 0 1-2.4 8.676l-.513.859-1.717-1.028.514-.858A14.9 14.9 0 0 0 14.003 12a14.9 14.9 0 0 0-2.115-7.65Z"
         />
         <path d="m16.321 2-.5-.866 1.733-1 .5.866A22 22 0 0 1 21 12c0 3.852-1.017 7.636-2.948 10.97l-.502.865-1.73-1.003.501-.865A19.878 19.878 0 0 0 19 12a20 20 0 0 0-2.679-10Z" />
       </>
     ),
     title: "Analytics Dashboard",
-    desc: "Visualize your application success rate, interview performance, and overall job search progress.",
+    desc:
+      "Visualize your application success rate, interview performance, and overall job search progress.",
   },
-  {
+    {
     icon: (
       <>
         <path
@@ -113,7 +120,8 @@ const features = [
       </>
     ),
     title: "Custom Organization",
-    desc: "Create personalized tags, notes, priorities, and workflows that match your own application process.",
+    desc:
+      "Create personalized tags, notes, priorities, and workflows that match your own application process.",
   },
   {
     icon: (
@@ -126,57 +134,94 @@ const features = [
       </>
     ),
     title: "Career Timeline",
-    desc: "View your complete job search history in one timeline, from your first application to your final offer.",
+    desc:
+      "View your complete job search history in one timeline, from your first application to your final offer.",
   },
 ];
 
 export default function Features() {
+  const [entered, setEntered] = useState(false); // ✅ Fix #3
+
   return (
-    <section className="relative pb-15 overflow-hidden">
-      <div
+    <section className="relative overflow-hidden pb-15">
+
+      <motion.div
+        variants={floatingVariants}
+        animate="animate"
         className="pointer-events-none absolute left-1/2 top-0 -z-10 -mt-20 -translate-x-1/2"
-        aria-hidden="true"
       >
         <Image
           src={blurredShapeGray}
           width={760}
           height={668}
           alt="Blurred shape"
-          className="block"
         />
-      </div>
-      <div
+      </motion.div>
+
+      <motion.div
+        variants={floatingVariants}
+        animate="animate"
         className="pointer-events-none absolute bottom-0 left-1/2 -z-10 -mb-80 -translate-x-[120%] opacity-50"
-        aria-hidden="true"
       >
         <Image
           src={blurredShape}
           width={760}
           height={668}
           alt="Blurred shape"
-          className="block"
         />
-      </div>
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div>
-          <div className="mx-auto max-w-3xl pb-4 text-center md:pb-12">
-            <div className="inline-flex items-center gap-3 pb-3 before:h-px before:w-32 before:bg-linear-to-r before:from-transparent before:to-indigo-200/50 after:h-px after:w-32 after:bg-linear-to-l after:from-transparent after:to-indigo-200/50">
-              <span className="inline-flex bg-linear-to-r from-indigo-500 to-indigo-200 bg-clip-text text-transparent">
-                Everything You Need
-              </span>
-            </div>
-            <h2 className="mt-2 bg-clip-text pb-4 font-snasm tracking-normal text-3xl font-semibold md:text-4xl">
-              Built for the modern job search
-            </h2>
-            <p className="text-lg text-indigo-200/65">
-              Manage applications, interviews, offers, and rejections from one
-              beautiful dashboard. Stay organized and focus on landing your
-              next role.
-            </p>
-            </div>
-          
+      </motion.div>
 
-          <Reveal delay={100} className="flex justify-center pb-4 md:pb-12">
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.25 }}
+        onAnimationComplete={() => setEntered(true)} // ✅ Fix #3
+        className="mx-auto max-w-6xl px-4 sm:px-6"
+        style={{ willChange: "transform, opacity" }} // ✅ Fix #2
+      >
+        <div>
+
+          <div className="mx-auto max-w-3xl pb-4 text-center md:pb-12">
+
+            <motion.div
+              variants={itemVariants}
+              style={{ willChange: "transform, opacity" }}
+            >
+              <div className="inline-flex items-center gap-3 pb-6 before:h-px before:w-32 before:bg-linear-to-r before:from-transparent before:to-indigo-200/50 after:h-px after:w-32 after:bg-linear-to-l after:from-transparent after:to-indigo-200/50">
+                <span className="inline-flex bg-linear-to-r from-indigo-500 to-indigo-200 bg-clip-text text-transparent">
+                  Everything You Need
+                </span>
+              </div>
+            </motion.div>
+
+            <motion.h2
+              variants={itemVariants}
+              className="mt-2 bg-clip-text pb-4 font-snasm text-3xl font-semibold tracking-normal md:text-4xl"
+              style={{ willChange: "transform, opacity" }}
+            >
+              Built for the modern job search
+            </motion.h2>
+
+            <motion.p
+              variants={itemVariants}
+              className="pb-6 text-lg text-indigo-200/65"
+              style={{ willChange: "transform, opacity" }}
+            >
+              Manage applications, interviews, offers, and rejections from one
+              beautiful dashboard. Stay organized and focus on landing your next
+              role.
+            </motion.p>
+
+          </div>
+
+          <motion.div
+            variants={itemVariants}
+            whileHover={entered ? { scale: 1.02 } : undefined} // ✅ Fix #3
+            transition={{ duration: 0.35 }}
+            className="flex justify-center pb-8 md:pb-12"
+            style={{ willChange: "transform, opacity" }}
+          >
             <Image
               src={featuresImage}
               width={1004}
@@ -184,30 +229,58 @@ export default function Features() {
               alt="Features"
               className="h-auto w-full max-w-[900px]"
             />
-          </Reveal>
+          </motion.div>
 
-          <div className="mx-auto grid max-w-sm gap-12 sm:max-w-none sm:grid-cols-2 md:gap-x-14 md:gap-y-16 lg:grid-cols-3">
-            {features.map((feature, i) => (
-              <Reveal key={feature.title} delay={i * 80}>
-                <article>
+          <div className="mx-auto grid max-w-xl gap-12 py-8 sm:max-w-none sm:grid-cols-2 md:gap-x-14 md:gap-y-16 lg:grid-cols-3">
+            {features.map((feature) => (
+              <motion.article
+                key={feature.title}
+                variants={itemVariants}
+                whileHover={entered ? { // ✅ Fix #3
+                  y: -8,
+                  transition: {
+                    type: "spring",
+                    stiffness: 320,
+                    damping: 20,
+                  },
+                } : undefined}
+                className="group cursor-default"
+                style={{ willChange: "transform, opacity" }}
+              >
+                <motion.div
+                  whileHover={entered ? { // ✅ Fix #3
+                    scale: 1.12,
+                    rotate: 4,
+                  } : undefined}
+                  transition={{
+                    type: "spring",
+                    stiffness: 350,
+                    damping: 16,
+                  }}
+                  className="mb-3 inline-flex"
+                >
                   <svg
-                    className="mb-3 fill-indigo-500"
+                    className="fill-indigo-500 transition-colors duration-300 group-hover:fill-indigo-400"
                     xmlns="http://www.w3.org/2000/svg"
                     width={24}
                     height={24}
                   >
                     {feature.icon}
                   </svg>
-                  <h3 className="mb-1 font-nacelle text-[1rem] font-semibold text-gray-200">
-                    {feature.title}
-                  </h3>
-                  <p className="text-indigo-200/65">{feature.desc}</p>
-                </article>
-              </Reveal>
+                </motion.div>
+
+                <h3 className="mb-2 font-nacelle text-[1rem] font-semibold text-gray-200 transition-colors duration-300 group-hover:text-white">
+                  {feature.title}
+                </h3>
+
+                <p className="leading-7 text-indigo-200/65 transition-colors duration-300 group-hover:text-indigo-100/80">
+                  {feature.desc}
+                </p>
+              </motion.article>
             ))}
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

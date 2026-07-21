@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, type Variants } from "framer-motion";
 
 const faqs = [
   {
@@ -37,26 +37,76 @@ const faqs = [
   },
 ];
 
+/* ── Framer Motion Variants ── */
+
+const containerVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      delayChildren: 0.2,
+      staggerChildren: 0.18,
+    },
+  },
+};
+
+const headerVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 40,
+    scale: 0.95,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.8,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
 export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
     <section className="relative overflow-hidden py-24">
       <div className="mx-auto max-w-4xl px-6">
-        <div className="mx-auto max-w-3xl pb-4 text-center md:pb-12">
-            <div className="inline-flex items-center gap-3 pb-3 before:h-px before:w-32 before:bg-linear-to-r before:from-transparent before:to-indigo-200/50 after:h-px after:w-32 after:bg-linear-to-l after:from-transparent after:to-indigo-200/50">
-              <span className="inline-flex bg-linear-to-r from-indigo-500 to-indigo-200 bg-clip-text text-transparent">
-                FAQ
-              </span>
-            </div>
-            <h2 className="mt-2 bg-clip-text pb-4 font-snasm tracking-normal text-3xl font-semibold md:text-4xl">
-            Frequently Asked Questions
-          </h2>
+        {/* ── Header with staggered entrance ── */}
+        <motion.div
+          className="mx-auto max-w-3xl pb-4 text-center md:pb-12"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.25 }}
+          style={{ willChange: "transform, opacity" }}
+        >
+          <motion.div
+            variants={headerVariants}
+            className="inline-flex items-center gap-3 pb-6 before:h-px before:w-32 before:bg-linear-to-r before:from-transparent before:to-indigo-200/50 after:h-px after:w-32 after:bg-linear-to-l after:from-transparent after:to-indigo-200/50"
+            style={{ willChange: "transform, opacity" }}
+          >
+            <span className="inline-flex bg-linear-to-r from-indigo-500 to-indigo-200 bg-clip-text text-transparent">
+              FAQ
+            </span>
+          </motion.div>
 
-          <p className="mx-auto max-w-2xl text-lg text-zinc-400">
+          <motion.h2
+            variants={headerVariants}
+            className="mt-2 bg-clip-text pb-4 font-snasm tracking-normal text-3xl font-semibold md:text-4xl"
+            style={{ willChange: "transform, opacity" }}
+          >
+            Frequently Asked Questions
+          </motion.h2>
+
+          <motion.p
+            variants={headerVariants}
+            className="mx-auto max-w-2xl text-lg text-zinc-400"
+            style={{ willChange: "transform, opacity" }}
+          >
             Everything you need to know about ForgeBase.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
         <div className="space-y-4">
           {faqs.map((faq, index) => {

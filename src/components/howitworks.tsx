@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useLayoutEffect, useRef, useCallback, useState } from "react";
+import { motion, type Variants } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
@@ -52,6 +53,36 @@ type TrunkRect = { top: number; height: number };
 
 const TRUNK_EXTENSION = 64;
 
+/* ── Framer Motion Variants (header only) ── */
+
+const containerVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      delayChildren: 0.2,
+      staggerChildren: 0.18,
+    },
+  },
+};
+
+const headerVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 40,
+    scale: 0.95,
+    // ❌ filter: "blur(4px)" removed
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.8,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
 export default function HowItWorks() {
   const trackWrapperRef = useRef<HTMLDivElement | null>(null);
   const lineFillRef = useRef<HTMLDivElement | null>(null);
@@ -66,10 +97,6 @@ export default function HowItWorks() {
     steps.map(() => ({ left: 0, width: 0 }))
   );
   const [trunkRect, setTrunkRect] = useState<TrunkRect>({ top: 0, height: 0 });
-  // Stays false until the first real measurement lands. The connector line
-  // is kept invisible until then so it never renders at the {0,0}
-  // placeholder position and snaps into place — that was causing the
-  // first connector to appear to "teleport" to the side.
   const [ready, setReady] = useState(false);
 
   const measure = useCallback(() => {
@@ -106,9 +133,6 @@ export default function HowItWorks() {
   }, []);
 
   useLayoutEffect(() => {
-    // Runs synchronously before the browser paints, so the connector
-    // lines get their real position on the very first frame instead of
-    // rendering at {0,0} and jumping afterward.
     measure();
 
     const handleResize = () => measure();
@@ -147,7 +171,6 @@ export default function HowItWorks() {
     const ctx = gsap.context(() => {
       const coreHeight = Math.max(trunkRect.height - TRUNK_EXTENSION * 2, 0);
 
-      // Trunk fill (top to bottom)
       gsap.set(fill, { height: 0 });
       gsap.to(fill, {
         height: coreHeight,
@@ -161,7 +184,6 @@ export default function HowItWorks() {
         },
       });
 
-      // Top stub fill (top to bottom)
       gsap.set(topStub, { height: 0 });
       gsap.to(topStub, {
         height: TRUNK_EXTENSION,
@@ -174,7 +196,6 @@ export default function HowItWorks() {
         },
       });
 
-      // Bottom stub fill (top to bottom)
       gsap.set(bottomStub, { height: 0 });
       gsap.to(bottomStub, {
         height: TRUNK_EXTENSION,
@@ -187,7 +208,6 @@ export default function HowItWorks() {
         },
       });
 
-      // Checkpoints — tight 5% scrub range for instant activation
       circleRefs.current.forEach((circle, index) => {
         if (!circle) return;
 
@@ -251,29 +271,48 @@ export default function HowItWorks() {
       ctx.revert();
       ctxRef.current = null;
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [connectorRects, trunkRect]);
 
   return (
     <section id="how-it-works" className="mx-auto max-w-7xl pb-15 px-6 py-28">
-      <div className="mx-auto max-w-3xl pb-4 text-center md:pb-12">
-        <div className="inline-flex items-center gap-3 pb-3 before:h-px before:w-32 before:bg-linear-to-r before:from-transparent before:to-indigo-200/50 after:h-px after:w-32 after:bg-linear-to-l after:from-transparent after:to-indigo-200/50">
+      {/* ── Header: Framer Motion staggered entrance ── */}
+      <motion.div
+        className="mx-auto max-w-3xl pb-4 text-center md:pb-12"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.25 }}
+        style={{ willChange: "transform, opacity" }} // ✅ Fix #2
+      >
+        <motion.div
+          variants={headerVariants}
+          className="inline-flex items-center gap-3 pb-6 before:h-px before:w-32 before:bg-linear-to-r before:from-transparent before:to-indigo-200/50 after:h-px after:w-32 after:bg-linear-to-l after:from-transparent after:to-indigo-200/50"
+          style={{ willChange: "transform, opacity" }}
+        >
           <span className="inline-flex bg-linear-to-r from-indigo-500 to-indigo-200 bg-clip-text text-transparent">
             How It Works
           </span>
-        </div>
+        </motion.div>
 
-        <h2 className="mt-2 bg-clip-text pb-4 font-snasm tracking-normal text-3xl font-semibold md:text-4xl">
+        <motion.h2
+          variants={headerVariants}
+          className="mt-2 bg-clip-text pb-4 font-snasm tracking-normal text-3xl font-semibold md:text-4xl"
+          style={{ willChange: "transform, opacity" }}
+        >
           Your job search,
           <span className="text-indigo-500"> simplified.</span>
-        </h2>
+        </motion.h2>
 
-        <p className="mx-auto max-w-2xl text-lg text-zinc-400">
+        <motion.p
+          variants={headerVariants}
+          className="mx-auto max-w-2xl text-lg text-zinc-400"
+          style={{ willChange: "transform, opacity" }}
+        >
           ForgeBase keeps everything organized—from applications and interviews
           to offers—so you can spend less time managing spreadsheets and more
           time getting hired.
-        </p>
-      </div>
+        </motion.p>
+      </motion.div>
 
       <div ref={trackWrapperRef} className="relative mt-20">
         {/* Vertical trunk line */}
@@ -285,18 +324,15 @@ export default function HowItWorks() {
             opacity: ready ? 1 : 0,
           }}
         >
-          {/* Top stub — anchored at top, fills downward */}
           <div
             ref={topStubFillRef}
             className="absolute left-0 top-0 w-full bg-white"
           />
-          {/* Core fill */}
           <div
             ref={lineFillRef}
             className="absolute left-0 w-full bg-white"
             style={{ top: TRUNK_EXTENSION }}
           />
-          {/* Bottom stub — anchored below core fill, fills downward */}
           <div
             ref={bottomStubFillRef}
             className="absolute left-0 w-full bg-white"
@@ -306,6 +342,7 @@ export default function HowItWorks() {
           />
         </div>
 
+        {/* ── Steps: Pure GSAP (no Framer Motion) ── */}
         <div className="space-y-40">
           {steps.map((step, index) => {
             const Icon = step.icon;

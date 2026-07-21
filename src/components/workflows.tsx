@@ -1,16 +1,35 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import { motion, type Variants } from "framer-motion";
 
 import { workflow01, workflow02, workflow03 } from "@/lib/images";
-import Spotlight from "@/components/spotlight";
 
 const containerVariants: Variants = {
   hidden: {},
   visible: {
     transition: {
+      delayChildren: 0.2,
       staggerChildren: 0.18,
+    },
+  },
+};
+
+const headerVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 40,
+    scale: 0.95,
+    // ❌ filter removed — was causing re-paints every frame
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.8,
+      ease: [0.22, 1, 0.36, 1],
     },
   },
 };
@@ -18,64 +37,98 @@ const containerVariants: Variants = {
 const cardVariants: Variants = {
   hidden: {
     opacity: 0,
-    y: 60,
+    y: 50,
+    scale: 0.95,
+    // ❌ filter removed — was causing re-paints every frame
   },
   visible: {
     opacity: 1,
     y: 0,
+    scale: 1,
     transition: {
-      duration: 0.75,
-      ease: "easeOut",
+      duration: 0.8,
+      ease: [0.22, 1, 0.36, 1],
     },
   },
 };
 
 export default function Workflows() {
+  const [entered, setEntered] = useState(false);
+
   return (
     <section>
-      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+      <div className="mx-auto max-w-7xl px-4 pb-6 sm:px-6">
         <div className="pb-12 md:pb-20">
-          {/* Section header */}
-          <div className="mx-auto max-w-3xl pb-12 text-center md:pb-20">
-            <div className="inline-flex items-center gap-3 pb-3 before:h-px before:w-32 before:bg-linear-to-r before:from-transparent before:to-indigo-200/50 after:h-px after:w-32 after:bg-linear-to-l after:from-transparent after:to-indigo-200/50">
+          {/* Section Header */}
+          <motion.div
+            className="mx-auto max-w-3xl pb-12 text-center md:pb-20"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.25 }}
+            style={{ willChange: "transform, opacity" }} // ✅ Fix #2
+          >
+            <motion.div
+              variants={headerVariants}
+              className="inline-flex items-center gap-3 pb-6 before:h-px before:w-32 before:bg-linear-to-r before:from-transparent before:to-indigo-200/50 after:h-px after:w-32 after:bg-linear-to-l after:from-transparent after:to-indigo-200/50"
+              style={{ willChange: "transform, opacity" }}
+            >
               <span className="inline-flex bg-linear-to-r from-indigo-500 to-indigo-200 bg-clip-text text-transparent">
                 About ForgeBase
               </span>
-            </div>
+            </motion.div>
 
-            <h2 className="mt-2 bg-clip-text pb-4 font-snasm tracking-normal text-3xl font-semibold md:text-4xl">
+            <motion.h2
+              variants={headerVariants}
+              className="mt-2 bg-clip-text pb-4 font-snasm tracking-normal text-3xl font-semibold md:text-4xl"
+              style={{ willChange: "transform, opacity" }}
+            >
               Map your job search journey
-            </h2>
+            </motion.h2>
 
-            <p className="text-lg text-indigo-200/65">
+            <motion.p
+              variants={headerVariants}
+              className="mb-6 text-lg text-indigo-200/65"
+              style={{ willChange: "transform, opacity" }}
+            >
               Simple and powerful job application tracker with dashboards,
               analytics, and Excel-style control. Organize applications, track
               progress, and get insights to land your next role faster.
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
 
           <motion.div
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.35 }}
+            onAnimationComplete={() => setEntered(true)} // ✅ Fix #3 — mark as entered
+            style={{ willChange: "transform, opacity" }}
           >
-            <Spotlight className="group mx-auto grid max-w-sm items-start gap-8 pb-10 md:max-w-none lg:grid-cols-3">
-
+            <div className="group mx-auto grid max-w-sm items-start gap-8 pb-10 md:max-w-none lg:grid-cols-3">
               {/* Card 1 */}
               <motion.a
                 variants={cardVariants}
                 href="#0"
-                className="group/card relative h-full overflow-hidden rounded-2xl bg-gray-800 p-px before:pointer-events-none before:absolute before:-left-40 before:-top-40 before:z-10 before:h-80 before:w-80 before:translate-x-[var(--mouse-x)] before:translate-y-[var(--mouse-y)] before:rounded-full before:bg-indigo-500/80 before:opacity-0 before:blur-3xl before:transition-opacity before:duration-500 after:pointer-events-none after:absolute after:-left-48 after:-top-48 after:z-30 after:h-64 after:w-64 after:translate-x-[var(--mouse-x)] after:translate-y-[var(--mouse-y)] after:rounded-full after:bg-indigo-500 after:opacity-0 after:blur-3xl after:transition-opacity after:duration-500 hover:after:opacity-20 group-hover:before:opacity-100"
+                className="group/card relative h-full rounded-2xl bg-gray-800 p-px"
+                style={{ willChange: "transform, opacity" }}
               >
-                <div className="relative z-20 h-full overflow-hidden rounded-[inherit] bg-gray-950 after:absolute after:inset-0 after:bg-linear-to-br after:from-gray-900/50 after:via-gray-800/25 after:to-gray-900/50">
-                  <Image
-                    className="inline-flex"
-                    src={workflow01}
-                    width={1000}
-                    height={288}
-                    alt="Workflow 01"
-                  />
+                <div className="relative overflow-hidden z-20 h-full rounded-[inherit] bg-gray-950 after:absolute after:inset-0 after:bg-linear-to-br after:from-gray-900/50 after:via-gray-800/25 after:to-gray-900/50">
+                  <div className="relative overflow-hidden z-30">
+                    <motion.div
+                      whileHover={entered ? { scale: 1.05 } : undefined} // ✅ Fix #3 — only active after entrance
+                      transition={{ duration: 0.3 }}
+                      style={{ transformOrigin: "center" }}
+                    >
+                      <Image
+                        src={workflow01}
+                        width={1000}
+                        height={288}
+                        alt="Workflow 01"
+                        className="w-full h-auto rounded-t-2xl"
+                      />
+                    </motion.div>
+                  </div>
 
                   <div className="p-6">
                     <div className="mb-3">
@@ -94,20 +147,30 @@ export default function Workflows() {
                   </div>
                 </div>
               </motion.a>
-                            {/* Card 2 */}
+
+              {/* Card 2 */}
               <motion.a
                 variants={cardVariants}
                 href="#0"
-                className="group/card relative h-full overflow-hidden rounded-2xl bg-gray-800 p-px before:pointer-events-none before:absolute before:-left-40 before:-top-40 before:z-10 before:h-80 before:w-80 before:translate-x-[var(--mouse-x)] before:translate-y-[var(--mouse-y)] before:rounded-full before:bg-indigo-500/80 before:opacity-0 before:blur-3xl before:transition-opacity before:duration-500 after:pointer-events-none after:absolute after:-left-48 after:-top-48 after:z-30 after:h-64 after:w-64 after:translate-x-[var(--mouse-x)] after:translate-y-[var(--mouse-y)] after:rounded-full after:bg-indigo-500 after:opacity-0 after:blur-3xl after:transition-opacity after:duration-500 hover:after:opacity-20 group-hover:before:opacity-100"
+                className="group/card relative h-full rounded-2xl bg-gray-800 p-px"
+                style={{ willChange: "transform, opacity" }}
               >
-                <div className="relative z-20 h-full overflow-hidden rounded-[inherit] bg-gray-950 after:absolute after:inset-0 after:bg-linear-to-br after:from-gray-900/50 after:via-gray-800/25 after:to-gray-900/50">
-                  <Image
-                    className="inline-flex"
-                    src={workflow02}
-                    width={1000}
-                    height={288}
-                    alt="Workflow 02"
-                  />
+                <div className="relative overflow-hidden z-20 h-full rounded-[inherit] bg-gray-950 after:absolute after:inset-0 after:bg-linear-to-br after:from-gray-900/50 after:via-gray-800/25 after:to-gray-900/50">
+                  <div className="relative overflow-hidden z-30">
+                    <motion.div
+                      whileHover={entered ? { scale: 1.05 } : undefined}
+                      transition={{ duration: 0.3 }}
+                      style={{ transformOrigin: "center" }}
+                    >
+                      <Image
+                        src={workflow02}
+                        width={1000}
+                        height={288}
+                        alt="Workflow 02"
+                        className="w-full h-auto rounded-t-2xl"
+                      />
+                    </motion.div>
+                  </div>
 
                   <div className="p-6">
                     <div className="mb-3">
@@ -131,16 +194,25 @@ export default function Workflows() {
               <motion.a
                 variants={cardVariants}
                 href="#0"
-                className="group/card relative h-full overflow-hidden rounded-2xl bg-gray-800 p-px before:pointer-events-none before:absolute before:-left-40 before:-top-40 before:z-10 before:h-80 before:w-80 before:translate-x-[var(--mouse-x)] before:translate-y-[var(--mouse-y)] before:rounded-full before:bg-indigo-500/80 before:opacity-0 before:blur-3xl before:transition-opacity before:duration-500 after:pointer-events-none after:absolute after:-left-48 after:-top-48 after:z-30 after:h-64 after:w-64 after:translate-x-[var(--mouse-x)] after:translate-y-[var(--mouse-y)] after:rounded-full after:bg-indigo-500 after:opacity-0 after:blur-3xl after:transition-opacity after:duration-500 hover:after:opacity-20 group-hover:before:opacity-100"
+                className="group/card relative h-full rounded-2xl bg-gray-800 p-px"
+                style={{ willChange: "transform, opacity" }}
               >
-                <div className="relative z-20 h-full overflow-hidden rounded-[inherit] bg-gray-950 after:absolute after:inset-0 after:bg-linear-to-br after:from-gray-900/50 after:via-gray-800/25 after:to-gray-900/50">
-                  <Image
-                    className="inline-flex"
-                    src={workflow03}
-                    width={1000}
-                    height={288}
-                    alt="Workflow 03"
-                  />
+                <div className="relative overflow-hidden z-20 h-full rounded-[inherit] bg-gray-950 after:absolute after:inset-0 after:bg-linear-to-br after:from-gray-900/50 after:via-gray-800/25 after:to-gray-900/50">
+                  <div className="relative overflow-hidden z-30">
+                    <motion.div
+                      whileHover={entered ? { scale: 1.05 } : undefined}
+                      transition={{ duration: 0.3 }}
+                      style={{ transformOrigin: "center" }}
+                    >
+                      <Image
+                        src={workflow03}
+                        width={1000}
+                        height={288}
+                        alt="Workflow 03"
+                        className="w-full h-auto rounded-t-2xl"
+                      />
+                    </motion.div>
+                  </div>
 
                   <div className="p-6">
                     <div className="mb-3">
@@ -153,13 +225,13 @@ export default function Workflows() {
 
                     <p className="text-white">
                       Use powerful filters and search like a spreadsheet.
-                      Sort applications by status, company, role, or date to stay fully organized and in control.
+                      Sort applications by status, company, role, or date to
+                      stay fully organized and in control.
                     </p>
                   </div>
                 </div>
               </motion.a>
-
-            </Spotlight>
+            </div>
           </motion.div>
         </div>
       </div>
