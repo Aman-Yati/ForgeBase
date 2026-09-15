@@ -53,25 +53,34 @@ export default function JobForm({
 
   const isView = mode === "view";
 
-  async function handleSubmit(formData: FormData) {
-    setError("");
-    setIsPending(true);
+async function handleSubmit(formData: FormData) {
+  if (isPending) return;
 
-    let result;
-    if (mode === "create") {
-      result = await createJob(formData);
-    } else {
-      result = await updateJob(formData);
-    }
+  setError("");
+  setSuccess("");
 
-    setIsPending(false);
+  try {
+    const result =
+      mode === "create"
+        ? await createJob(formData)
+        : await updateJob(formData);
+
     if (!result.success) {
       setError(result.error);
       return;
     }
-    setSuccess(mode === "create" ? "Job added successfully" : "Job updated successfully");
+
+    setSuccess(
+      mode === "create"
+        ? "Job added successfully"
+        : "Job updated successfully"
+    );
+
     setTimeout(() => onClose(), 900);
+  } finally {
+    setIsPending(false);
   }
+}
 
   const handleClose = () => {
     setError("");
@@ -148,6 +157,7 @@ export default function JobForm({
                 {/* Form (Scrollable on Mobile) */}
                 <form
                   action={handleSubmit}
+                  onSubmit={() => setIsPending(true)}
                   className="min-h-0 flex-1 overflow-y-auto px-4 py-4 sm:px-6"
                 >
                   {mode === "edit" && job?.id && (
@@ -271,13 +281,17 @@ export default function JobForm({
                       Close
                     </button>
                     {!isView && (
-                      <button
-                        type="submit"
-                        disabled={isPending}
-                        className="w-full rounded-lg bg-indigo-600 px-6 py-2.5 font-medium text-white hover:bg-indigo-500 disabled:opacity-60 disabled:cursor-not-allowed transition-colors sm:w-auto"
-                      >
-                        {isPending ? "Saving..." : mode === "create" ? "Add Job" : "Update Job"}
-                      </button>
+<button
+  type="submit"
+  disabled={isPending}
+  className="w-full rounded-lg bg-indigo-600 px-6 py-2.5 font-medium text-white hover:bg-indigo-500 disabled:cursor-not-allowed disabled:opacity-60 transition-colors sm:w-auto"
+>
+  {isPending
+    ? "Saving..."
+    : mode === "create"
+    ? "Add Job"
+    : "Update Job"}
+</button>
                     )}
                   </div>
                 </form>

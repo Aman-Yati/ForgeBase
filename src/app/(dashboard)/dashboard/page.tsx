@@ -1,7 +1,7 @@
 import DashTop from "@/components/dashboard/dashtop";
 import RecentlyAppliedJobs from "@/components/dashboard/recentjobs";
 import AnalysisPieChart from "@/components/dashboard/piechart";
-import StatusBarChart from "@/components/analysis/barchart";
+import StatusBarChart from "@/components/dashboard/barchart";
 import { prisma } from "@/lib/prisma";
 import { currentUser } from "@clerk/nextjs/server";
 // intentionally throw for testing

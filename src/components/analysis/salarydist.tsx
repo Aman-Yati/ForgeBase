@@ -145,7 +145,7 @@ export default function SalaryDistribution({
                 fill: "rgba(255,255,255,.03)",
               }}
               contentStyle={{
-                background: "#010a17",
+                background: "#223551",
                 border: "1px solid rgba(255,255,255,.08)",
                 borderRadius: 14,
               }}

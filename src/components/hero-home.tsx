@@ -110,6 +110,8 @@ export default function HeroHome() {
               src={headerImage}
               width={1104}
               height={384}
+              quality={100}
+              unoptimized
               alt="Home Illustration"
               className="h-auto w-full rounded-2xl"
               priority

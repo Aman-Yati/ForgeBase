@@ -1,9 +1,49 @@
 "use client";
 
+import Link from "next/link";
 import Logo from "./logo";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { footerIllustration } from "@/lib/images";
+
+const FOOTER_LINKS = [
+  {
+    title: "Product",
+    links: [
+      { name: "Features", href: "/#features" },
+      { name: "FAQ", href: "/#faq" },
+      { name: "How it works", href: "/#how-it-works" },
+      { name: "Our Method", href: "/#method" },
+    ],
+  },
+  {
+    title: "Company",
+    links: [
+      { name: "About Us", href: "/#about" },
+      { name: "Diversity & Inclusion", href: "/#diversity" },
+      { name: "Blog", href: "/blog" },
+      { name: "Careers", href: "/careers" },
+      { name: "Financial Statements", href: "/financials" },
+    ],
+  },
+  {
+    title: "Resources",
+    links: [
+      { name: "Community", href: "/community" },
+      { name: "Terms of Service", href: "/terms" },
+      { name: "Report a Vulnerability", href: "/security" },
+    ],
+  },
+  {
+    title: "Support",
+    links: [
+      { name: "Contact Us", href: "/contact" },
+      { name: "Feedback", href: "/feedback" },
+      { name: "Tutorials", href: "/tutorials" },
+      { name: "Documentation", href: "/docs" },
+    ],
+  },
+];
 
 export default function Footer() {
   const pathname = usePathname();
@@ -28,169 +68,35 @@ export default function Footer() {
             width={1076}
             height={378}
             alt="Footer illustration"
-            className="h-auto max-w-[1076px] w-full"
+            className="h-auto w-full max-w-[1076px]"
             priority
           />
         </div>
 
         <div className="grid grid-cols-2 justify-between gap-12 py-16 sm:grid-rows-[auto_auto] md:grid-cols-4 md:grid-rows-[auto_auto] md:py-24 lg:grid-cols-[repeat(4,minmax(0,140px))_1fr] lg:grid-rows-1 xl:gap-20">
-          {/* 1st block */}
-          <div className="space-y-2">
-            <h3 className="text-sm font-medium text-gray-200">Product</h3>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <a
-                  className="text-indigo-200/65 transition hover:text-indigo-500"
-                  href="#0"
-                >
-                  Features
-                </a>
-              </li>
-              <li>
-                <a
-                  className="text-indigo-200/65 transition hover:text-indigo-500"
-                  href="#0"
-                >
-                  FAQ
-                </a>
-              </li>
-              <li>
-                <a
-                  className="text-indigo-200/65 transition hover:text-indigo-500"
-                  href="#0"
-                >
-                  How it works
-                </a>
-              </li>
-              <li>
-                <a
-                  className="text-indigo-200/65 transition hover:text-indigo-500"
-                  href="#0"
-                >
-                  Our method
-                </a>
-              </li>
-            </ul>
-          </div>
+          {/* Footer Sections */}
+          {FOOTER_LINKS.map((section) => (
+            <div key={section.title} className="space-y-2">
+              <h3 className="text-sm font-medium text-gray-200">
+                {section.title}
+              </h3>
 
-          {/* 2nd block */}
-          <div className="space-y-2">
-            <h3 className="text-sm font-medium text-gray-200">Company</h3>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <a
-                  className="text-indigo-200/65 transition hover:text-indigo-500"
-                  href="#0"
-                >
-                  About us
-                </a>
-              </li>
-              <li>
-                <a
-                  className="text-indigo-200/65 transition hover:text-indigo-500"
-                  href="#0"
-                >
-                  Diversity &amp; Inclusion
-                </a>
-              </li>
-              <li>
-                <a
-                  className="text-indigo-200/65 transition hover:text-indigo-500"
-                  href="#0"
-                >
-                  Blog
-                </a>
-              </li>
-              <li>
-                <a
-                  className="text-indigo-200/65 transition hover:text-indigo-500"
-                  href="#0"
-                >
-                  Careers
-                </a>
-              </li>
-              <li>
-                <a
-                  className="text-indigo-200/65 transition hover:text-indigo-500"
-                  href="#0"
-                >
-                  Financial statements
-                </a>
-              </li>
-            </ul>
-          </div>
+              <ul className="space-y-2 text-sm">
+                {section.links.map((link) => (
+                  <li key={link.name}>
+                    <Link
+                      href={link.href}
+                      className="text-indigo-200/65 transition hover:text-indigo-500"
+                    >
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
 
-          {/* 3rd block */}
-          <div className="space-y-2">
-            <h3 className="text-sm font-medium text-gray-200">Resources</h3>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <a
-                  className="text-indigo-200/65 transition hover:text-indigo-500"
-                  href="#0"
-                >
-                  Community
-                </a>
-              </li>
-              <li>
-                <a
-                  className="text-indigo-200/65 transition hover:text-indigo-500"
-                  href="#0"
-                >
-                  Terms of service
-                </a>
-              </li>
-              <li>
-                <a
-                  className="text-indigo-200/65 transition hover:text-indigo-500"
-                  href="#0"
-                >
-                  Report a vulnerability
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* 4th block */}
-          <div className="space-y-2">
-            <h3 className="text-sm font-medium text-gray-200">Support</h3>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <a
-                  className="text-indigo-200/65 transition hover:text-indigo-500"
-                  href="#0"
-                >
-                  Contact us
-                </a>
-              </li>
-              <li>
-                <a
-                  className="text-indigo-200/65 transition hover:text-indigo-500"
-                  href="#0"
-                >
-                  Feedback
-                </a>
-              </li>
-              <li>
-                <a
-                  className="text-indigo-200/65 transition hover:text-indigo-500"
-                  href="#0"
-                >
-                  Tutorials
-                </a>
-              </li>
-              <li>
-                <a
-                  className="text-indigo-200/65 transition hover:text-indigo-500"
-                  href="#0"
-                >
-                  Documentation
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* 5th block */}
+          {/* Logo & Copyright */}
           <div className="col-span-2 md:col-span-4 lg:col-span-1 lg:text-right">
             <div className="mb-3">
               <Logo />
@@ -198,18 +104,19 @@ export default function Footer() {
 
             <div className="text-sm">
               <p className="mb-3 text-indigo-200/65">
-                © ForgeBase 2024.
+                © ForgeBase 2026.
                 <span className="text-gray-700"> · </span>
-                <a
-                  className="text-indigo-200/65 transition hover:text-indigo-500"
-                  href="#0"
+
+                <Link
+                  href="/terms"
+                  className="transition hover:text-indigo-500"
                 >
                   Terms
-                </a>
+                </Link>
               </p>
 
               <ul className="inline-flex gap-1">
-                {/* Keep your existing social icons here unchanged */}
+                {/* Keep your social icons here unchanged */}
               </ul>
             </div>
           </div>
