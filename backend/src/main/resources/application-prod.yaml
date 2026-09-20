@@ -1,0 +1,9 @@
+# Production profile configuration
+# FRONTEND_URL must be set in environment variables
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+frontend:
+  url: ${FRONTEND_URL}
