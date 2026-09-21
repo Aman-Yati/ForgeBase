@@ -2,7 +2,7 @@
 
 A modern, full-stack job application tracking platform that helps job seekers organize every stage of their job search in one place.
 
-Built with **Next.js 16**, **React 19**, **TypeScript**, **Clerk**, **Motion** and **Tailwind CSS**, ForgeBase provides a fast, responsive, and beautifully designed workspace for managing applications, tracking interviews, analyzing progress, and staying organized throughout the job search.
+Built with **Next.js 16**, **React 19**, **TypeScript**, **Clerk**, **Spring Boot**, and **PostgreSQL**, ForgeBase provides a fast, responsive, and beautifully designed workspace for managing applications, tracking interviews, analyzing progress, and staying organized throughout the job search.
 
 
 🌐 Live Demo: https://forgebase-gamma.vercel.app/
@@ -60,9 +60,10 @@ Built with **Next.js 16**, **React 19**, **TypeScript**, **Clerk**, **Motion** a
 
 ## Backend
 
-- Spring Boot REST API
+- Spring Boot 3.3.6
 - PostgreSQL
-- Supabase
+- Spring Security with OAuth2
+- Spring Data JPA
 
 ## Authentication
 
@@ -70,22 +71,30 @@ Built with **Next.js 16**, **React 19**, **TypeScript**, **Clerk**, **Motion** a
 
 ## Deployment
 
-- Vercel
+- Frontend: Vercel
+- Backend: Render
 
 ---
 
 # 📂 Project Structure
 
 ```text
-src
-├── app
-├── actions
-├── components
-├── lib
-├── types
-└── utils
-
-public
+ForgeBase/
+├── frontend/          # Next.js frontend application
+│   ├── src/
+│   │   ├── app/
+│   │   ├── actions/
+│   │   ├── components/
+│   │   ├── lib/
+│   │   ├── types/
+│   │   └── utils/
+│   └── public/
+└── backend/           # Spring Boot REST API
+    ├── src/
+    │   ├── main/
+    │   │   ├── java/com/forgebase/
+    │   │   └── resources/
+    └── pom.xml
 ```
 
 ---
@@ -95,13 +104,21 @@ public
 Clone the repository.
 
 ```bash
-git clone https://github.com/yourusername/ForgeBase.git
+git clone https://github.com/Aman-Yati/ForgeBase.git
 ```
 
 Navigate into the project.
 
 ```bash
-cd ForgeBase/frontend
+cd ForgeBase
+```
+
+## Frontend Setup
+
+Navigate to the frontend directory.
+
+```bash
+cd frontend
 ```
 
 Install dependencies.
@@ -136,21 +153,60 @@ Open:
 http://localhost:3000
 ```
 
+## Backend Setup
+
+Navigate to the backend directory.
+
+```bash
+cd backend
+```
+
+Create a `.env` file with the database and Clerk configuration.
+
+```env
+SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/forgebase
+SPRING_DATASOURCE_USERNAME=your_username
+SPRING_DATASOURCE_PASSWORD=your_password
+CLERK_ISSUER_URI=https://your-clerk-instance.clerk.accounts.dev
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_publishable_key
+CLERK_SECRET_KEY=your_secret_key
+FRONTEND_URL=http://localhost:3000
+```
+
+Run the Spring Boot application.
+
+```bash
+./mvnw spring-boot:run
+```
+
+Or using Maven:
+
+```bash
+mvn spring-boot:run
+```
+
+The backend API will be available at:
+
+```text
+http://localhost:8080
+```
+
 ---
 
 # 🗄 Database
 
-ForgeBase uses PostgreSQL hosted on Supabase.
+ForgeBase uses PostgreSQL as the database.
 
-The frontend accesses PostgreSQL through the Spring Boot backend API. Start the backend separately from the `backend` directory.
+The frontend accesses PostgreSQL through the Spring Boot backend API. The backend uses Spring Data JPA for database operations and Hibernate for ORM.
 
 ---
 
 # 🚀 Deployment
 
-ForgeBase is deployed on Vercel.
+ForgeBase uses a dual deployment strategy:
 
-Every push to the `main` branch automatically triggers a new production deployment.
+- **Frontend**: Deployed on Vercel. Every push to the `Springboot` branch automatically triggers a new production deployment.
+- **Backend**: Deployed on Render. The backend is containerized using Docker and deployed as a web service.
 
 ---
 
@@ -201,5 +257,5 @@ This project is licensed under the MIT License.
 
 # 👨‍💻 Author
 
-Built with ❤️ using Next.js, React, TypeScript, Clerk, and Supabase.
+Built with ❤️ using Next.js, React, TypeScript, Clerk, Spring Boot, and PostgreSQL.
 -Aman Yati
